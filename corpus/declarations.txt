@@ -1,0 +1,85 @@
+==================
+Constant declaration
+==================
+
+const bit<16> TYPE_IPV4 = 0x800;
+
+---
+
+(source_file
+    (constantDeclaration
+        (typeRef
+            (baseType
+                (integer)))
+        (name
+            (nonTypeName
+                (identifier)))
+        (initializer
+            (expression
+              (integer)))))
+
+==================
+Extern declaration 1
+==================
+
+extern Checksum16 {
+    Checksum16();
+    void test();
+}
+
+---
+
+(source_file
+    (externDeclaration
+        (nonTypeName
+                (identifier))
+        (optTypeParameters)
+        (methodPrototypes
+            (methodPrototypes
+                (methodPrototypes)
+                    (methodPrototype
+                        (typeIdentifier
+                            (identifier))
+                        (parameterList)))
+            (methodPrototype
+                (functionPrototype
+                    (typeOrVoid)
+                    (name
+                        (nonTypeName
+                            (identifier)))
+                    (optTypeParameters)
+                    (parameterList))))))
+
+==================
+Extern declaration 2
+==================
+
+extern void f(inout bit x, in bit y);
+
+---
+
+(source_file
+    (externDeclaration
+        (functionPrototype
+            (typeOrVoid)
+                (name
+                    (nonTypeName
+                        (identifier)))
+            (optTypeParameters)
+            (parameterList
+                (nonEmptyParameterList
+                    (nonEmptyParameterList
+                        (parameter
+                        (direction)
+                        (typeRef
+                            (baseType))
+                        (name
+                            (nonTypeName
+                                (identifier)))))
+                    (parameter
+                        (direction)
+                        (typeRef
+                            (baseType))
+                        (name
+                            (nonTypeName
+                                (identifier)))))))))
