@@ -1,14 +1,217 @@
 [
   {
+    "type": "actionDeclaration",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "blockStatement",
+          "named": true
+        },
+        {
+          "type": "name",
+          "named": true
+        },
+        {
+          "type": "optAnnotations",
+          "named": true
+        },
+        {
+          "type": "parameterList",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "actionList",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "actionList",
+          "named": true
+        },
+        {
+          "type": "actionRef",
+          "named": true
+        },
+        {
+          "type": "optAnnotations",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "actionRef",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "argumentList",
+          "named": true
+        },
+        {
+          "type": "prefixedNonTypeName",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "annotation",
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
         {
+          "type": "annotationBody",
+          "named": true
+        },
+        {
           "type": "name",
+          "named": true
+        },
+        {
+          "type": "structuredAnnotationBody",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "annotationBody",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "annotationBody",
+          "named": true
+        },
+        {
+          "type": "annotationToken",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "annotationToken",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "typeIdentifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "annotations",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "annotation",
+          "named": true
+        },
+        {
+          "type": "annotations",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "argument",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        },
+        {
+          "type": "name",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "argumentList",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "nonEmptyArgList",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "assignmentOrMethodCallStatement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "argumentList",
+          "named": true
+        },
+        {
+          "type": "expression",
+          "named": true
+        },
+        {
+          "type": "lvalue",
+          "named": true
+        },
+        {
+          "type": "typeArgumentList",
           "named": true
         }
       ]
@@ -34,9 +237,42 @@
     }
   },
   {
-    "type": "boolean",
+    "type": "blockStatement",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "optAnnotations",
+          "named": true
+        },
+        {
+          "type": "statOrDeclList",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "conditionalStatement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        },
+        {
+          "type": "statement",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "constantDeclaration",
@@ -47,15 +283,15 @@
       "required": true,
       "types": [
         {
-          "type": "annotation",
-          "named": true
-        },
-        {
           "type": "initializer",
           "named": true
         },
         {
           "type": "name",
+          "named": true
+        },
+        {
+          "type": "optAnnotations",
           "named": true
         },
         {
@@ -66,7 +302,237 @@
     }
   },
   {
+    "type": "controlBody",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "blockStatement",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "controlLocalDeclaration",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "actionDeclaration",
+          "named": true
+        },
+        {
+          "type": "constantDeclaration",
+          "named": true
+        },
+        {
+          "type": "instantiation",
+          "named": true
+        },
+        {
+          "type": "tableDeclaration",
+          "named": true
+        },
+        {
+          "type": "variableDeclaration",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "controlLocalDeclarations",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "controlLocalDeclaration",
+          "named": true
+        },
+        {
+          "type": "controlLocalDeclarations",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "controlTypeDeclaration",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "name",
+          "named": true
+        },
+        {
+          "type": "optAnnotations",
+          "named": true
+        },
+        {
+          "type": "optTypeParameters",
+          "named": true
+        },
+        {
+          "type": "parameterList",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "derivedTypeDeclaration",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "enumDeclaration",
+          "named": true
+        },
+        {
+          "type": "headerTypeDeclaration",
+          "named": true
+        },
+        {
+          "type": "headerUnionDeclaration",
+          "named": true
+        },
+        {
+          "type": "structTypeDeclaration",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "directApplication",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "argumentList",
+          "named": true
+        },
+        {
+          "type": "specializedType",
+          "named": true
+        },
+        {
+          "type": "typeName",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "direction",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "dotPrefix",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "emptyStatement",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "entriesList",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "entriesList",
+          "named": true
+        },
+        {
+          "type": "entry",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "entry",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "actionRef",
+          "named": true
+        },
+        {
+          "type": "keysetExpression",
+          "named": true
+        },
+        {
+          "type": "optAnnotations",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "enumDeclaration",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifierList",
+          "named": true
+        },
+        {
+          "type": "name",
+          "named": true
+        },
+        {
+          "type": "optAnnotations",
+          "named": true
+        },
+        {
+          "type": "specifiedIdentifierList",
+          "named": true
+        },
+        {
+          "type": "typeRef",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "exitStatement",
     "named": true,
     "fields": {}
   },
@@ -79,15 +545,34 @@
       "required": false,
       "types": [
         {
-          "type": "boolean",
-          "named": true
-        },
-        {
           "type": "integer",
           "named": true
         },
         {
+          "type": "nonTypeName",
+          "named": true
+        },
+        {
           "type": "string",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "expressionList",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        },
+        {
+          "type": "expressionList",
           "named": true
         }
       ]
@@ -102,10 +587,6 @@
       "required": true,
       "types": [
         {
-          "type": "annotation",
-          "named": true
-        },
-        {
           "type": "functionPrototype",
           "named": true
         },
@@ -118,7 +599,30 @@
           "named": true
         },
         {
+          "type": "optAnnotations",
+          "named": true
+        },
+        {
           "type": "optTypeParameters",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "functionDeclaration",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "blockStatement",
+          "named": true
+        },
+        {
+          "type": "functionPrototype",
           "named": true
         }
       ]
@@ -152,6 +656,102 @@
     }
   },
   {
+    "type": "headerStackType",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        },
+        {
+          "type": "specializedType",
+          "named": true
+        },
+        {
+          "type": "typeName",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "headerTypeDeclaration",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "name",
+          "named": true
+        },
+        {
+          "type": "optAnnotations",
+          "named": true
+        },
+        {
+          "type": "optTypeParameters",
+          "named": true
+        },
+        {
+          "type": "structFieldList",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "headerUnionDeclaration",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "name",
+          "named": true
+        },
+        {
+          "type": "optAnnotations",
+          "named": true
+        },
+        {
+          "type": "optTypeParameters",
+          "named": true
+        },
+        {
+          "type": "structFieldList",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "identifierList",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifierList",
+          "named": true
+        },
+        {
+          "type": "name",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "initializer",
     "named": true,
     "fields": {},
@@ -167,6 +767,178 @@
     }
   },
   {
+    "type": "instantiation",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "annotations",
+          "named": true
+        },
+        {
+          "type": "argumentList",
+          "named": true
+        },
+        {
+          "type": "name",
+          "named": true
+        },
+        {
+          "type": "objInitializer",
+          "named": true
+        },
+        {
+          "type": "typeRef",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "keyElement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        },
+        {
+          "type": "name",
+          "named": true
+        },
+        {
+          "type": "optAnnotations",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "keyElementList",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "keyElement",
+          "named": true
+        },
+        {
+          "type": "keyElementList",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "keysetExpression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "simpleKeysetExpression",
+          "named": true
+        },
+        {
+          "type": "tupleKeysetExpression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "kvList",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "kvList",
+          "named": true
+        },
+        {
+          "type": "kvPair",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "kvPair",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        },
+        {
+          "type": "name",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "lvalue",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        },
+        {
+          "type": "lvalue",
+          "named": true
+        },
+        {
+          "type": "member",
+          "named": true
+        },
+        {
+          "type": "prefixedNonTypeName",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "member",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "name",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "methodPrototype",
     "named": true,
     "fields": {},
@@ -175,11 +947,11 @@
       "required": true,
       "types": [
         {
-          "type": "annotation",
+          "type": "functionPrototype",
           "named": true
         },
         {
-          "type": "functionPrototype",
+          "type": "optAnnotations",
           "named": true
         },
         {
@@ -232,6 +1004,107 @@
     }
   },
   {
+    "type": "namedType",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "specializedType",
+          "named": true
+        },
+        {
+          "type": "typeName",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "nonBraceExpression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "argumentList",
+          "named": true
+        },
+        {
+          "type": "dotPrefix",
+          "named": true
+        },
+        {
+          "type": "expression",
+          "named": true
+        },
+        {
+          "type": "integer",
+          "named": true
+        },
+        {
+          "type": "member",
+          "named": true
+        },
+        {
+          "type": "namedType",
+          "named": true
+        },
+        {
+          "type": "nonBraceExpression",
+          "named": true
+        },
+        {
+          "type": "nonTypeName",
+          "named": true
+        },
+        {
+          "type": "prec",
+          "named": true
+        },
+        {
+          "type": "realTypeArgumentList",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "typeName",
+          "named": true
+        },
+        {
+          "type": "typeRef",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "nonEmptyArgList",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "argument",
+          "named": true
+        },
+        {
+          "type": "nonEmptyArgList",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "nonEmptyParameterList",
     "named": true,
     "fields": {},
@@ -245,6 +1118,25 @@
         },
         {
           "type": "parameter",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "nonTableKwName",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "typeIdentifier",
           "named": true
         }
       ]
@@ -266,6 +1158,104 @@
     }
   },
   {
+    "type": "objDeclaration",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "functionDeclaration",
+          "named": true
+        },
+        {
+          "type": "instantiation",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "objDeclarations",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "objDeclaration",
+          "named": true
+        },
+        {
+          "type": "objDeclarations",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "objInitializer",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "objDeclarations",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "optAnnotations",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "annotations",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "optConstructorParameters",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "parameterList",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "optInitializer",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "initializer",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "optTypeParameters",
     "named": true,
     "fields": {},
@@ -281,7 +1271,7 @@
     }
   },
   {
-    "type": "parameter",
+    "type": "packageTypeDeclaration",
     "named": true,
     "fields": {},
     "children": {
@@ -289,9 +1279,32 @@
       "required": true,
       "types": [
         {
-          "type": "annotation",
+          "type": "name",
           "named": true
         },
+        {
+          "type": "optAnnotations",
+          "named": true
+        },
+        {
+          "type": "optTypeParameters",
+          "named": true
+        },
+        {
+          "type": "parameterList",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "parameter",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
         {
           "type": "direction",
           "named": true
@@ -302,6 +1315,10 @@
         },
         {
           "type": "name",
+          "named": true
+        },
+        {
+          "type": "optAnnotations",
           "named": true
         },
         {
@@ -327,6 +1344,414 @@
     }
   },
   {
+    "type": "parserBlockStatement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "optAnnotations",
+          "named": true
+        },
+        {
+          "type": "parserStatements",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "parserLocalElement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "constantDeclaration",
+          "named": true
+        },
+        {
+          "type": "instantiation",
+          "named": true
+        },
+        {
+          "type": "valueSetDeclaration",
+          "named": true
+        },
+        {
+          "type": "variableDeclaration",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "parserLocalElements",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "parserLocalElement",
+          "named": true
+        },
+        {
+          "type": "parserLocalElements",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "parserState",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "name",
+          "named": true
+        },
+        {
+          "type": "optAnnotations",
+          "named": true
+        },
+        {
+          "type": "parserStatements",
+          "named": true
+        },
+        {
+          "type": "transitionStatement",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "parserStatement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "assignmentOrMethodCallStatement",
+          "named": true
+        },
+        {
+          "type": "conditionalStatement",
+          "named": true
+        },
+        {
+          "type": "constantDeclaration",
+          "named": true
+        },
+        {
+          "type": "directApplication",
+          "named": true
+        },
+        {
+          "type": "emptyStatement",
+          "named": true
+        },
+        {
+          "type": "parserBlockStatement",
+          "named": true
+        },
+        {
+          "type": "variableDeclaration",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "parserStatements",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "parserStatement",
+          "named": true
+        },
+        {
+          "type": "parserStatements",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "parserStates",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "parserState",
+          "named": true
+        },
+        {
+          "type": "parserStates",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "parserTypeDeclaration",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "name",
+          "named": true
+        },
+        {
+          "type": "optAnnotations",
+          "named": true
+        },
+        {
+          "type": "optTypeParameters",
+          "named": true
+        },
+        {
+          "type": "parameterList",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "prec",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "prefixedNonTypeName",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "dotPrefix",
+          "named": true
+        },
+        {
+          "type": "nonTypeName",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "prefixedType",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "dotPrefix",
+          "named": true
+        },
+        {
+          "type": "typeIdentifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "realTypeArg",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "typeRef",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "realTypeArgumentList",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "realTypeArg",
+          "named": true
+        },
+        {
+          "type": "realTypeArgumentList",
+          "named": true
+        },
+        {
+          "type": "typeArg",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "reducedSimpleKeysetExpression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "returnStatement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "selectCase",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "keysetExpression",
+          "named": true
+        },
+        {
+          "type": "name",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "selectCaseList",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "selectCase",
+          "named": true
+        },
+        {
+          "type": "selectCaseList",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "selectExpression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expressionList",
+          "named": true
+        },
+        {
+          "type": "selectCaseList",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "simpleExpressionList",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "simpleExpressionList",
+          "named": true
+        },
+        {
+          "type": "simpleKeysetExpression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "simpleKeysetExpression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "source_file",
     "named": true,
     "fields": {},
@@ -335,11 +1760,504 @@
       "required": false,
       "types": [
         {
+          "type": "actionDeclaration",
+          "named": true
+        },
+        {
           "type": "constantDeclaration",
           "named": true
         },
         {
           "type": "externDeclaration",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "specializedType",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "prefixedType",
+          "named": true
+        },
+        {
+          "type": "typeArgumentList",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "specifiedIdentifier",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "initializer",
+          "named": true
+        },
+        {
+          "type": "name",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "specifiedIdentifierList",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "specifiedIdentifier",
+          "named": true
+        },
+        {
+          "type": "specifiedIdentifierList",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "statOrDeclList",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "statOrDeclList",
+          "named": true
+        },
+        {
+          "type": "statementOrDeclaration",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "stateExpression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "name",
+          "named": true
+        },
+        {
+          "type": "selectExpression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "assignmentOrMethodCallStatement",
+          "named": true
+        },
+        {
+          "type": "blockStatement",
+          "named": true
+        },
+        {
+          "type": "conditionalStatement",
+          "named": true
+        },
+        {
+          "type": "directApplication",
+          "named": true
+        },
+        {
+          "type": "emptyStatement",
+          "named": true
+        },
+        {
+          "type": "exitStatement",
+          "named": true
+        },
+        {
+          "type": "returnStatement",
+          "named": true
+        },
+        {
+          "type": "switchStatement",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "statementOrDeclaration",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "constantDeclaration",
+          "named": true
+        },
+        {
+          "type": "statement",
+          "named": true
+        },
+        {
+          "type": "variableDeclaration",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "structField",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "name",
+          "named": true
+        },
+        {
+          "type": "optAnnotations",
+          "named": true
+        },
+        {
+          "type": "typeRef",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "structFieldList",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "structField",
+          "named": true
+        },
+        {
+          "type": "structFieldList",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "structTypeDeclaration",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "name",
+          "named": true
+        },
+        {
+          "type": "optAnnotations",
+          "named": true
+        },
+        {
+          "type": "optTypeParameters",
+          "named": true
+        },
+        {
+          "type": "structFieldList",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "structuredAnnotationBody",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "expressionList",
+          "named": true
+        },
+        {
+          "type": "kvList",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "switchCase",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "blockStatement",
+          "named": true
+        },
+        {
+          "type": "switchLabel",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "switchCases",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "switchCase",
+          "named": true
+        },
+        {
+          "type": "switchCases",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "switchLabel",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "nonBraceExpression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "switchStatement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        },
+        {
+          "type": "switchCases",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "tableDeclaration",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "name",
+          "named": true
+        },
+        {
+          "type": "optAnnotations",
+          "named": true
+        },
+        {
+          "type": "tablePropertyList",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "tableProperty",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "actionList",
+          "named": true
+        },
+        {
+          "type": "entriesList",
+          "named": true
+        },
+        {
+          "type": "initializer",
+          "named": true
+        },
+        {
+          "type": "keyElementList",
+          "named": true
+        },
+        {
+          "type": "nonTableKwName",
+          "named": true
+        },
+        {
+          "type": "optAnnotations",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "tablePropertyList",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "tableProperty",
+          "named": true
+        },
+        {
+          "type": "tablePropertyList",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "transitionStatement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "stateExpression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "tupleKeysetExpression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "reducedSimpleKeysetExpression",
+          "named": true
+        },
+        {
+          "type": "simpleExpressionList",
+          "named": true
+        },
+        {
+          "type": "simpleKeysetExpression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "tupleType",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "typeArgumentList",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "typeArg",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "nonTypeName",
+          "named": true
+        },
+        {
+          "type": "typeRef",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "typeArgumentList",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "typeArg",
+          "named": true
+        },
+        {
+          "type": "typeArgumentList",
           "named": true
         }
       ]
@@ -355,6 +2273,21 @@
       "types": [
         {
           "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "typeName",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "prefixedType",
           "named": true
         }
       ]
@@ -424,12 +2357,141 @@
         {
           "type": "baseType",
           "named": true
+        },
+        {
+          "type": "headerStackType",
+          "named": true
+        },
+        {
+          "type": "specializedType",
+          "named": true
+        },
+        {
+          "type": "tupleType",
+          "named": true
+        },
+        {
+          "type": "typeName",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "typedefDeclaration",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "derivedTypeDeclaration",
+          "named": true
+        },
+        {
+          "type": "name",
+          "named": true
+        },
+        {
+          "type": "optAnnotations",
+          "named": true
+        },
+        {
+          "type": "typeRef",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "valueSetDeclaration",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "baseType",
+          "named": true
+        },
+        {
+          "type": "expression",
+          "named": true
+        },
+        {
+          "type": "name",
+          "named": true
+        },
+        {
+          "type": "optAnnotations",
+          "named": true
+        },
+        {
+          "type": "tupleType",
+          "named": true
+        },
+        {
+          "type": "typeName",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "variableDeclaration",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "annotations",
+          "named": true
+        },
+        {
+          "type": "name",
+          "named": true
+        },
+        {
+          "type": "optInitializer",
+          "named": true
+        },
+        {
+          "type": "typeRef",
+          "named": true
         }
       ]
     }
   },
   {
     "type": "",
+    "named": false
+  },
+  {
+    "type": "!",
+    "named": false
+  },
+  {
+    "type": "!=",
+    "named": false
+  },
+  {
+    "type": "%",
+    "named": false
+  },
+  {
+    "type": "&",
+    "named": false
+  },
+  {
+    "type": "&&",
+    "named": false
+  },
+  {
+    "type": "&&&",
     "named": false
   },
   {
@@ -441,7 +2503,39 @@
     "named": false
   },
   {
+    "type": "*",
+    "named": false
+  },
+  {
+    "type": "+",
+    "named": false
+  },
+  {
+    "type": "++",
+    "named": false
+  },
+  {
     "type": ",",
+    "named": false
+  },
+  {
+    "type": "-",
+    "named": false
+  },
+  {
+    "type": ".",
+    "named": false
+  },
+  {
+    "type": "..",
+    "named": false
+  },
+  {
+    "type": "/",
+    "named": false
+  },
+  {
+    "type": ":",
     "named": false
   },
   {
@@ -453,7 +2547,19 @@
     "named": false
   },
   {
+    "type": "<<",
+    "named": false
+  },
+  {
+    "type": "<=",
+    "named": false
+  },
+  {
     "type": "=",
+    "named": false
+  },
+  {
+    "type": "==",
     "named": false
   },
   {
@@ -461,7 +2567,43 @@
     "named": false
   },
   {
+    "type": ">=",
+    "named": false
+  },
+  {
+    "type": ">>",
+    "named": false
+  },
+  {
+    "type": "?",
+    "named": false
+  },
+  {
     "type": "@",
+    "named": false
+  },
+  {
+    "type": "[",
+    "named": false
+  },
+  {
+    "type": "]",
+    "named": false
+  },
+  {
+    "type": "^",
+    "named": false
+  },
+  {
+    "type": "_",
+    "named": false
+  },
+  {
+    "type": "abstract",
+    "named": false
+  },
+  {
+    "type": "action",
     "named": false
   },
   {
@@ -481,7 +2623,23 @@
     "named": false
   },
   {
+    "type": "comma",
+    "named": false
+  },
+  {
     "type": "const",
+    "named": false
+  },
+  {
+    "type": "control",
+    "named": false
+  },
+  {
+    "type": "default",
+    "named": false
+  },
+  {
+    "type": "else",
     "named": false
   },
   {
@@ -489,7 +2647,15 @@
     "named": false
   },
   {
+    "type": "enum",
+    "named": false
+  },
+  {
     "type": "error",
+    "named": false
+  },
+  {
+    "type": "exit",
     "named": false
   },
   {
@@ -501,8 +2667,20 @@
     "named": false
   },
   {
+    "type": "header",
+    "named": false
+  },
+  {
+    "type": "header_union",
+    "named": false
+  },
+  {
     "type": "identifier",
     "named": true
+  },
+  {
+    "type": "if",
+    "named": false
   },
   {
     "type": "in",
@@ -525,6 +2703,10 @@
     "named": false
   },
   {
+    "type": "mask",
+    "named": false
+  },
+  {
     "type": "match_kind",
     "named": false
   },
@@ -533,7 +2715,39 @@
     "named": false
   },
   {
+    "type": "package",
+    "named": false
+  },
+  {
+    "type": "parser",
+    "named": false
+  },
+  {
+    "type": "pragma",
+    "named": false
+  },
+  {
+    "type": "prefix",
+    "named": false
+  },
+  {
+    "type": "range",
+    "named": false
+  },
+  {
+    "type": "return",
+    "named": false
+  },
+  {
+    "type": "select",
+    "named": false
+  },
+  {
     "type": "state",
+    "named": false
+  },
+  {
+    "type": "string",
     "named": false
   },
   {
@@ -541,7 +2755,15 @@
     "named": true
   },
   {
-    "type": "string",
+    "type": "struct",
+    "named": false
+  },
+  {
+    "type": "switch",
+    "named": false
+  },
+  {
+    "type": "table",
     "named": false
   },
   {
@@ -549,11 +2771,31 @@
     "named": false
   },
   {
+    "type": "transition",
+    "named": false
+  },
+  {
     "type": "true",
     "named": false
   },
   {
+    "type": "tuple",
+    "named": false
+  },
+  {
     "type": "type",
+    "named": false
+  },
+  {
+    "type": "typedef",
+    "named": false
+  },
+  {
+    "type": "unknown_token",
+    "named": false
+  },
+  {
+    "type": "valueset",
     "named": false
   },
   {
@@ -569,7 +2811,27 @@
     "named": false
   },
   {
+    "type": "|",
+    "named": false
+  },
+  {
+    "type": "|+|",
+    "named": false
+  },
+  {
+    "type": "|-|",
+    "named": false
+  },
+  {
+    "type": "||",
+    "named": false
+  },
+  {
     "type": "}",
+    "named": false
+  },
+  {
+    "type": "~",
     "named": false
   }
 ]

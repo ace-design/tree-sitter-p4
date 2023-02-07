@@ -8,6 +8,7 @@ const bit<16> TYPE_IPV4 = 0x800;
 
 (source_file
     (constantDeclaration
+        (optAnnotations)
         (typeRef
             (baseType
                 (integer)))
@@ -31,6 +32,7 @@ extern Checksum16 {
 
 (source_file
     (externDeclaration
+        (optAnnotations)
         (nonTypeName
                 (identifier))
         (optTypeParameters)
@@ -38,10 +40,12 @@ extern Checksum16 {
             (methodPrototypes
                 (methodPrototypes)
                     (methodPrototype
+                        (optAnnotations)
                         (typeIdentifier
                             (identifier))
                         (parameterList)))
             (methodPrototype
+                (optAnnotations)
                 (functionPrototype
                     (typeOrVoid)
                     (name
@@ -60,6 +64,7 @@ extern void f(inout bit x, in bit y);
 
 (source_file
     (externDeclaration
+        (optAnnotations)
         (functionPrototype
             (typeOrVoid)
                 (name
@@ -70,16 +75,70 @@ extern void f(inout bit x, in bit y);
                 (nonEmptyParameterList
                     (nonEmptyParameterList
                         (parameter
-                        (direction)
-                        (typeRef
-                            (baseType))
-                        (name
-                            (nonTypeName
-                                (identifier)))))
+                            (optAnnotations)
+                            (direction)
+                            (typeRef
+                                (baseType))
+                            (name
+                                (nonTypeName
+                                    (identifier)))))
                     (parameter
+                        (optAnnotations)
                         (direction)
                         (typeRef
                             (baseType))
                         (name
                             (nonTypeName
                                 (identifier)))))))))
+
+==================
+Action declaration 
+==================
+
+action Forward_a(out bit<9> outputPort, bit<9> port) {
+    outputPort = port;
+}
+
+---
+
+(source_file
+    (actionDeclaration
+        (optAnnotations)
+        (name
+            (nonTypeName
+                (identifier)))
+        (parameterList
+            (nonEmptyParameterList
+                (nonEmptyParameterList
+                    (parameter
+                        (optAnnotations)
+                        (direction)
+                        (typeRef
+                            (baseType
+                                (integer)))
+                        (name
+                            (nonTypeName
+                            (identifier)))))
+                    (parameter
+                        (optAnnotations)
+                        (direction)
+                        (typeRef
+                            (baseType
+                                (integer)))
+                        (name
+                            (nonTypeName
+                                (identifier))))))
+        (blockStatement
+            (optAnnotations)
+            (statOrDeclList
+                (statOrDeclList)
+                (statementOrDeclaration
+                    (statement
+                        (assignmentOrMethodCallStatement
+                            (lvalue
+                                (prefixedNonTypeName
+                                    (nonTypeName
+                                        (identifier))))
+                            (expression
+                                (nonTypeName
+                                    (identifier))))))))))
