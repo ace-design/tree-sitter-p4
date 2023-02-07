@@ -11,13 +11,17 @@ module.exports = grammar({
     ],
 
     rules: {
-        source_file: $ => repeat(seq($._declaration, /\s/)),
+        source_file: $ => repeat(choice(
+            seq($._declaration, /\s/),
+            '',
+            ';'
+        )),
 
         _declaration: $ => choice(
             $.constantDeclaration,
             $.externDeclaration,
             $.actionDeclaration,
-            // $.parserDeclaration,
+            $.parserDeclaration,
             // $.typeDeclaration,
             // $.controlDeclaration,
             // $.instantiation,
@@ -100,7 +104,7 @@ module.exports = grammar({
         ),
 
         objInitializer: $ => seq(
-            seq('{', $.objDeclarations, '}'),
+            '{', $.objDeclarations, '}'
         ),
 
         objDeclarations: $ => choice(
@@ -123,8 +127,9 @@ module.exports = grammar({
         ),
 
         parserDeclaration: $ => seq(
-            seq($.parserTypeDeclaration, $.optConstructorParameters, '{', $.parserLocalElements, $.parserStates, '}'),
+            $.parserTypeDeclaration, $.optConstructorParameters, '{', $.parserLocalElements, $.parserStates, '}'
         ),
+
 
         parserLocalElements: $ => choice(
             '',
@@ -139,7 +144,7 @@ module.exports = grammar({
         ),
 
         parserTypeDeclaration: $ => seq(
-            seq($.optAnnotations, 'parser', $.name, $.optTypeParameters, '(', $.parameterList, ')'),
+            $.optAnnotations, 'parser', $.name, $.optTypeParameters, '(', $.parameterList, ')'
         ),
 
         parserStates: $ => choice(
@@ -148,7 +153,7 @@ module.exports = grammar({
         ),
 
         parserState: $ => seq(
-            seq($.optAnnotations, 'state', $.name, '{', $.parserStatements, $.transitionStatement, '}'),
+            $.optAnnotations, 'state', $.name, '{', $.parserStatements, $.transitionStatement, '}'
         ),
 
         parserStatements: $ => choice(
@@ -167,7 +172,7 @@ module.exports = grammar({
         ),
 
         parserBlockStatement: $ => seq(
-            seq($.optAnnotations, '{', $.parserStatements, '}'),
+            $.optAnnotations, '{', $.parserStatements, '}'
         ),
 
         transitionStatement: $ => choice(
@@ -181,7 +186,7 @@ module.exports = grammar({
         ),
 
         selectExpression: $ => seq(
-            seq('select', '(', $.expressionList, ')', '{', $.selectCaseList, '}'),
+            'select', '(', $.expressionList, ')', '{', $.selectCaseList, '}'
         ),
 
         selectCaseList: $ => choice(
@@ -190,7 +195,7 @@ module.exports = grammar({
         ),
 
         selectCase: $ => seq(
-            seq($.keysetExpression, ':', $.name, ';'),
+            $.keysetExpression, ':', $.name, ';'
         ),
 
         keysetExpression: $ => choice(
@@ -230,11 +235,11 @@ module.exports = grammar({
         ),
 
         controlDeclaration: $ => seq(
-            seq($.controlTypeDeclaration, $.optConstructorParameters, '{', $.controlLocalDeclarations, 'apply', $.controlBody, '}'),
+            $.controlTypeDeclaration, $.optConstructorParameters, '{', $.controlLocalDeclarations, 'apply', $.controlBody, '}'
         ),
 
         controlTypeDeclaration: $ => seq(
-            seq($.optAnnotations, 'control', $.name, $.optTypeParameters, '(', $.parameterList, ')'),
+            $.optAnnotations, 'control', $.name, $.optTypeParameters, '(', $.parameterList, ')'
         ),
 
         controlLocalDeclarations: $ => choice(
@@ -265,7 +270,7 @@ module.exports = grammar({
         ),
 
         functionPrototype: $ => seq(
-            seq($.typeOrVoid, $.name, $.optTypeParameters, '(', $.parameterList, ')'),
+            $.typeOrVoid, $.name, $.optTypeParameters, '(', $.parameterList, ')'
         ),
 
         methodPrototype: $ => choice(
@@ -296,7 +301,7 @@ module.exports = grammar({
         ),
 
         tupleType: $ => seq(
-            seq('tuple', '<', $.typeArgumentList, '>'),
+            'tuple', '<', $.typeArgumentList, '>'
         ),
 
         headerStackType: $ => choice(
@@ -305,7 +310,7 @@ module.exports = grammar({
         ),
 
         specializedType: $ => seq(
-            seq($.prefixedType, '<', $.typeArgumentList, '>'),
+            $.prefixedType, '<', $.typeArgumentList, '>'
         ),
 
         baseType: $ => choice(
@@ -335,7 +340,7 @@ module.exports = grammar({
         ),
 
         typeParameters: $ => seq(
-            seq('<', $.typeParameterList, '>'),
+            '<', $.typeParameterList
         ),
 
         typeParameterList: $ => choice(
@@ -383,15 +388,15 @@ module.exports = grammar({
         ),
 
         headerTypeDeclaration: $ => seq(
-            seq($.optAnnotations, 'header', $.name, $.optTypeParameters, '{', $.structFieldList, '}'),
+            $.optAnnotations, 'header', $.name, $.optTypeParameters, '{', $.structFieldList, '}'
         ),
 
         headerUnionDeclaration: $ => seq(
-            seq($.optAnnotations, 'header_union', $.name, $.optTypeParameters, '{', $.structFieldList, '}'),
+            $.optAnnotations, 'header_union', $.name, $.optTypeParameters, '{', $.structFieldList, '}'
         ),
 
         structTypeDeclaration: $ => seq(
-            seq($.optAnnotations, 'struct', $.name, $.optTypeParameters, '{', $.structFieldList, '}'),
+            $.optAnnotations, 'struct', $.name, $.optTypeParameters, '{', $.structFieldList
         ),
 
         structFieldList: $ => choice(
@@ -400,7 +405,7 @@ module.exports = grammar({
         ),
 
         structField: $ => seq(
-            seq($.optAnnotations, $.typeRef, $.name, ';'),
+            $.optAnnotations, $.typeRef, $.name, ';'
         ),
 
         enumDeclaration: $ => choice(
@@ -409,11 +414,11 @@ module.exports = grammar({
         ),
 
         errorDeclaration: $ => seq(
-            seq('error', '{', $.identifierList, '}'),
+            'error', '{', $.identifierList, '}'
         ),
 
         matchKindDeclaration: $ => seq(
-            seq('match_kind', '{', $.identifierList, '}'),
+            'match_kind', '{', $.identifierList, '}'
         ),
 
         identifierList: $ => choice(
@@ -427,7 +432,7 @@ module.exports = grammar({
         ),
 
         specifiedIdentifier: $ => seq(
-            seq($.name, '=', $.initializer),
+            $.name, '=', $.initializer
         ),
 
         typedefDeclaration: $ => choice(
@@ -453,7 +458,7 @@ module.exports = grammar({
         ),
 
         exitStatement: $ => seq(
-            seq('exit', ';'),
+            'exit', ';'
         ),
 
         conditionalStatement: $ => choice(
@@ -478,7 +483,7 @@ module.exports = grammar({
         ),
 
         blockStatement: $ => seq(
-            seq($.optAnnotations, '{', $.statOrDeclList, '}'),
+            $.optAnnotations, '{', $.statOrDeclList, '}'
         ),
 
         statOrDeclList: $ => choice(
@@ -487,7 +492,7 @@ module.exports = grammar({
         ),
 
         switchStatement: $ => seq(
-            seq('switch', '(', $.expression, ')', '{', $.switchCases, '}'),
+            'switch', '(', $.expression, ')', '{', $.switchCases, '}'
         ),
 
         switchCases: $ => choice(
@@ -512,7 +517,7 @@ module.exports = grammar({
         ),
 
         tableDeclaration: $ => seq(
-            seq($.optAnnotations, 'table', $.name, '{', $.tablePropertyList, '}'),
+            $.optAnnotations, 'table', $.name, '{', $.tablePropertyList, '}'
         ),
 
         tablePropertyList: $ => choice(
@@ -553,11 +558,11 @@ module.exports = grammar({
         ),
 
         entry: $ => seq(
-            seq($.keysetExpression, ':', $.actionRef, $.optAnnotations, ';'),
+            $.keysetExpression, ':', $.actionRef, $.optAnnotations, ';'
         ),
 
         actionDeclaration: $ => seq(
-            seq($.optAnnotations, 'action', $.name, '(', $.parameterList, ')', $.blockStatement),
+            $.optAnnotations, 'action', $.name, '(', $.parameterList, ')', $.blockStatement
         ),
 
         variableDeclaration: $ => choice(
@@ -566,7 +571,7 @@ module.exports = grammar({
         ),
 
         constantDeclaration: $ => seq(
-            seq($.optAnnotations, 'const', $.typeRef, $.name, '=', $.initializer, ';'),
+            $.optAnnotations, 'const', $.typeRef, $.name, '=', $.initializer, ';'
         ),
 
         optInitializer: $ => choice(
@@ -579,7 +584,7 @@ module.exports = grammar({
         ),
 
         functionDeclaration: $ => seq(
-            seq($.functionPrototype, $.blockStatement),
+            $.functionPrototype, $.blockStatement
         ),
 
         argumentList: $ => choice(
@@ -605,7 +610,7 @@ module.exports = grammar({
         ),
 
         kvPair: $ => seq(
-            seq($.name, '=', $.expression),
+            $.name, '=', $.expression
         ),
 
         expressionList: $ => choice(
