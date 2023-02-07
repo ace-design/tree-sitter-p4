@@ -8,15 +8,15 @@
       "required": true,
       "types": [
         {
+          "type": "annotations",
+          "named": true
+        },
+        {
           "type": "blockStatement",
           "named": true
         },
         {
           "type": "name",
-          "named": true
-        },
-        {
-          "type": "optAnnotations",
           "named": true
         },
         {
@@ -32,7 +32,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "actionList",
@@ -43,7 +43,7 @@
           "named": true
         },
         {
-          "type": "optAnnotations",
+          "type": "annotations",
           "named": true
         }
       ]
@@ -97,7 +97,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "annotationBody",
@@ -180,11 +180,15 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
-      "required": false,
+      "multiple": true,
+      "required": true,
       "types": [
         {
-          "type": "nonEmptyArgList",
+          "type": "argument",
+          "named": true
+        },
+        {
+          "type": "argumentList",
           "named": true
         }
       ]
@@ -242,10 +246,10 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
-          "type": "optAnnotations",
+          "type": "annotations",
           "named": true
         },
         {
@@ -283,15 +287,15 @@
       "required": true,
       "types": [
         {
+          "type": "annotations",
+          "named": true
+        },
+        {
           "type": "initializer",
           "named": true
         },
         {
           "type": "name",
-          "named": true
-        },
-        {
-          "type": "optAnnotations",
           "named": true
         },
         {
@@ -353,7 +357,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "controlLocalDeclaration",
@@ -375,19 +379,19 @@
       "required": true,
       "types": [
         {
+          "type": "annotations",
+          "named": true
+        },
+        {
           "type": "name",
           "named": true
         },
         {
-          "type": "optAnnotations",
-          "named": true
-        },
-        {
-          "type": "optTypeParameters",
-          "named": true
-        },
-        {
           "type": "parameterList",
+          "named": true
+        },
+        {
+          "type": "typeParameters",
           "named": true
         }
       ]
@@ -464,7 +468,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "entriesList",
@@ -490,11 +494,11 @@
           "named": true
         },
         {
-          "type": "keysetExpression",
+          "type": "annotations",
           "named": true
         },
         {
-          "type": "optAnnotations",
+          "type": "keysetExpression",
           "named": true
         }
       ]
@@ -509,15 +513,15 @@
       "required": true,
       "types": [
         {
+          "type": "annotations",
+          "named": true
+        },
+        {
           "type": "identifierList",
           "named": true
         },
         {
           "type": "name",
-          "named": true
-        },
-        {
-          "type": "optAnnotations",
           "named": true
         },
         {
@@ -565,7 +569,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "expression",
@@ -587,6 +591,10 @@
       "required": true,
       "types": [
         {
+          "type": "annotations",
+          "named": true
+        },
+        {
           "type": "functionPrototype",
           "named": true
         },
@@ -599,11 +607,7 @@
           "named": true
         },
         {
-          "type": "optAnnotations",
-          "named": true
-        },
-        {
-          "type": "optTypeParameters",
+          "type": "typeParameters",
           "named": true
         }
       ]
@@ -641,15 +645,15 @@
           "named": true
         },
         {
-          "type": "optTypeParameters",
-          "named": true
-        },
-        {
           "type": "parameterList",
           "named": true
         },
         {
           "type": "typeOrVoid",
+          "named": true
+        },
+        {
+          "type": "typeParameters",
           "named": true
         }
       ]
@@ -687,19 +691,19 @@
       "required": true,
       "types": [
         {
+          "type": "annotations",
+          "named": true
+        },
+        {
           "type": "name",
           "named": true
         },
         {
-          "type": "optAnnotations",
-          "named": true
-        },
-        {
-          "type": "optTypeParameters",
-          "named": true
-        },
-        {
           "type": "structFieldList",
+          "named": true
+        },
+        {
+          "type": "typeParameters",
           "named": true
         }
       ]
@@ -714,19 +718,19 @@
       "required": true,
       "types": [
         {
+          "type": "annotations",
+          "named": true
+        },
+        {
           "type": "name",
           "named": true
         },
         {
-          "type": "optAnnotations",
-          "named": true
-        },
-        {
-          "type": "optTypeParameters",
-          "named": true
-        },
-        {
           "type": "structFieldList",
+          "named": true
+        },
+        {
+          "type": "typeParameters",
           "named": true
         }
       ]
@@ -806,15 +810,15 @@
       "required": true,
       "types": [
         {
+          "type": "annotations",
+          "named": true
+        },
+        {
           "type": "expression",
           "named": true
         },
         {
           "type": "name",
-          "named": true
-        },
-        {
-          "type": "optAnnotations",
           "named": true
         }
       ]
@@ -826,7 +830,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "keyElement",
@@ -947,11 +951,11 @@
       "required": true,
       "types": [
         {
-          "type": "functionPrototype",
+          "type": "annotations",
           "named": true
         },
         {
-          "type": "optAnnotations",
+          "type": "functionPrototype",
           "named": true
         },
         {
@@ -971,7 +975,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "methodPrototype",
@@ -1086,44 +1090,6 @@
     }
   },
   {
-    "type": "nonEmptyArgList",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "argument",
-          "named": true
-        },
-        {
-          "type": "nonEmptyArgList",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "nonEmptyParameterList",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "nonEmptyParameterList",
-          "named": true
-        },
-        {
-          "type": "parameter",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "nonTableKwName",
     "named": true,
     "fields": {},
@@ -1182,7 +1148,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "objDeclaration",
@@ -1201,70 +1167,10 @@
     "fields": {},
     "children": {
       "multiple": false,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "objDeclarations",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "optAnnotations",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "annotations",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "optConstructorParameters",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "parameterList",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "optInitializer",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "initializer",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "optTypeParameters",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "typeParameters",
           "named": true
         }
       ]
@@ -1276,22 +1182,22 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
+        {
+          "type": "annotations",
+          "named": true
+        },
         {
           "type": "name",
           "named": true
         },
         {
-          "type": "optAnnotations",
-          "named": true
-        },
-        {
-          "type": "optTypeParameters",
-          "named": true
-        },
-        {
           "type": "parameterList",
+          "named": true
+        },
+        {
+          "type": "typeParameters",
           "named": true
         }
       ]
@@ -1306,6 +1212,10 @@
       "required": true,
       "types": [
         {
+          "type": "annotations",
+          "named": true
+        },
+        {
           "type": "direction",
           "named": true
         },
@@ -1315,10 +1225,6 @@
         },
         {
           "type": "name",
-          "named": true
-        },
-        {
-          "type": "optAnnotations",
           "named": true
         },
         {
@@ -1333,11 +1239,15 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
-      "required": false,
+      "multiple": true,
+      "required": true,
       "types": [
         {
-          "type": "nonEmptyParameterList",
+          "type": "parameter",
+          "named": true
+        },
+        {
+          "type": "parameterList",
           "named": true
         }
       ]
@@ -1349,14 +1259,41 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
-          "type": "optAnnotations",
+          "type": "annotations",
           "named": true
         },
         {
           "type": "parserStatements",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "parserDeclaration",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "parameterList",
+          "named": true
+        },
+        {
+          "type": "parserLocalElements",
+          "named": true
+        },
+        {
+          "type": "parserStates",
+          "named": true
+        },
+        {
+          "type": "parserTypeDeclaration",
           "named": true
         }
       ]
@@ -1395,7 +1332,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "parserLocalElement",
@@ -1417,11 +1354,11 @@
       "required": true,
       "types": [
         {
-          "type": "name",
+          "type": "annotations",
           "named": true
         },
         {
-          "type": "optAnnotations",
+          "type": "name",
           "named": true
         },
         {
@@ -1480,7 +1417,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "parserStatement",
@@ -1521,19 +1458,19 @@
       "required": true,
       "types": [
         {
+          "type": "annotations",
+          "named": true
+        },
+        {
           "type": "name",
           "named": true
         },
         {
-          "type": "optAnnotations",
-          "named": true
-        },
-        {
-          "type": "optTypeParameters",
-          "named": true
-        },
-        {
           "type": "parameterList",
+          "named": true
+        },
+        {
+          "type": "typeParameters",
           "named": true
         }
       ]
@@ -1685,7 +1622,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "selectCase",
@@ -1704,7 +1641,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "expressionList",
@@ -1769,6 +1706,10 @@
         },
         {
           "type": "externDeclaration",
+          "named": true
+        },
+        {
+          "type": "parserDeclaration",
           "named": true
         }
       ]
@@ -1837,7 +1778,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "statOrDeclList",
@@ -1944,11 +1885,11 @@
       "required": true,
       "types": [
         {
-          "type": "name",
+          "type": "annotations",
           "named": true
         },
         {
-          "type": "optAnnotations",
+          "type": "name",
           "named": true
         },
         {
@@ -1964,7 +1905,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "structField",
@@ -1986,19 +1927,19 @@
       "required": true,
       "types": [
         {
+          "type": "annotations",
+          "named": true
+        },
+        {
           "type": "name",
           "named": true
         },
         {
-          "type": "optAnnotations",
-          "named": true
-        },
-        {
-          "type": "optTypeParameters",
-          "named": true
-        },
-        {
           "type": "structFieldList",
+          "named": true
+        },
+        {
+          "type": "typeParameters",
           "named": true
         }
       ]
@@ -2048,7 +1989,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "switchCase",
@@ -2104,11 +2045,11 @@
       "required": true,
       "types": [
         {
-          "type": "name",
+          "type": "annotations",
           "named": true
         },
         {
-          "type": "optAnnotations",
+          "type": "name",
           "named": true
         },
         {
@@ -2124,10 +2065,14 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "actionList",
+          "named": true
+        },
+        {
+          "type": "annotations",
           "named": true
         },
         {
@@ -2144,10 +2089,6 @@
         },
         {
           "type": "nonTableKwName",
-          "named": true
-        },
-        {
-          "type": "optAnnotations",
           "named": true
         }
       ]
@@ -2178,7 +2119,7 @@
     "fields": {},
     "children": {
       "multiple": false,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "stateExpression",
@@ -2216,7 +2157,7 @@
     "fields": {},
     "children": {
       "multiple": false,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "typeArgumentList",
@@ -2250,7 +2191,7 @@
     "fields": {},
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "typeArg",
@@ -2386,15 +2327,15 @@
       "required": true,
       "types": [
         {
+          "type": "annotations",
+          "named": true
+        },
+        {
           "type": "derivedTypeDeclaration",
           "named": true
         },
         {
           "type": "name",
-          "named": true
-        },
-        {
-          "type": "optAnnotations",
           "named": true
         },
         {
@@ -2413,6 +2354,10 @@
       "required": true,
       "types": [
         {
+          "type": "annotations",
+          "named": true
+        },
+        {
           "type": "baseType",
           "named": true
         },
@@ -2422,10 +2367,6 @@
         },
         {
           "type": "name",
-          "named": true
-        },
-        {
-          "type": "optAnnotations",
           "named": true
         },
         {
@@ -2452,11 +2393,11 @@
           "named": true
         },
         {
-          "type": "name",
+          "type": "initializer",
           "named": true
         },
         {
-          "type": "optInitializer",
+          "type": "name",
           "named": true
         },
         {
@@ -2465,10 +2406,6 @@
         }
       ]
     }
-  },
-  {
-    "type": "",
-    "named": false
   },
   {
     "type": "!",

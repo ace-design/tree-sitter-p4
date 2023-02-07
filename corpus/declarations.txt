@@ -8,7 +8,6 @@ const bit<16> TYPE_IPV4 = 0x800;
 
 (source_file
     (constantDeclaration
-        (optAnnotations)
         (typeRef
             (baseType
                 (integer)))
@@ -32,27 +31,19 @@ extern Checksum16 {
 
 (source_file
     (externDeclaration
-        (optAnnotations)
         (nonTypeName
                 (identifier))
-        (optTypeParameters)
         (methodPrototypes
             (methodPrototypes
-                (methodPrototypes)
-                    (methodPrototype
-                        (optAnnotations)
-                        (typeIdentifier
-                            (identifier))
-                        (parameterList)))
+                (methodPrototype
+                    (typeIdentifier
+                        (identifier))))
             (methodPrototype
-                (optAnnotations)
                 (functionPrototype
                     (typeOrVoid)
                     (name
                         (nonTypeName
-                            (identifier)))
-                    (optTypeParameters)
-                    (parameterList))))))
+                            (identifier))))))))
 
 ==================
 Extern declaration 2
@@ -64,32 +55,27 @@ extern void f(inout bit x, in bit y);
 
 (source_file
     (externDeclaration
-        (optAnnotations)
         (functionPrototype
             (typeOrVoid)
                 (name
                     (nonTypeName
                         (identifier)))
-            (optTypeParameters)
             (parameterList
-                (nonEmptyParameterList
-                    (nonEmptyParameterList
-                        (parameter
-                            (optAnnotations)
-                            (direction)
-                            (typeRef
-                                (baseType))
-                            (name
-                                (nonTypeName
-                                    (identifier)))))
+                (parameterList
                     (parameter
-                        (optAnnotations)
                         (direction)
                         (typeRef
                             (baseType))
                         (name
                             (nonTypeName
-                                (identifier)))))))))
+                                (identifier)))))
+                (parameter
+                    (direction)
+                    (typeRef
+                        (baseType))
+                    (name
+                        (nonTypeName
+                            (identifier))))))))
 
 ==================
 Action declaration 
@@ -103,15 +89,12 @@ action Forward_a(out bit<9> outputPort, bit<9> port) {
 
 (source_file
     (actionDeclaration
-        (optAnnotations)
         (name
             (nonTypeName
                 (identifier)))
         (parameterList
-            (nonEmptyParameterList
-                (nonEmptyParameterList
+                (parameterList
                     (parameter
-                        (optAnnotations)
                         (direction)
                         (typeRef
                             (baseType
@@ -120,18 +103,14 @@ action Forward_a(out bit<9> outputPort, bit<9> port) {
                             (nonTypeName
                             (identifier)))))
                     (parameter
-                        (optAnnotations)
-                        (direction)
                         (typeRef
                             (baseType
                                 (integer)))
                         (name
                             (nonTypeName
-                                (identifier))))))
+                                (identifier)))))
         (blockStatement
-            (optAnnotations)
             (statOrDeclList
-                (statOrDeclList)
                 (statementOrDeclaration
                     (statement
                         (assignmentOrMethodCallStatement
@@ -142,3 +121,16 @@ action Forward_a(out bit<9> outputPort, bit<9> port) {
                             (expression
                                 (nonTypeName
                                     (identifier))))))))))
+
+==================
+Parser declaration 
+==================
+
+parser MyParser(out headers packet) {
+    state start {
+        transition parse_ethernet;
+    }
+}
+
+---
+
