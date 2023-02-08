@@ -2691,6 +2691,10 @@
     "named": false
   },
   {
+    "type": "block_comment",
+    "named": true
+  },
+  {
     "type": "bool",
     "named": false
   },
@@ -2783,6 +2787,10 @@
     "named": false
   },
   {
+    "type": "line_comment",
+    "named": true
+  },
+  {
     "type": "mask",
     "named": false
   },
@@ -2828,11 +2836,11 @@
   },
   {
     "type": "string",
-    "named": true
+    "named": false
   },
   {
     "type": "string",
-    "named": false
+    "named": true
   },
   {
     "type": "struct",

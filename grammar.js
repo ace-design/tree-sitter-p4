@@ -1,7 +1,9 @@
 module.exports = grammar({
     name: 'p4',
 
-    extras: $ => [/\s/],
+    extras: $ => [/\s/, $.line_comment, $.block_comment],
+
+    externals: $ => [$.block_comment],
 
     conflicts: $ => [
         [$.typeOrVoid, $.typeIdentifier],
@@ -38,6 +40,16 @@ module.exports = grammar({
             'entries',
             'type',
         ),
+
+        comment: $ => choice(
+            $.line_comment,
+            $.block_comment
+        ),
+
+        line_comment: $ => token(seq(
+            '//', /.*/
+        )),
+
 
         name: $ => choice(
             $.nonTypeName,
@@ -334,7 +346,7 @@ module.exports = grammar({
         )),
 
         typeParameters: $ => seq(
-            '<', $.typeParameterList
+            '<', $.typeParameterList, '>'
         ),
 
         typeParameterList: $ => choice(
