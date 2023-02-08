@@ -20,12 +20,13 @@ module.exports = grammar({
             $.externDeclaration,
             $.actionDeclaration,
             $.parserDeclaration,
-            //$.typeDeclaration,
-            //$.controlDeclaration,
-            //$.instantiation,
-            //$.errorDeclaration,
-            //$.matchKindDeclaration,
-            //$.functionDeclaration,
+            $.typeDeclaration,
+            $.controlDeclaration,
+            $.instantiation,
+            $.errorDeclaration,
+            $.matchKindDeclaration,
+            $.functionDeclaration,
+            $.includeDeclaration
         ),
 
         nonTypeName: $ => choice(
@@ -42,6 +43,16 @@ module.exports = grammar({
             $.nonTypeName,
             $.typeIdentifier,
         ),
+
+        includeDeclaration: $ => seq(
+            '#',
+            'include',
+            '<',
+            $.fileName,
+            '>'
+        ),
+
+        fileName: $ => /\w*.\w*/,
 
         nonTableKwName: $ => choice(
             $.identifier,
@@ -316,11 +327,11 @@ module.exports = grammar({
             seq('varbit', '<', '(', $.expression, ')', '>'),
         ),
 
-        typeOrVoid: $ => choice(
+        typeOrVoid: $ => prec.left(1, choice(
             $.typeRef,
             'void',
             $.identifier,
-        ),
+        )),
 
         typeParameters: $ => seq(
             '<', $.typeParameterList
@@ -378,7 +389,7 @@ module.exports = grammar({
         ),
 
         structTypeDeclaration: $ => seq(
-            optional($.annotations), 'struct', $.name, optional($.typeParameters), '{', optional($.structFieldList)
+            optional($.annotations), 'struct', $.name, optional($.typeParameters), '{', optional($.structFieldList), '}'
         ),
 
         structFieldList: $ => seq(

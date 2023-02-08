@@ -321,6 +321,33 @@
     }
   },
   {
+    "type": "controlDeclaration",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "controlBody",
+          "named": true
+        },
+        {
+          "type": "controlLocalDeclarations",
+          "named": true
+        },
+        {
+          "type": "controlTypeDeclaration",
+          "named": true
+        },
+        {
+          "type": "parameterList",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "controlLocalDeclaration",
     "named": true,
     "fields": {},
@@ -530,6 +557,21 @@
         },
         {
           "type": "typeRef",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "errorDeclaration",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "identifierList",
           "named": true
         }
       ]
@@ -756,6 +798,21 @@
     }
   },
   {
+    "type": "includeDeclaration",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "fileName",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "initializer",
     "named": true,
     "fields": {},
@@ -922,6 +979,21 @@
         },
         {
           "type": "prefixedNonTypeName",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "matchKindDeclaration",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "identifierList",
           "named": true
         }
       ]
@@ -1705,11 +1777,39 @@
           "named": true
         },
         {
+          "type": "controlDeclaration",
+          "named": true
+        },
+        {
+          "type": "errorDeclaration",
+          "named": true
+        },
+        {
           "type": "externDeclaration",
           "named": true
         },
         {
+          "type": "functionDeclaration",
+          "named": true
+        },
+        {
+          "type": "includeDeclaration",
+          "named": true
+        },
+        {
+          "type": "instantiation",
+          "named": true
+        },
+        {
+          "type": "matchKindDeclaration",
+          "named": true
+        },
+        {
           "type": "parserDeclaration",
+          "named": true
+        },
+        {
+          "type": "typeDeclaration",
           "named": true
         }
       ]
@@ -2205,6 +2305,37 @@
     }
   },
   {
+    "type": "typeDeclaration",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "controlTypeDeclaration",
+          "named": true
+        },
+        {
+          "type": "derivedTypeDeclaration",
+          "named": true
+        },
+        {
+          "type": "packageTypeDeclaration",
+          "named": true
+        },
+        {
+          "type": "parserTypeDeclaration",
+          "named": true
+        },
+        {
+          "type": "typedefDeclaration",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "typeIdentifier",
     "named": true,
     "fields": {},
@@ -2416,6 +2547,10 @@
     "named": false
   },
   {
+    "type": "#",
+    "named": false
+  },
+  {
     "type": "%",
     "named": false
   },
@@ -2604,6 +2739,10 @@
     "named": false
   },
   {
+    "type": "fileName",
+    "named": true
+  },
+  {
     "type": "header",
     "named": false
   },
@@ -2621,6 +2760,10 @@
   },
   {
     "type": "in",
+    "named": false
+  },
+  {
+    "type": "include",
     "named": false
   },
   {
@@ -2685,11 +2828,11 @@
   },
   {
     "type": "string",
-    "named": false
+    "named": true
   },
   {
     "type": "string",
-    "named": true
+    "named": false
   },
   {
     "type": "struct",

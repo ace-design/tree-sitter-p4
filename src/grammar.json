@@ -35,6 +35,34 @@
         {
           "type": "SYMBOL",
           "name": "parserDeclaration"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "typeDeclaration"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "controlDeclaration"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "instantiation"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "errorDeclaration"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "matchKindDeclaration"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "functionDeclaration"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "includeDeclaration"
         }
       ]
     },
@@ -83,6 +111,35 @@
           "name": "typeIdentifier"
         }
       ]
+    },
+    "includeDeclaration": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "#"
+        },
+        {
+          "type": "STRING",
+          "value": "include"
+        },
+        {
+          "type": "STRING",
+          "value": "<"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "fileName"
+        },
+        {
+          "type": "STRING",
+          "value": ">"
+        }
+      ]
+    },
+    "fileName": {
+      "type": "PATTERN",
+      "value": "\\w*.\\w*"
     },
     "nonTableKwName": {
       "type": "CHOICE",
@@ -2221,21 +2278,25 @@
       ]
     },
     "typeOrVoid": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "typeRef"
-        },
-        {
-          "type": "STRING",
-          "value": "void"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "identifier"
-        }
-      ]
+      "type": "PREC_LEFT",
+      "value": 1,
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "typeRef"
+          },
+          {
+            "type": "STRING",
+            "value": "void"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        ]
+      }
     },
     "typeParameters": {
       "type": "SEQ",
@@ -2603,6 +2664,10 @@
               "type": "BLANK"
             }
           ]
+        },
+        {
+          "type": "STRING",
+          "value": "}"
         }
       ]
     },
