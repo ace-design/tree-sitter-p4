@@ -165,7 +165,7 @@ parser MyParser(out headers packet) {
 ==================
 Include declaration 
 ==================
-
+<H>(inout H data) { /* Body omitted */ }
 #include <core.p4>
 
 ---
@@ -173,3 +173,32 @@ Include declaration
 (source_file
     (includeDeclaration
         (fileName)))
+
+==================
+Type declaration (typedef)
+==================
+
+typedef bit<48>  EthernetAddress;
+
+---
+
+(source_file
+    (typeDeclaration
+        (typedefDeclaration
+            (typeRef
+                (baseType
+                    (integer)))
+            (name
+                (nonTypeName
+                    (identifier))))))
+
+==================
+Control declaration
+==================
+
+control MyEgress(inout headers hdr) {
+    apply {  }
+}
+
+---
+

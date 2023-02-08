@@ -1,0 +1,3 @@
+"typedef" @keyword
+
+(string) @string
