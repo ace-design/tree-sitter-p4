@@ -18,11 +18,22 @@
 (parameter (name) @variable.parameter)
 
 (string) @string
+
 "true" @constant.builtin
 "false" @constant.builtin
 (direction) @constant.builtin
+(integer) @constant.builtin
+
 (baseType) @type
 (typeOrVoid) @type
 (typeRef) @type
 (block_comment) @comment
 (line_comment) @comment
+
+"(" @punctuation.bracket
+")" @punctuation.bracket
+"[" @punctuation.bracket
+"]" @punctuation.bracket
+"{" @punctuation.bracket
+"}" @punctuation.bracket
+
