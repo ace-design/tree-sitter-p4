@@ -114,7 +114,7 @@ module.exports = grammar({
         ),
 
         obj_initializer: $ => seq(
-            '{', optional($.obj_declarations), '}'
+            '{', repeat($.obj_declaration), '}'
         ),
 
         obj_declarations: $ => seq(

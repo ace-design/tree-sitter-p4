@@ -1274,11 +1274,11 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": false,
       "types": [
         {
-          "type": "obj_declarations",
+          "type": "obj_declaration",
           "named": true
         }
       ]

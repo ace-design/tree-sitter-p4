@@ -178,7 +178,7 @@ Include declaration
 Type declaration (typedef)
 ==================
 
-typedef bit<48>  EthernetAddress;
+typedef bit<48> EthernetAddress;
 
 ---
 
@@ -197,7 +197,73 @@ Control declaration
 ==================
 
 control MyEgress(inout headers hdr) {
-    apply {  }
+    apply {}
+}
+
+---
+
+(source_file
+    (control_declaration
+        (control_type_declaration
+            (name
+                (non_type_name
+                    (identifier)))
+            (parameter_list
+                (parameter
+                    (direction)
+                        (type_ref
+                            (type_name
+                                (prefixed_type
+                                    (type_identifier
+                                        (identifier)))))
+                        (name
+                            (non_type_name
+                                (identifier))))))
+        (control_body
+            (block_statement))))
+
+==================
+Instantiation 1
+==================
+
+Counter(32w1024, CounterType.Both) ctr;
+
+---
+
+(source_file
+    (instantiation
+        (type_ref
+            (type_name
+                (prefixed_type
+                    (type_identifier
+                        (identifier)))))
+        (argument_list
+            (argument_list
+                (argument
+                    (expression
+                        (integer))))
+            (argument
+                (expression
+                    (type_name
+                        (prefixed_type
+                            (type_identifier
+                                (identifier))))
+                    (member
+                    (name
+                        (non_type_name
+                            (identifier)))))))
+        (name
+          (non_type_name
+            (identifier)))))
+
+==================
+Instantiation 2
+==================
+
+Balancer() b = {
+    bit<32> max(in bit<32> left, in bit<32> right) {
+        return (left > right) ? left : right;
+    }
 }
 
 ---

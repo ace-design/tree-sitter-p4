@@ -1,0 +1,36 @@
+==================
+Single line block comment
+==================
+
+/* THIS IS A SINGLE LINE BLOCK COMMENT */
+
+---
+
+(source_file
+    (block_comment))
+
+==================
+Multi line block comment
+==================
+
+/* 
+THIS IS A MULTI LINE
+BLOCK COMMENT 
+*/
+
+---
+
+(source_file
+    (block_comment))
+
+==================
+Line comment
+==================
+
+// This is a line comment
+
+---
+
+(source_file
+    (line_comment))
+
