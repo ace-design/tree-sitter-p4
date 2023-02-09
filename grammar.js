@@ -6,10 +6,10 @@ module.exports = grammar({
     externals: $ => [$.block_comment],
 
     conflicts: $ => [
-        [$.typeOrVoid, $.typeIdentifier],
-        [$.nonTypeName, $.typeIdentifier],
-        [$.annotationToken, $.typeIdentifier],
-        [$.nonTableKwName, $.typeIdentifier],
+        [$.type_or_void, $.type_identifier],
+        [$.non_type_name, $.type_identifier],
+        [$.annotation_token, $.type_identifier],
+        [$.non_table_kw_name, $.type_identifier],
     ],
 
     rules: {
@@ -18,20 +18,20 @@ module.exports = grammar({
         ),
 
         _declaration: $ => choice(
-            $.constantDeclaration,
-            $.externDeclaration,
-            $.actionDeclaration,
-            $.parserDeclaration,
-            $.typeDeclaration,
-            $.controlDeclaration,
+            $.constant_declaration,
+            $.extern_declaration,
+            $.action_declaration,
+            $.parser_declaration,
+            $.type_declaration,
+            $.control_declaration,
             $.instantiation,
-            $.errorDeclaration,
-            $.matchKindDeclaration,
-            $.functionDeclaration,
-            $.includeDeclaration
+            $.error_declaration,
+            $.match_kind_declaration,
+            $.function_declaration,
+            $.include_declaration
         ),
 
-        nonTypeName: $ => choice(
+        non_type_name: $ => choice(
             $.identifier,
             'apply',
             'key',
@@ -52,23 +52,23 @@ module.exports = grammar({
 
 
         name: $ => choice(
-            $.nonTypeName,
-            $.typeIdentifier,
+            $.non_type_name,
+            $.type_identifier,
         ),
 
-        includeDeclaration: $ => seq(
+        include_declaration: $ => seq(
             '#',
             'include',
             '<',
-            $.fileName,
+            $.file_name,
             '>'
         ),
 
-        fileName: $ => /\w*.\w*/,
+        file_name: $ => /\w*.\w*/,
 
-        nonTableKwName: $ => choice(
+        non_table_kw_name: $ => choice(
             $.identifier,
-            $.typeIdentifier,
+            $.type_identifier,
             'apply',
             'state',
             'type',
@@ -80,18 +80,18 @@ module.exports = grammar({
 
         annotation: $ => choice(
             seq('@', $.name),
-            seq('@', $.name, '(', optional($.annotationBody), ')'),
-            seq('@', $.name, '[', $.structuredAnnotationBody, ']'),
+            seq('@', $.name, '(', optional($.annotation_body), ')'),
+            seq('@', $.name, '[', $.structured_annotation_body, ']'),
         ),
 
-        parameterList: $ => choice(
+        parameter_list: $ => choice(
             $.parameter,
-            seq($.parameterList, ',', $.parameter),
+            seq($.parameter_list, ',', $.parameter),
         ),
 
         parameter: $ => choice(
-            seq(optional($.annotations), optional($.direction), $.typeRef, $.name),
-            seq(optional($.annotations), optional($.direction), $.typeRef, $.name, '=', $.expression),
+            seq(optional($.annotations), optional($.direction), $.type_ref, $.name),
+            seq(optional($.annotations), optional($.direction), $.type_ref, $.name, '=', $.expression),
         ),
 
         direction: $ => choice(
@@ -100,134 +100,134 @@ module.exports = grammar({
             'inout',
         ),
 
-        packageTypeDeclaration: $ => choice(
-            seq(optional($.annotations), 'package', $.name, optional($.typeParameters)),
-            seq(optional($.parameterList), ')'),
+        package_type_declaration: $ => choice(
+            seq(optional($.annotations), 'package', $.name, optional($.type_parameters)),
+            seq(optional($.parameter_list), ')'),
         ),
 
         instantiation: $ => choice(
-            seq($.typeRef, '(', optional($.argumentList), ')', $.name, ';'),
-            seq($.annotations, $.typeRef, '(', optional($.argumentList), ')', $.name, ';'),
-            seq($.annotations, $.typeRef, '(', optional($.argumentList), ')', $.name, '=', $.objInitializer, ';'),
-            seq($.typeRef, '(', optional($.argumentList), ')', $.name, '=', $.objInitializer, ';'),
+            seq($.type_ref, '(', optional($.argument_list), ')', $.name, ';'),
+            seq($.annotations, $.type_ref, '(', optional($.argument_list), ')', $.name, ';'),
+            seq($.annotations, $.type_ref, '(', optional($.argument_list), ')', $.name, '=', $.obj_initializer, ';'),
+            seq($.type_ref, '(', optional($.argument_list), ')', $.name, '=', $.obj_initializer, ';'),
         ),
 
-        objInitializer: $ => seq(
-            '{', optional($.objDeclarations), '}'
+        obj_initializer: $ => seq(
+            '{', optional($.obj_declarations), '}'
         ),
 
-        objDeclarations: $ => seq(
-            $.objDeclarations,
-            $.objDeclaration
+        obj_declarations: $ => seq(
+            $.obj_declarations,
+            $.obj_declaration
         ),
 
 
-        objDeclaration: $ => choice(
-            $.functionDeclaration,
+        obj_declaration: $ => choice(
+            $.function_declaration,
             $.instantiation,
         ),
 
-        dotPrefix: $ => seq(
+        dot_prefix: $ => seq(
             '.',
         ),
 
-        parserDeclaration: $ => seq(
-            $.parserTypeDeclaration,
-            optional(seq('(', optional($.parameterList), ')')),
+        parser_declaration: $ => seq(
+            $.parser_type_declaration,
+            optional(seq('(', optional($.parameter_list), ')')),
             '{',
-            optional(optional($.parserLocalElements)),
-            $.parserStates,
+            optional(optional($.parser_local_elements)),
+            $.parser_states,
             '}'
         ),
 
 
-        parserLocalElements: $ => seq(
-            optional($.parserLocalElements), $.parserLocalElement
+        parser_local_elements: $ => seq(
+            optional($.parser_local_elements), $.parser_local_element
         ),
 
-        parserLocalElement: $ => choice(
-            $.constantDeclaration,
-            $.variableDeclaration,
+        parser_local_element: $ => choice(
+            $.constant_declaration,
+            $.variable_declaration,
             $.instantiation,
-            $.valueSetDeclaration,
+            $.value_set_declaration,
         ),
 
-        parserTypeDeclaration: $ => seq(
-            optional($.annotations), 'parser', $.name, optional($.typeParameters), '(', optional($.parameterList), ')'
+        parser_type_declaration: $ => seq(
+            optional($.annotations), 'parser', $.name, optional($.type_parameters), '(', optional($.parameter_list), ')'
         ),
 
-        parserStates: $ => choice(
-            $.parserState,
-            seq($.parserStates, $.parserState),
+        parser_states: $ => choice(
+            $.parser_state,
+            seq($.parser_states, $.parser_state),
         ),
 
-        parserState: $ => seq(
-            optional($.annotations), 'state', $.name, '{', optional($.parserStatements), optional($.transitionStatement), '}'
+        parser_state: $ => seq(
+            optional($.annotations), 'state', $.name, '{', optional($.parser_statements), optional($.transition_statement), '}'
         ),
 
-        parserStatements: $ => seq(
-            optional($.parserStatements), $.parserStatement
+        parser_statements: $ => seq(
+            optional($.parser_statements), $.parser_statement
         ),
 
-        parserStatement: $ => choice(
-            $.assignmentOrMethodCallStatement,
-            $.directApplication,
-            $.parserBlockStatement,
-            $.constantDeclaration,
-            $.variableDeclaration,
-            $.emptyStatement,
-            $.conditionalStatement,
+        parser_statement: $ => choice(
+            $.assignment_or_method_call_statement,
+            $.direct_application,
+            $.parser_block_statement,
+            $.constant_declaration,
+            $.variable_declaration,
+            $.empty_statement,
+            $.conditional_statement,
         ),
 
-        parserBlockStatement: $ => seq(
-            optional($.annotations), '{', optional($.parserStatements), '}'
+        parser_block_statement: $ => seq(
+            optional($.annotations), '{', optional($.parser_statements), '}'
         ),
 
-        transitionStatement: $ => seq(
-            'transition', $.stateExpression
+        transition_statement: $ => seq(
+            'transition', $.state_expression
         ),
 
 
-        stateExpression: $ => choice(
+        state_expression: $ => choice(
             seq($.name, ';'),
-            $.selectExpression,
+            $.select_expression,
         ),
 
-        selectExpression: $ => seq(
-            'select', '(', optional($.expressionList), ')', '{', optional($.selectCaseList), '}'
+        select_expression: $ => seq(
+            'select', '(', optional($.expression_list), ')', '{', optional($.select_case_list), '}'
         ),
 
-        selectCaseList: $ => seq(
-            optional($.selectCaseList), $.selectCase
+        select_case_list: $ => seq(
+            optional($.select_case_list), $.select_case
         ),
 
-        selectCase: $ => seq(
-            $.keysetExpression, ':', $.name, ';'
+        select_case: $ => seq(
+            $.keyset_expression, ':', $.name, ';'
         ),
 
-        keysetExpression: $ => choice(
-            $.tupleKeysetExpression,
-            $.simpleKeysetExpression,
+        keyset_expression: $ => choice(
+            $.tuple_keyset_expression,
+            $.simple_keyset_expression,
         ),
 
-        tupleKeysetExpression: $ => choice(
-            seq("(", $.simpleKeysetExpression, ",", $.simpleExpressionList, ")"),
-            seq("(", $.reducedSimpleKeysetExpression, ")"),
+        tuple_keyset_expression: $ => choice(
+            seq("(", $.simple_keyset_expression, ",", $.simple_expression_list, ")"),
+            seq("(", $.reduced_simple_keyset_expression, ")"),
         ),
 
-        simpleExpressionList: $ => choice(
-            $.simpleKeysetExpression,
-            seq($.simpleExpressionList, ',', $.simpleKeysetExpression),
+        simple_expression_list: $ => choice(
+            $.simple_keyset_expression,
+            seq($.simple_expression_list, ',', $.simple_keyset_expression),
         ),
 
-        reducedSimpleKeysetExpression: $ => choice(
+        reduced_simple_keyset_expression: $ => choice(
             seq($.expression, "&&&", $.expression),
             seq($.expression, "..", $.expression),
             'default',
             "_",
         ),
 
-        simpleKeysetExpression: $ => choice(
+        simple_keyset_expression: $ => choice(
             $.expression,
             'default',
             '_',
@@ -235,96 +235,96 @@ module.exports = grammar({
             seq($.expression, 'range', $.expression),
         ),
 
-        valueSetDeclaration: $ => choice(
-            seq(optional($.annotations), 'valueset', '<', $.baseType, '>', '(', $.expression, ')', $.name, ';'),
-            seq(optional($.annotations), 'valueset', '<', $.tupleType, '>', '(', $.expression, ')', $.name, ';'),
-            seq(optional($.annotations), 'valueset', '<', $.typeName, '>', '(', $.expression, ')', $.name, ';'),
+        value_set_declaration: $ => choice(
+            seq(optional($.annotations), 'valueset', '<', $.base_type, '>', '(', $.expression, ')', $.name, ';'),
+            seq(optional($.annotations), 'valueset', '<', $.tuple_type, '>', '(', $.expression, ')', $.name, ';'),
+            seq(optional($.annotations), 'valueset', '<', $.type_name, '>', '(', $.expression, ')', $.name, ';'),
         ),
 
-        controlDeclaration: $ => seq(
-            $.controlTypeDeclaration,
-            optional(seq('(', optional($.parameterList), ')')),
+        control_declaration: $ => seq(
+            $.control_type_declaration,
+            optional(seq('(', optional($.parameter_list), ')')),
             '{',
-            optional($.controlLocalDeclarations),
+            optional($.control_local_declarations),
             'apply',
-            $.controlBody,
+            $.control_body,
             '}'
         ),
 
-        controlTypeDeclaration: $ => seq(
-            optional($.annotations), 'control', $.name, optional($.typeParameters), '(', optional($.parameterList), ')'
+        control_type_declaration: $ => seq(
+            optional($.annotations), 'control', $.name, optional($.type_parameters), '(', optional($.parameter_list), ')'
         ),
 
-        controlLocalDeclarations: $ => seq(
-            optional($.controlLocalDeclarations), $.controlLocalDeclaration
+        control_local_declarations: $ => seq(
+            optional($.control_local_declarations), $.control_local_declaration
         ),
 
-        controlLocalDeclaration: $ => choice(
-            $.constantDeclaration,
-            $.actionDeclaration,
-            $.tableDeclaration,
+        control_local_declaration: $ => choice(
+            $.constant_declaration,
+            $.action_declaration,
+            $.table_declaration,
             $.instantiation,
-            $.variableDeclaration,
+            $.variable_declaration,
         ),
 
-        controlBody: $ => seq(
-            $.blockStatement,
+        control_body: $ => seq(
+            $.block_statement,
         ),
 
-        externDeclaration: $ => choice(
-            seq(optional($.annotations), 'extern', $.nonTypeName, optional($.typeParameters), '{', optional($.methodPrototypes), '}'),
-            seq(optional($.annotations), 'extern', $.functionPrototype, ';'),
+        extern_declaration: $ => choice(
+            seq(optional($.annotations), 'extern', $.non_type_name, optional($.type_parameters), '{', optional($.method_prototypes), '}'),
+            seq(optional($.annotations), 'extern', $.function_prototype, ';'),
         ),
 
-        methodPrototypes: $ => seq(
-            optional($.methodPrototypes), $.methodPrototype
+        method_prototypes: $ => seq(
+            optional($.method_prototypes), $.method_prototype
         ),
 
-        functionPrototype: $ => seq(
-            $.typeOrVoid, $.name, optional($.typeParameters), '(', optional($.parameterList), ')'
+        function_prototype: $ => seq(
+            $.type_or_void, $.name, optional($.type_parameters), '(', optional($.parameter_list), ')'
         ),
 
-        methodPrototype: $ => choice(
-            seq(optional($.annotations), $.functionPrototype, ';'),
-            seq(optional($.annotations), $.typeIdentifier, '(', optional($.parameterList), ')', ';'),
+        method_prototype: $ => choice(
+            seq(optional($.annotations), $.function_prototype, ';'),
+            seq(optional($.annotations), $.type_identifier, '(', optional($.parameter_list), ')', ';'),
         ),
 
-        typeRef: $ => choice(
-            $.baseType,
-            $.typeName,
-            $.specializedType,
-            $.headerStackType,
-            $.tupleType,
+        type_ref: $ => choice(
+            $.base_type,
+            $.type_name,
+            $.specialized_type,
+            $.header_stack_type,
+            $.tuple_type,
         ),
 
-        namedType: $ => choice(
-            $.typeName,
-            $.specializedType,
+        named_type: $ => choice(
+            $.type_name,
+            $.specialized_type,
         ),
 
-        prefixedType: $ => choice(
-            $.typeIdentifier,
-            seq($.dotPrefix, $.typeIdentifier),
+        prefixed_type: $ => choice(
+            $.type_identifier,
+            seq($.dot_prefix, $.type_identifier),
         ),
 
-        typeName: $ => seq(
-            $.prefixedType,
+        type_name: $ => seq(
+            $.prefixed_type,
         ),
 
-        tupleType: $ => seq(
-            'tuple', '<', optional($.typeArgumentList), '>'
+        tuple_type: $ => seq(
+            'tuple', '<', optional($.type_argument_list), '>'
         ),
 
-        headerStackType: $ => choice(
-            seq($.typeName, '[', $.expression, ']'),
-            seq($.specializedType, '[', $.expression, ']'),
+        header_stack_type: $ => choice(
+            seq($.type_name, '[', $.expression, ']'),
+            seq($.specialized_type, '[', $.expression, ']'),
         ),
 
-        specializedType: $ => seq(
-            $.prefixedType, '<', optional($.typeArgumentList), '>'
+        specialized_type: $ => seq(
+            $.prefixed_type, '<', optional($.type_argument_list), '>'
         ),
 
-        baseType: $ => choice(
+        base_type: $ => choice(
             'bool',
             'error',
             'match_kind',
@@ -339,251 +339,251 @@ module.exports = grammar({
             seq('varbit', '<', '(', $.expression, ')', '>'),
         ),
 
-        typeOrVoid: $ => prec.left(1, choice(
-            $.typeRef,
+        type_or_void: $ => prec.left(1, choice(
+            $.type_ref,
             'void',
             $.identifier,
         )),
 
-        typeParameters: $ => seq(
-            '<', $.typeParameterList, '>'
+        type_parameters: $ => seq(
+            '<', $.type_parameter_list, '>'
         ),
 
-        typeParameterList: $ => choice(
+        type_parameter_list: $ => choice(
             $.name,
-            seq($.typeParameterList, ',', $.name),
+            seq($.type_parameter_list, ',', $.name),
         ),
 
-        realTypeArg: $ => choice(
+        real_type_arg: $ => choice(
             '_',
-            $.typeRef,
+            $.type_ref,
             'void',
         ),
 
-        typeArg: $ => choice(
+        type_arg: $ => choice(
             '_',
-            $.typeRef,
-            $.nonTypeName,
+            $.type_ref,
+            $.non_type_name,
             'void',
         ),
 
-        realTypeArgumentList: $ => choice(
-            $.realTypeArg,
-            seq($.realTypeArgumentList, 'comma', $.typeArg),
+        real_type_argument_list: $ => choice(
+            $.real_type_arg,
+            seq($.real_type_argument_list, 'comma', $.type_arg),
         ),
 
-        typeArgumentList: $ => choice(
-            $.typeArg,
-            seq($.typeArgumentList, ',', $.typeArg),
+        type_argument_list: $ => choice(
+            $.type_arg,
+            seq($.type_argument_list, ',', $.type_arg),
         ),
 
-        typeDeclaration: $ => choice(
-            $.derivedTypeDeclaration,
-            $.typedefDeclaration,
-            seq($.parserTypeDeclaration, ';'),
-            seq($.controlTypeDeclaration, ';'),
-            seq($.packageTypeDeclaration, ';'),
+        type_declaration: $ => choice(
+            $.derived_type_declaration,
+            $.typedef_declaration,
+            seq($.parser_type_declaration, ';'),
+            seq($.control_type_declaration, ';'),
+            seq($.package_type_declaration, ';'),
         ),
 
-        derivedTypeDeclaration: $ => choice(
-            $.headerTypeDeclaration,
-            $.headerUnionDeclaration,
-            $.structTypeDeclaration,
-            $.enumDeclaration,
+        derived_type_declaration: $ => choice(
+            $.header_type_declaration,
+            $.header_union_declaration,
+            $.struct_type_declaration,
+            $.enum_declaration,
         ),
 
-        headerTypeDeclaration: $ => seq(
-            optional($.annotations), 'header', $.name, optional($.typeParameters), '{', optional($.structFieldList), '}'
+        header_type_declaration: $ => seq(
+            optional($.annotations), 'header', $.name, optional($.type_parameters), '{', optional($.struct_field_list), '}'
         ),
 
-        headerUnionDeclaration: $ => seq(
-            optional($.annotations), 'header_union', $.name, optional($.typeParameters), '{', optional($.structFieldList), '}'
+        header_union_declaration: $ => seq(
+            optional($.annotations), 'header_union', $.name, optional($.type_parameters), '{', optional($.struct_field_list), '}'
         ),
 
-        structTypeDeclaration: $ => seq(
-            optional($.annotations), 'struct', $.name, optional($.typeParameters), '{', optional($.structFieldList), '}'
+        struct_type_declaration: $ => seq(
+            optional($.annotations), 'struct', $.name, optional($.type_parameters), '{', optional($.struct_field_list), '}'
         ),
 
-        structFieldList: $ => seq(
-            optional($.structFieldList), $.structField
+        struct_field_list: $ => seq(
+            optional($.struct_field_list), $.struct_field
         ),
 
-        structField: $ => seq(
-            optional($.annotations), $.typeRef, $.name, ';'
+        struct_field: $ => seq(
+            optional($.annotations), $.type_ref, $.name, ';'
         ),
 
-        enumDeclaration: $ => choice(
-            seq(optional($.annotations), 'enum', $.name, '{', $.identifierList, '}'),
-            seq(optional($.annotations), 'enum', $.typeRef, $.name, '{', $.specifiedIdentifierList, '}'),
+        enum_declaration: $ => choice(
+            seq(optional($.annotations), 'enum', $.name, '{', $.identifier_list, '}'),
+            seq(optional($.annotations), 'enum', $.type_ref, $.name, '{', $.specified_identifier_list, '}'),
         ),
 
-        errorDeclaration: $ => seq(
-            'error', '{', $.identifierList, '}'
+        error_declaration: $ => seq(
+            'error', '{', $.identifier_list, '}'
         ),
 
-        matchKindDeclaration: $ => seq(
-            'match_kind', '{', $.identifierList, '}'
+        match_kind_declaration: $ => seq(
+            'match_kind', '{', $.identifier_list, '}'
         ),
 
-        identifierList: $ => choice(
+        identifier_list: $ => choice(
             $.name,
-            seq($.identifierList, ',', $.name),
+            seq($.identifier_list, ',', $.name),
         ),
 
-        specifiedIdentifierList: $ => choice(
-            $.specifiedIdentifier,
-            seq($.specifiedIdentifierList, ',', $.specifiedIdentifier),
+        specified_identifier_list: $ => choice(
+            $.specified_identifier,
+            seq($.specified_identifier_list, ',', $.specified_identifier),
         ),
 
-        specifiedIdentifier: $ => seq(
+        specified_identifier: $ => seq(
             $.name, '=', $.initializer
         ),
 
-        typedefDeclaration: $ => choice(
-            seq(optional($.annotations), 'typedef', $.typeRef, $.name, ';'),
-            seq(optional($.annotations), 'typedef', $.derivedTypeDeclaration, $.name, ';'),
-            seq(optional($.annotations), 'type', $.typeRef, $.name, ';'),
-            seq(optional($.annotations), 'type', $.derivedTypeDeclaration, $.name, ';'),
+        typedef_declaration: $ => choice(
+            seq(optional($.annotations), 'typedef', $.type_ref, $.name, ';'),
+            seq(optional($.annotations), 'typedef', $.derived_type_declaration, $.name, ';'),
+            seq(optional($.annotations), 'type', $.type_ref, $.name, ';'),
+            seq(optional($.annotations), 'type', $.derived_type_declaration, $.name, ';'),
         ),
 
-        assignmentOrMethodCallStatement: $ => choice(
-            seq($.lvalue, '(', optional($.argumentList), ')', ';'),
-            seq($.lvalue, '<', optional($.typeArgumentList), '>', '(', optional($.argumentList), ')', ';'),
+        assignment_or_method_call_statement: $ => choice(
+            seq($.lvalue, '(', optional($.argument_list), ')', ';'),
+            seq($.lvalue, '<', optional($.type_argument_list), '>', '(', optional($.argument_list), ')', ';'),
             seq($.lvalue, '=', $.expression, ';'),
         ),
 
-        emptyStatement: $ => seq(
+        empty_statement: $ => seq(
             ';',
         ),
 
-        returnStatement: $ => choice(
+        return_statement: $ => choice(
             seq('return', ';'),
             seq('return', $.expression, ';'),
         ),
 
-        exitStatement: $ => seq(
+        exit_statement: $ => seq(
             'exit', ';'
         ),
 
-        conditionalStatement: $ => choice(
+        conditional_statement: $ => choice(
             prec.left(seq('if', '(', $.expression, ')', $.statement)),
             prec.left(seq('if', '(', $.expression, ')', $.statement, 'else', $.statement)),
         ),
 
-        directApplication: $ => choice(
-            seq($.typeName, '.', 'apply', '(', optional($.argumentList), ')', ';'),
-            seq($.specializedType, '.', 'apply', '(', optional($.argumentList), ')', ';'),
+        direct_application: $ => choice(
+            seq($.type_name, '.', 'apply', '(', optional($.argument_list), ')', ';'),
+            seq($.specialized_type, '.', 'apply', '(', optional($.argument_list), ')', ';'),
         ),
 
         statement: $ => choice(
-            $.assignmentOrMethodCallStatement,
-            $.directApplication,
-            $.conditionalStatement,
-            $.emptyStatement,
-            $.blockStatement,
-            $.exitStatement,
-            $.returnStatement,
-            $.switchStatement,
+            $.assignment_or_method_call_statement,
+            $.direct_application,
+            $.conditional_statement,
+            $.empty_statement,
+            $.block_statement,
+            $.exit_statement,
+            $.return_statement,
+            $.switch_statement,
         ),
 
-        blockStatement: $ => seq(
-            optional($.annotations), '{', optional($.statOrDeclList), '}'
+        block_statement: $ => seq(
+            optional($.annotations), '{', optional($.stat_or_decl_list), '}'
         ),
 
-        statOrDeclList: $ => seq(
-            optional($.statOrDeclList), $.statementOrDeclaration
+        stat_or_decl_list: $ => seq(
+            optional($.stat_or_decl_list), $.statement_or_declaration
         ),
 
-        switchStatement: $ => seq(
-            'switch', '(', $.expression, ')', '{', optional($.switchCases), '}'
+        switch_statement: $ => seq(
+            'switch', '(', $.expression, ')', '{', optional($.switch_cases), '}'
         ),
 
-        switchCases: $ => seq(
-            optional($.switchCases), $.switchCase
+        switch_cases: $ => seq(
+            optional($.switch_cases), $.switch_case
         ),
 
-        switchCase: $ => choice(
-            seq($.switchLabel, ':', $.blockStatement),
-            seq($.switchLabel, ':'),
+        switch_case: $ => choice(
+            seq($.switch_label, ':', $.block_statement),
+            seq($.switch_label, ':'),
         ),
 
-        switchLabel: $ => choice(
+        switch_label: $ => choice(
             'default',
-            $.nonBraceExpression,
+            $.non_brace_expression,
         ),
 
-        statementOrDeclaration: $ => choice(
-            $.variableDeclaration,
-            $.constantDeclaration,
+        statement_or_declaration: $ => choice(
+            $.variable_declaration,
+            $.constant_declaration,
             $.statement,
         ),
 
-        tableDeclaration: $ => seq(
-            optional($.annotations), 'table', $.name, '{', $.tablePropertyList, '}'
+        table_declaration: $ => seq(
+            optional($.annotations), 'table', $.name, '{', $.table_property_list, '}'
         ),
 
-        tablePropertyList: $ => choice(
-            $.tableProperty,
-            seq($.tablePropertyList, $.tableProperty),
+        table_property_list: $ => choice(
+            $.table_property,
+            seq($.table_property_list, $.table_property),
         ),
 
-        tableProperty: $ => choice(
-            seq('key', '=', '{', optional($.keyElementList), '}'),
-            seq('actions', '=', '{', optional($.actionList), '}'),
-            seq(optional($.annotations), 'const', 'entries', '=', '{', optional($.entriesList), '}'),
-            seq(optional($.annotations), 'const', $.nonTableKwName, '=', $.initializer, ';'),
-            seq(optional($.annotations), $.nonTableKwName, '=', $.initializer, ';'),
+        table_property: $ => choice(
+            seq('key', '=', '{', optional($.key_element_list), '}'),
+            seq('actions', '=', '{', optional($.action_list), '}'),
+            seq(optional($.annotations), 'const', 'entries', '=', '{', optional($.entries_list), '}'),
+            seq(optional($.annotations), 'const', $.non_table_kw_name, '=', $.initializer, ';'),
+            seq(optional($.annotations), $.non_table_kw_name, '=', $.initializer, ';'),
         ),
 
-        keyElementList: $ => seq(
-            optional($.keyElementList), $.keyElement
+        key_element_list: $ => seq(
+            optional($.key_element_list), $.key_element
         ),
 
-        keyElement: $ => seq(
+        key_element: $ => seq(
             seq($.expression, ':', $.name, optional($.annotations), ';'),
         ),
 
-        actionList: $ => seq(
-            optional($.actionList), optional($.annotations), $.actionRef, ';'
+        action_list: $ => seq(
+            optional($.action_list), optional($.annotations), $.action_ref, ';'
         ),
 
-        actionRef: $ => choice(
-            $.prefixedNonTypeName,
-            seq($.prefixedNonTypeName, '(', optional($.argumentList), ')'),
+        action_ref: $ => choice(
+            $.prefixed_non_type_name,
+            seq($.prefixed_non_type_name, '(', optional($.argument_list), ')'),
         ),
 
-        entriesList: $ => seq(
-            optional($.entriesList), $.entry
+        entries_list: $ => seq(
+            optional($.entries_list), $.entry
         ),
 
         entry: $ => seq(
-            $.keysetExpression, ':', $.actionRef, optional($.annotations), ';'
+            $.keyset_expression, ':', $.action_ref, optional($.annotations), ';'
         ),
 
-        actionDeclaration: $ => seq(
-            optional($.annotations), 'action', $.name, '(', optional($.parameterList), ')', $.blockStatement
+        action_declaration: $ => seq(
+            optional($.annotations), 'action', $.name, '(', optional($.parameter_list), ')', $.block_statement
         ),
 
-        variableDeclaration: $ => choice(
-            seq($.annotations, $.typeRef, $.name, optional($.initializer), ';'),
-            seq($.typeRef, $.name, optional($.initializer), ';'),
+        variable_declaration: $ => choice(
+            seq($.annotations, $.type_ref, $.name, optional($.initializer), ';'),
+            seq($.type_ref, $.name, optional($.initializer), ';'),
         ),
 
-        constantDeclaration: $ => seq(
-            optional($.annotations), 'const', $.typeRef, $.name, '=', $.initializer, ';'
+        constant_declaration: $ => seq(
+            optional($.annotations), 'const', $.type_ref, $.name, '=', $.initializer, ';'
         ),
 
         initializer: $ => seq(
             $.expression,
         ),
 
-        functionDeclaration: $ => seq(
-            $.functionPrototype, $.blockStatement
+        function_declaration: $ => seq(
+            $.function_prototype, $.block_statement
         ),
 
-        argumentList: $ => choice(
+        argument_list: $ => choice(
             $.argument,
-            seq($.argumentList, ',', $.argument),
+            seq($.argument_list, ',', $.argument),
         ),
 
         argument: $ => choice(
@@ -593,32 +593,32 @@ module.exports = grammar({
             seq($.name, '=', '_'),
         ),
 
-        kvList: $ => choice(
-            $.kvPair,
-            seq($.kvList, ',', $.kvPair),
+        kv_list: $ => choice(
+            $.kv_pair,
+            seq($.kv_list, ',', $.kv_pair),
         ),
 
-        kvPair: $ => seq(
+        kv_pair: $ => seq(
             $.name, '=', $.expression
         ),
 
-        expressionList: $ => choice(
+        expression_list: $ => choice(
             $.expression,
-            seq($.expressionList, ',', $.expression),
+            seq($.expression_list, ',', $.expression),
         ),
 
-        annotationBody: $ => choice(
-            seq($.annotationBody, '(', optional($.annotationBody), ')'),
-            seq($.annotationBody, $.annotationToken),
+        annotation_body: $ => choice(
+            seq($.annotation_body, '(', optional($.annotation_body), ')'),
+            seq($.annotation_body, $.annotation_token),
         ),
 
-        structuredAnnotationBody: $ => choice(
-            //TODO: expressionList should be optional
-            $.expressionList,
-            $.kvList,
+        structured_annotation_body: $ => choice(
+            //TODO: expression_list should be optional
+            $.expression_list,
+            $.kv_list,
         ),
 
-        annotationToken: $ => choice(
+        annotation_token: $ => choice(
             'abstract',
             'action',
             'actions',
@@ -664,7 +664,7 @@ module.exports = grammar({
             'void',
             "_",
             $.identifier,
-            $.typeIdentifier,
+            $.type_identifier,
             $.string,
             $.integer,
             "&&&",
@@ -709,13 +709,13 @@ module.exports = grammar({
             $.name,
         ),
 
-        prefixedNonTypeName: $ => choice(
-            $.nonTypeName,
-            seq($.dotPrefix, $.nonTypeName),
+        prefixed_non_type_name: $ => choice(
+            $.non_type_name,
+            seq($.dot_prefix, $.non_type_name),
         ),
 
         lvalue: $ => choice(
-            $.prefixedNonTypeName,
+            $.prefixed_non_type_name,
             'this',
             seq($.lvalue, '.', $.member),
             seq($.lvalue, '[', $.expression, ']'),
@@ -728,18 +728,18 @@ module.exports = grammar({
             'false',
             'this',
             $.string,
-            $.nonTypeName,
-            // seq($.dotPrefix, $.nonTypeName),
+            $.non_type_name,
+            // seq($.dot_prefix, $.non_type_name),
             // seq($.expression, '[', $.expression, ']'),
             // seq($.expression, '[', $.expression, ':', $.expression, ']'),
-            // seq('{', optional($.expressionList), '}'),
-            // seq('{', $.kvList, '}'),
+            // seq('{', optional($.expression_list), '}'),
+            // seq('{', $.kv_list, '}'),
             // seq('(', $.expression, ')'),
             // seq('!', $.expression, $.prec, 'prefix'),
             // seq('~', $.expression, $.prec, 'prefix'),
             // seq('-', $.expression, $.prec, 'prefix'),
             // seq('+', $.expression, $.prec, 'prefix'),
-            // seq($.typeName, '.', $.member),
+            // seq($.type_name, '.', $.member),
             // seq('error', '.', $.member),
             // seq($.expression, '.', $.member),
             // seq($.expression, '*', $.expression),
@@ -764,56 +764,56 @@ module.exports = grammar({
             // seq($.expression, '&&', $.expression),
             // seq($.expression, '||', $.expression),
             // seq($.expression, '?', $.expression, ':', $.expression),
-            // seq($.expression, '<', $.realTypeArgumentList, '>', '(', optional($.argumentList), ')'),
-            // seq($.expression, '(', optional($.argumentList), ')'),
-            // seq($.namedType, '(', optional($.argumentList), ')'),
-            // seq('(', $.typeRef, ')', $.expression),
+            // seq($.expression, '<', $.real_type_argument_list, '>', '(', optional($.argument_list), ')'),
+            // seq($.expression, '(', optional($.argument_list), ')'),
+            // seq($.named_type, '(', optional($.argument_list), ')'),
+            // seq('(', $.type_ref, ')', $.expression),
         ),
 
-        nonBraceExpression: $ => choice(
+        non_brace_expression: $ => choice(
             $.integer,
             $.string,
             'true',
             'false',
             'this',
-            $.nonTypeName,
-            seq($.dotPrefix, $.nonTypeName),
-            seq($.nonBraceExpression, '[', $.expression, ']'),
-            seq($.nonBraceExpression, '[', $.expression, ':', $.expression, ']'),
+            $.non_type_name,
+            seq($.dot_prefix, $.non_type_name),
+            seq($.non_brace_expression, '[', $.expression, ']'),
+            seq($.non_brace_expression, '[', $.expression, ':', $.expression, ']'),
             seq('(', $.expression, ')'),
             seq('!', $.expression, $.prec, 'prefix'),
             seq('~', $.expression, $.prec, 'prefix'),
             seq('-', $.expression, $.prec, 'prefix'),
             seq('+', $.expression, $.prec, 'prefix'),
-            seq($.typeName, '.', $.member),
+            seq($.type_name, '.', $.member),
             seq('error', '.', $.member),
-            seq($.nonBraceExpression, '.', $.member),
-            seq($.nonBraceExpression, '*', $.expression),
-            seq($.nonBraceExpression, '/', $.expression),
-            seq($.nonBraceExpression, '%', $.expression),
-            seq($.nonBraceExpression, '+', $.expression),
-            seq($.nonBraceExpression, '-', $.expression),
-            seq($.nonBraceExpression, '|+|', $.expression),
-            seq($.nonBraceExpression, '|-|', $.expression),
-            seq($.nonBraceExpression, '<<', $.expression),
-            seq($.nonBraceExpression, '>>', $.expression),
-            seq($.nonBraceExpression, '<=', $.expression),
-            seq($.nonBraceExpression, '>=', $.expression),
-            seq($.nonBraceExpression, '<', $.expression),
-            seq($.nonBraceExpression, '>', $.expression),
-            seq($.nonBraceExpression, '!=', $.expression),
-            seq($.nonBraceExpression, '==', $.expression),
-            seq($.nonBraceExpression, '&', $.expression),
-            seq($.nonBraceExpression, '^', $.expression),
-            seq($.nonBraceExpression, '|', $.expression),
-            seq($.nonBraceExpression, '++', $.expression),
-            seq($.nonBraceExpression, '&&', $.expression),
-            seq($.nonBraceExpression, '||', $.expression),
-            seq($.nonBraceExpression, '?', $.expression, ':', $.expression),
-            seq($.nonBraceExpression, '<', $.realTypeArgumentList, '>', '(', optional($.argumentList), ')'),
-            seq($.nonBraceExpression, '(', optional($.argumentList), ')'),
-            seq($.namedType, '(', optional($.argumentList), ')'),
-            seq('(', $.typeRef, ')', $.expression),
+            seq($.non_brace_expression, '.', $.member),
+            seq($.non_brace_expression, '*', $.expression),
+            seq($.non_brace_expression, '/', $.expression),
+            seq($.non_brace_expression, '%', $.expression),
+            seq($.non_brace_expression, '+', $.expression),
+            seq($.non_brace_expression, '-', $.expression),
+            seq($.non_brace_expression, '|+|', $.expression),
+            seq($.non_brace_expression, '|-|', $.expression),
+            seq($.non_brace_expression, '<<', $.expression),
+            seq($.non_brace_expression, '>>', $.expression),
+            seq($.non_brace_expression, '<=', $.expression),
+            seq($.non_brace_expression, '>=', $.expression),
+            seq($.non_brace_expression, '<', $.expression),
+            seq($.non_brace_expression, '>', $.expression),
+            seq($.non_brace_expression, '!=', $.expression),
+            seq($.non_brace_expression, '==', $.expression),
+            seq($.non_brace_expression, '&', $.expression),
+            seq($.non_brace_expression, '^', $.expression),
+            seq($.non_brace_expression, '|', $.expression),
+            seq($.non_brace_expression, '++', $.expression),
+            seq($.non_brace_expression, '&&', $.expression),
+            seq($.non_brace_expression, '||', $.expression),
+            seq($.non_brace_expression, '?', $.expression, ':', $.expression),
+            seq($.non_brace_expression, '<', $.real_type_argument_list, '>', '(', optional($.argument_list), ')'),
+            seq($.non_brace_expression, '(', optional($.argument_list), ')'),
+            seq($.named_type, '(', optional($.argument_list), ')'),
+            seq('(', $.type_ref, ')', $.expression),
         ),
 
         integer: $ => /(\d+([wWsS]))?\d+(([xX][0-9A-F_]+)|([bB][0-1_]+)|([oO][0-7_]+)|([dD][0-9_]+))?/,
@@ -825,7 +825,7 @@ module.exports = grammar({
 
         identifier: $ => /(_|[a-zA-Z])\w*/,
 
-        typeIdentifier: $ => $.identifier,
+        type_identifier: $ => $.identifier,
 
     }
 });

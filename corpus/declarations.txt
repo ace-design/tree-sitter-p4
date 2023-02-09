@@ -7,12 +7,12 @@ const bit<16> TYPE_IPV4 = 0x800;
 ---
 
 (source_file
-    (constantDeclaration
-        (typeRef
-            (baseType
+    (constant_declaration
+        (type_ref
+            (base_type
                 (integer)))
         (name
-            (nonTypeName
+            (non_type_name
                 (identifier)))
         (initializer
             (expression
@@ -30,19 +30,19 @@ extern Checksum16 {
 ---
 
 (source_file
-    (externDeclaration
-        (nonTypeName
+    (extern_declaration
+        (non_type_name
                 (identifier))
-        (methodPrototypes
-            (methodPrototypes
-                (methodPrototype
-                    (typeIdentifier
+        (method_prototypes
+            (method_prototypes
+                (method_prototype
+                    (type_identifier
                         (identifier))))
-            (methodPrototype
-                (functionPrototype
-                    (typeOrVoid)
+            (method_prototype
+                (function_prototype
+                    (type_or_void)
                     (name
-                        (nonTypeName
+                        (non_type_name
                             (identifier))))))))
 
 ==================
@@ -54,27 +54,27 @@ extern void f(inout bit x, in bit y);
 ---
 
 (source_file
-    (externDeclaration
-        (functionPrototype
-            (typeOrVoid)
+    (extern_declaration
+        (function_prototype
+            (type_or_void)
                 (name
-                    (nonTypeName
+                    (non_type_name
                         (identifier)))
-            (parameterList
-                (parameterList
+            (parameter_list
+                (parameter_list
                     (parameter
                         (direction)
-                        (typeRef
-                            (baseType))
+                        (type_ref
+                            (base_type))
                         (name
-                            (nonTypeName
+                            (non_type_name
                                 (identifier)))))
                 (parameter
                     (direction)
-                    (typeRef
-                        (baseType))
+                    (type_ref
+                        (base_type))
                     (name
-                        (nonTypeName
+                        (non_type_name
                             (identifier))))))))
 
 ==================
@@ -88,38 +88,38 @@ action Forward_a(out bit<9> outputPort, bit<9> port) {
 ---
 
 (source_file
-    (actionDeclaration
+    (action_declaration
         (name
-            (nonTypeName
+            (non_type_name
                 (identifier)))
-        (parameterList
-                (parameterList
+        (parameter_list
+                (parameter_list
                     (parameter
                         (direction)
-                        (typeRef
-                            (baseType
+                        (type_ref
+                            (base_type
                                 (integer)))
                         (name
-                            (nonTypeName
+                            (non_type_name
                             (identifier)))))
                     (parameter
-                        (typeRef
-                            (baseType
+                        (type_ref
+                            (base_type
                                 (integer)))
                         (name
-                            (nonTypeName
+                            (non_type_name
                                 (identifier)))))
-        (blockStatement
-            (statOrDeclList
-                (statementOrDeclaration
+        (block_statement
+            (stat_or_decl_list
+                (statement_or_declaration
                     (statement
-                        (assignmentOrMethodCallStatement
+                        (assignment_or_method_call_statement
                             (lvalue
-                                (prefixedNonTypeName
-                                    (nonTypeName
+                                (prefixed_non_type_name
+                                    (non_type_name
                                         (identifier))))
                             (expression
-                                (nonTypeName
+                                (non_type_name
                                     (identifier))))))))))
 
 ==================
@@ -135,44 +135,44 @@ parser MyParser(out headers packet) {
 ---
 
 (source_file
-    (parserDeclaration
-        (parserTypeDeclaration
+    (parser_declaration
+        (parser_type_declaration
             (name
-                (nonTypeName
+                (non_type_name
                     (identifier)))
-            (parameterList
+            (parameter_list
                 (parameter
                     (direction)
-                    (typeRef
-                        (typeName
-                            (prefixedType
-                                (typeIdentifier
+                    (type_ref
+                        (type_name
+                            (prefixed_type
+                                (type_identifier
                                     (identifier)))))
                     (name
-                        (nonTypeName
+                        (non_type_name
                             (identifier))))))
-        (parserStates
-            (parserState
+        (parser_states
+            (parser_state
                 (name
-                    (nonTypeName
+                    (non_type_name
                         (identifier)))
-                (transitionStatement
-                    (stateExpression
+                (transition_statement
+                    (state_expression
                         (name
-                            (nonTypeName
+                            (non_type_name
                                 (identifier)))))))))
 
 ==================
 Include declaration 
 ==================
-<H>(inout H data) { /* Body omitted */ }
+
 #include <core.p4>
 
 ---
 
 (source_file
-    (includeDeclaration
-        (fileName)))
+    (include_declaration
+        (file_name)))
 
 ==================
 Type declaration (typedef)
@@ -183,13 +183,13 @@ typedef bit<48>  EthernetAddress;
 ---
 
 (source_file
-    (typeDeclaration
-        (typedefDeclaration
-            (typeRef
-                (baseType
+    (type_declaration
+        (typedef_declaration
+            (type_ref
+                (base_type
                     (integer)))
             (name
-                (nonTypeName
+                (non_type_name
                     (identifier))))))
 
 ==================
