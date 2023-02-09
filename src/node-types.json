@@ -587,11 +587,39 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": false,
       "types": [
         {
+          "type": "argument_list",
+          "named": true
+        },
+        {
+          "type": "dot_prefix",
+          "named": true
+        },
+        {
+          "type": "expression",
+          "named": true
+        },
+        {
+          "type": "expression_list",
+          "named": true
+        },
+        {
           "type": "integer",
+          "named": true
+        },
+        {
+          "type": "kv_list",
+          "named": true
+        },
+        {
+          "type": "member",
+          "named": true
+        },
+        {
+          "type": "named_type",
           "named": true
         },
         {
@@ -599,7 +627,19 @@
           "named": true
         },
         {
+          "type": "real_type_argument_list",
+          "named": true
+        },
+        {
           "type": "string",
+          "named": true
+        },
+        {
+          "type": "type_name",
+          "named": true
+        },
+        {
+          "type": "type_ref",
           "named": true
         }
       ]
@@ -1139,10 +1179,6 @@
           "named": true
         },
         {
-          "type": "prec",
-          "named": true
-        },
-        {
           "type": "real_type_argument_list",
           "named": true
         },
@@ -1543,21 +1579,6 @@
         },
         {
           "type": "type_parameters",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "prec",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "identifier",
           "named": true
         }
       ]
@@ -2812,10 +2833,6 @@
   },
   {
     "type": "pragma",
-    "named": false
-  },
-  {
-    "type": "prefix",
     "named": false
   },
   {
