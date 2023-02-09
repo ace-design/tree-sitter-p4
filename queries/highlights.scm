@@ -1,41 +1,71 @@
-"typedef" @keyword
-"apply" @keyword
-"key" @keyword
-"actions" @keyword
-"state" @keyword
-"entries" @keyword
-"type" @keyword
-"include" @keyword
-"package" @keyword
-"parser" @keyword
-"transition" @keyword
-"select" @keyword
-"default" @keyword
-"const" @keyword
+[
+    "abstract" 
+    "action" 
+    "actions" 
+    "apply" 
+    "const" 
+    "control" 
+    "default" 
+    "else" 
+    "entries" 
+    "enum" 
+    "error" 
+    "exit" 
+    "extern" 
+    "header" 
+    "header_union" 
+    "if" 
+    "include" 
+    "key" 
+    "match_kind" 
+    "type" 
+    "parser" 
+    "package" 
+    "pragma" 
+    "return" 
+    "select" 
+    "state" 
+    "struct" 
+    "switch" 
+    "table" 
+    "transition" 
+    "typedef" 
+    "varbit" 
+    "valueset"
+] @keyword
 
-
-(constantDeclaration (name) @constant)
+(constant_declaration (name) @constant)
 (parameter (name) @variable.parameter)
 
 (string) @string
 
-"true" @constant.builtin
-"false" @constant.builtin
-(direction) @constant.builtin
-(integer) @constant.builtin
+[
+    "true" 
+    "false" 
+    (direction) 
+    (integer) 
+] @constant.builtin
 
-(baseType) @type
-(typeOrVoid) @type
-(typeRef) @type
-(block_comment) @comment
-(line_comment) @comment
+[
+    (tuple_type) 
+    (base_type) 
+    (type_or_void) 
+    (type_ref) 
+] @type
 
-"(" @punctuation.bracket
-")" @punctuation.bracket
-"[" @punctuation.bracket
-"]" @punctuation.bracket
-"{" @punctuation.bracket
-"}" @punctuation.bracket
-"<" @punctuation.bracket
-">" @punctuation.bracket
+[
+    (block_comment)
+    (line_comment) 
+] @comment
+
+[
+    "(" 
+    ")" 
+    "[" 
+    "]" 
+    "{" 
+    "}" 
+    "<"
+    ">" 
+] @punctuation.bracket
 
