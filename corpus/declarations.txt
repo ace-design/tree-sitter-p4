@@ -212,10 +212,17 @@ control MyEgress(inout headers hdr) {
             (block_statement))))
 
 ==================
-Instantiation 1
+Instantiation
 ==================
 
 Counter(32w1024, CounterType.Both) ctr;
+
+
+Balancer() b = {
+    void test() {
+        return;
+    }
+};
 
 ---
 
@@ -243,21 +250,7 @@ Counter(32w1024, CounterType.Both) ctr;
                             (identifier)))))))
         (name
           (non_type_name
-            (identifier)))))
-
-==================
-Instantiation 2
-==================
-
-Balancer() b = {
-    bit test() {
-        return;
-    }
-}
-
----
-
-(source_file
+            (identifier))))
     (instantiation
         (type_ref
             (type_name
@@ -271,9 +264,7 @@ Balancer() b = {
             (obj_declaration
                 (function_declaration
                     (function_prototype
-                        (type_or_void
-                            (type_ref
-                                (base_type)))
+                        (type_or_void)
                         (name
                             (non_type_name
                                 (identifier))))
