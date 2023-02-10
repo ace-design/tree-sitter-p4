@@ -19,13 +19,15 @@ const bit<16> TYPE_IPV4 = 0x800;
               (integer)))))
 
 ==================
-Extern declaration 1
+Extern declaration
 ==================
 
 extern Checksum16 {
     Checksum16();
     void test();
 }
+
+extern void f(inout bit x, in bit y);
 
 ---
 
@@ -41,17 +43,7 @@ extern Checksum16 {
                 (type_or_void)
                     (name
                         (non_type_name
-                            (identifier)))))))
-
-==================
-Extern declaration 2
-==================
-
-extern void f(inout bit x, in bit y);
-
----
-
-(source_file
+                            (identifier))))))
     (extern_declaration
         (function_prototype
             (type_or_void)
@@ -258,10 +250,146 @@ Instantiation 2
 ==================
 
 Balancer() b = {
-    bit<32> max(in bit<32> left, in bit<32> right) {
-        return (left > right) ? left : right;
+    bit test() {
+        return;
     }
 }
 
 ---
 
+(source_file
+    (instantiation
+        (type_ref
+            (type_name
+                (prefixed_type
+                    (type_identifier
+                        (identifier)))))
+        (name
+            (non_type_name
+                (identifier)))
+        (obj_initializer
+            (obj_declaration
+                (function_declaration
+                    (function_prototype
+                        (type_or_void
+                            (type_ref
+                                (base_type)))
+                        (name
+                            (non_type_name
+                                (identifier))))
+                    (block_statement
+                        (stat_or_decl_list
+                            (statement_or_declaration
+                                (statement
+                                    (return_statement))))))))))
+
+==================
+Error declaration
+==================
+
+error { ParseError, PacketTooShort }
+
+---
+
+(source_file
+    (error_declaration
+        (identifier_list
+            (identifier_list
+                (name
+                    (non_type_name
+                        (identifier))))
+            (name
+                (non_type_name
+                    (identifier))))))
+
+==================
+Match kind declaration
+==================
+
+match_kind {
+   exact,
+   ternary,
+   lpm
+}
+
+---
+
+(source_file
+    (match_kind_declaration
+        (identifier_list
+            (identifier_list
+                (identifier_list
+                    (name
+                        (non_type_name
+                            (identifier))))
+                (name
+                    (non_type_name
+                        (identifier))))
+            (name
+                (non_type_name
+                    (identifier))))))
+
+==================
+Function declaration
+==================
+
+bit<32> max(in bit<32> left, in bit<32> right) {
+   if (left > right)
+      return left;
+   return right;
+}
+
+---
+
+(source_file
+    (function_declaration
+        (function_prototype
+            (type_or_void
+                (type_ref
+                    (base_type
+                        (integer))))
+            (name
+                (non_type_name
+                    (identifier)))
+            (parameter_list
+                (parameter_list
+                    (parameter
+                        (direction)
+                    (type_ref
+                        (base_type
+                            (integer)))
+                    (name
+                        (non_type_name
+                            (identifier)))))
+                (parameter
+                    (direction)
+                    (type_ref
+                        (base_type
+                            (integer)))
+                    (name
+                        (non_type_name
+                            (identifier))))))
+        (block_statement
+            (stat_or_decl_list
+                (stat_or_decl_list
+                    (statement_or_declaration
+                        (statement
+                            (conditional_statement
+                                (expression
+                                    (expression
+                                        (non_type_name
+                                            (identifier)))
+                                    (expression
+                                        (non_type_name
+                                            (identifier))))
+                                (statement
+                                    (return_statement
+                                        (expression
+                                            (non_type_name
+                                                (identifier)))))))))
+                (statement_or_declaration
+                    (statement
+                        (return_statement
+                            (expression
+                                (non_type_name
+                                    (identifier))))))))))
