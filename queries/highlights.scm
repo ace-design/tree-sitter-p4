@@ -36,15 +36,18 @@
 
 (constant_declaration (name) @constant)
 (parameter (name) @variable.parameter)
+(member) @property
 
 (string) @string
+
 
 [
     "true" 
     "false" 
     (direction) 
-    (integer) 
 ] @constant.builtin
+
+(integer) @number
 
 [
     (tuple_type) 
@@ -69,3 +72,35 @@
     ">" 
 ] @punctuation.bracket
 
+";" @punctuation.delimiter
+
+[
+    "!"
+    "~"
+    "-"
+    "+"
+    "." 
+    "*"
+    "/"
+    "%"
+    "+"
+    "-"
+    "|+|"
+    "|-|"
+    "<<"
+    ">>"
+    "<="
+    ">="
+    "<"
+    ">"
+    "!="
+    "=="
+    "&"
+    "^"
+    "|"
+    "++"
+    "&&"
+    "||"
+    "?"
+    ":"
+] @operator
