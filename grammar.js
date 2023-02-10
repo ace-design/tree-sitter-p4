@@ -65,7 +65,7 @@ module.exports = grammar({
             '>'
         ),
 
-        file_name: $ => /\w*.\w*/,
+        file_name: $ => /\w*\.\w*/,
 
         non_table_kw_name: $ => choice(
             $.identifier,

@@ -168,7 +168,7 @@
     },
     "file_name": {
       "type": "PATTERN",
-      "value": "\\w*.\\w*"
+      "value": "\\w*\\.\\w*"
     },
     "non_table_kw_name": {
       "type": "CHOICE",
