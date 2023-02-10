@@ -8,7 +8,7 @@
       "required": true,
       "types": [
         {
-          "type": "annotations",
+          "type": "annotation",
           "named": true
         },
         {
@@ -43,7 +43,7 @@
           "named": true
         },
         {
-          "type": "annotations",
+          "type": "annotation",
           "named": true
         }
       ]
@@ -132,25 +132,6 @@
         },
         {
           "type": "type_identifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "annotations",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "annotation",
-          "named": true
-        },
-        {
-          "type": "annotations",
           "named": true
         }
       ]
@@ -249,7 +230,7 @@
       "required": false,
       "types": [
         {
-          "type": "annotations",
+          "type": "annotation",
           "named": true
         },
         {
@@ -287,7 +268,7 @@
       "required": true,
       "types": [
         {
-          "type": "annotations",
+          "type": "annotation",
           "named": true
         },
         {
@@ -333,7 +314,7 @@
           "named": true
         },
         {
-          "type": "control_local_declarations",
+          "type": "control_local_declaration",
           "named": true
         },
         {
@@ -379,25 +360,6 @@
     }
   },
   {
-    "type": "control_local_declarations",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "control_local_declaration",
-          "named": true
-        },
-        {
-          "type": "control_local_declarations",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "control_type_declaration",
     "named": true,
     "fields": {},
@@ -406,7 +368,7 @@
       "required": true,
       "types": [
         {
-          "type": "annotations",
+          "type": "annotation",
           "named": true
         },
         {
@@ -521,7 +483,7 @@
           "named": true
         },
         {
-          "type": "annotations",
+          "type": "annotation",
           "named": true
         },
         {
@@ -540,7 +502,7 @@
       "required": true,
       "types": [
         {
-          "type": "annotations",
+          "type": "annotation",
           "named": true
         },
         {
@@ -673,7 +635,7 @@
       "required": true,
       "types": [
         {
-          "type": "annotations",
+          "type": "annotation",
           "named": true
         },
         {
@@ -681,7 +643,7 @@
           "named": true
         },
         {
-          "type": "method_prototypes",
+          "type": "method_prototype",
           "named": true
         },
         {
@@ -773,7 +735,7 @@
       "required": true,
       "types": [
         {
-          "type": "annotations",
+          "type": "annotation",
           "named": true
         },
         {
@@ -800,7 +762,7 @@
       "required": true,
       "types": [
         {
-          "type": "annotations",
+          "type": "annotation",
           "named": true
         },
         {
@@ -876,7 +838,7 @@
       "required": true,
       "types": [
         {
-          "type": "annotations",
+          "type": "annotation",
           "named": true
         },
         {
@@ -907,7 +869,7 @@
       "required": true,
       "types": [
         {
-          "type": "annotations",
+          "type": "annotation",
           "named": true
         },
         {
@@ -1063,7 +1025,7 @@
       "required": true,
       "types": [
         {
-          "type": "annotations",
+          "type": "annotation",
           "named": true
         },
         {
@@ -1076,25 +1038,6 @@
         },
         {
           "type": "type_identifier",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "method_prototypes",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "method_prototype",
-          "named": true
-        },
-        {
-          "type": "method_prototypes",
           "named": true
         }
       ]
@@ -1251,25 +1194,6 @@
     }
   },
   {
-    "type": "obj_declarations",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "obj_declaration",
-          "named": true
-        },
-        {
-          "type": "obj_declarations",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "obj_initializer",
     "named": true,
     "fields": {},
@@ -1293,7 +1217,7 @@
       "required": false,
       "types": [
         {
-          "type": "annotations",
+          "type": "annotation",
           "named": true
         },
         {
@@ -1320,7 +1244,7 @@
       "required": true,
       "types": [
         {
-          "type": "annotations",
+          "type": "annotation",
           "named": true
         },
         {
@@ -1370,11 +1294,11 @@
       "required": false,
       "types": [
         {
-          "type": "annotations",
+          "type": "annotation",
           "named": true
         },
         {
-          "type": "parser_statements",
+          "type": "parser_statement",
           "named": true
         }
       ]
@@ -1393,11 +1317,11 @@
           "named": true
         },
         {
-          "type": "parser_local_elements",
+          "type": "parser_local_element",
           "named": true
         },
         {
-          "type": "parser_states",
+          "type": "parser_state",
           "named": true
         },
         {
@@ -1435,25 +1359,6 @@
     }
   },
   {
-    "type": "parser_local_elements",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "parser_local_element",
-          "named": true
-        },
-        {
-          "type": "parser_local_elements",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "parser_state",
     "named": true,
     "fields": {},
@@ -1462,7 +1367,7 @@
       "required": true,
       "types": [
         {
-          "type": "annotations",
+          "type": "annotation",
           "named": true
         },
         {
@@ -1470,7 +1375,7 @@
           "named": true
         },
         {
-          "type": "parser_statements",
+          "type": "parser_statement",
           "named": true
         },
         {
@@ -1520,44 +1425,6 @@
     }
   },
   {
-    "type": "parser_statements",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "parser_statement",
-          "named": true
-        },
-        {
-          "type": "parser_statements",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "parser_states",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "parser_state",
-          "named": true
-        },
-        {
-          "type": "parser_states",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "parser_type_declaration",
     "named": true,
     "fields": {},
@@ -1566,7 +1433,7 @@
       "required": true,
       "types": [
         {
-          "type": "annotations",
+          "type": "annotation",
           "named": true
         },
         {
@@ -2006,7 +1873,7 @@
       "required": true,
       "types": [
         {
-          "type": "annotations",
+          "type": "annotation",
           "named": true
         },
         {
@@ -2048,7 +1915,7 @@
       "required": true,
       "types": [
         {
-          "type": "annotations",
+          "type": "annotation",
           "named": true
         },
         {
@@ -2105,25 +1972,6 @@
     }
   },
   {
-    "type": "switch_cases",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "switch_case",
-          "named": true
-        },
-        {
-          "type": "switch_cases",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "switch_label",
     "named": true,
     "fields": {},
@@ -2151,7 +1999,7 @@
           "named": true
         },
         {
-          "type": "switch_cases",
+          "type": "switch_case",
           "named": true
         }
       ]
@@ -2166,7 +2014,7 @@
       "required": true,
       "types": [
         {
-          "type": "annotations",
+          "type": "annotation",
           "named": true
         },
         {
@@ -2193,7 +2041,7 @@
           "named": true
         },
         {
-          "type": "annotations",
+          "type": "annotation",
           "named": true
         },
         {
@@ -2479,7 +2327,7 @@
       "required": true,
       "types": [
         {
-          "type": "annotations",
+          "type": "annotation",
           "named": true
         },
         {
@@ -2506,7 +2354,7 @@
       "required": true,
       "types": [
         {
-          "type": "annotations",
+          "type": "annotation",
           "named": true
         },
         {
@@ -2541,7 +2389,7 @@
       "required": true,
       "types": [
         {
-          "type": "annotations",
+          "type": "annotation",
           "named": true
         },
         {
@@ -2853,11 +2701,11 @@
   },
   {
     "type": "string",
-    "named": false
+    "named": true
   },
   {
     "type": "string",
-    "named": true
+    "named": false
   },
   {
     "type": "struct",

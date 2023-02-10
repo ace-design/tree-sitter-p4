@@ -33,17 +33,15 @@ extern Checksum16 {
     (extern_declaration
         (non_type_name
                 (identifier))
-        (method_prototypes
-            (method_prototypes
-                (method_prototype
-                    (type_identifier
-                        (identifier))))
-            (method_prototype
-                (function_prototype
-                    (type_or_void)
+        (method_prototype
+            (type_identifier
+                (identifier)))
+        (method_prototype
+            (function_prototype
+                (type_or_void)
                     (name
                         (non_type_name
-                            (identifier))))))))
+                            (identifier)))))))
 
 ==================
 Extern declaration 2
@@ -151,16 +149,15 @@ parser MyParser(out headers packet) {
                     (name
                         (non_type_name
                             (identifier))))))
-        (parser_states
-            (parser_state
-                (name
-                    (non_type_name
-                        (identifier)))
-                (transition_statement
-                    (state_expression
-                        (name
-                            (non_type_name
-                                (identifier)))))))))
+        (parser_state
+            (name
+                (non_type_name
+                    (identifier)))
+            (transition_statement
+                (state_expression
+                    (name
+                        (non_type_name
+                            (identifier))))))))
 
 ==================
 Include declaration 

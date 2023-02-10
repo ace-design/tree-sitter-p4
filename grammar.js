@@ -75,10 +75,6 @@ module.exports = grammar({
             'type',
         ),
 
-        annotations: $ => seq(
-            optional($.annotations), $.annotation
-        ),
-
         annotation: $ => choice(
             seq('@', $.name),
             seq('@', $.name, '(', optional($.annotation_body), ')'),
@@ -91,8 +87,8 @@ module.exports = grammar({
         ),
 
         parameter: $ => choice(
-            seq(optional($.annotations), optional($.direction), $.type_ref, $.name),
-            seq(optional($.annotations), optional($.direction), $.type_ref, $.name, '=', $.expression),
+            seq(repeat($.annotation), optional($.direction), $.type_ref, $.name),
+            seq(repeat($.annotation), optional($.direction), $.type_ref, $.name, '=', $.expression),
         ),
 
         direction: $ => choice(
@@ -102,26 +98,20 @@ module.exports = grammar({
         ),
 
         package_type_declaration: $ => choice(
-            seq(optional($.annotations), 'package', $.name, optional($.type_parameters)),
+            seq(repeat($.annotation), 'package', $.name, optional($.type_parameters)),
             seq(optional($.parameter_list), ')'),
         ),
 
         instantiation: $ => choice(
             seq($.type_ref, '(', optional($.argument_list), ')', $.name, ';'),
-            seq($.annotations, $.type_ref, '(', optional($.argument_list), ')', $.name, ';'),
-            seq($.annotations, $.type_ref, '(', optional($.argument_list), ')', $.name, '=', $.obj_initializer, ';'),
+            seq(repeat($.annotation), $.type_ref, '(', optional($.argument_list), ')', $.name, ';'),
+            seq(repeat($.annotation), $.type_ref, '(', optional($.argument_list), ')', $.name, '=', $.obj_initializer, ';'),
             seq($.type_ref, '(', optional($.argument_list), ')', $.name, '=', $.obj_initializer, ';'),
         ),
 
         obj_initializer: $ => seq(
             '{', repeat($.obj_declaration), '}'
         ),
-
-        obj_declarations: $ => seq(
-            $.obj_declarations,
-            $.obj_declaration
-        ),
-
 
         obj_declaration: $ => choice(
             $.function_declaration,
@@ -136,14 +126,9 @@ module.exports = grammar({
             $.parser_type_declaration,
             optional(seq('(', optional($.parameter_list), ')')),
             '{',
-            optional(optional($.parser_local_elements)),
-            $.parser_states,
+            repeat($.parser_local_element),
+            repeat($.parser_state),
             '}'
-        ),
-
-
-        parser_local_elements: $ => seq(
-            optional($.parser_local_elements), $.parser_local_element
         ),
 
         parser_local_element: $ => choice(
@@ -154,20 +139,11 @@ module.exports = grammar({
         ),
 
         parser_type_declaration: $ => seq(
-            optional($.annotations), 'parser', $.name, optional($.type_parameters), '(', optional($.parameter_list), ')'
-        ),
-
-        parser_states: $ => choice(
-            $.parser_state,
-            seq($.parser_states, $.parser_state),
+            repeat($.annotation), 'parser', $.name, optional($.type_parameters), '(', optional($.parameter_list), ')'
         ),
 
         parser_state: $ => seq(
-            optional($.annotations), 'state', $.name, '{', optional($.parser_statements), optional($.transition_statement), '}'
-        ),
-
-        parser_statements: $ => seq(
-            optional($.parser_statements), $.parser_statement
+            repeat($.annotation), 'state', $.name, '{', repeat($.parser_statement), optional($.transition_statement), '}'
         ),
 
         parser_statement: $ => choice(
@@ -181,7 +157,7 @@ module.exports = grammar({
         ),
 
         parser_block_statement: $ => seq(
-            optional($.annotations), '{', optional($.parser_statements), '}'
+            repeat($.annotation), '{', repeat($.parser_statement), '}'
         ),
 
         transition_statement: $ => seq(
@@ -237,27 +213,23 @@ module.exports = grammar({
         ),
 
         value_set_declaration: $ => choice(
-            seq(optional($.annotations), 'valueset', '<', $.base_type, '>', '(', $.expression, ')', $.name, ';'),
-            seq(optional($.annotations), 'valueset', '<', $.tuple_type, '>', '(', $.expression, ')', $.name, ';'),
-            seq(optional($.annotations), 'valueset', '<', $.type_name, '>', '(', $.expression, ')', $.name, ';'),
+            seq(repeat($.annotation), 'valueset', '<', $.base_type, '>', '(', $.expression, ')', $.name, ';'),
+            seq(repeat($.annotation), 'valueset', '<', $.tuple_type, '>', '(', $.expression, ')', $.name, ';'),
+            seq(repeat($.annotation), 'valueset', '<', $.type_name, '>', '(', $.expression, ')', $.name, ';'),
         ),
 
         control_declaration: $ => seq(
             $.control_type_declaration,
             optional(seq('(', optional($.parameter_list), ')')),
             '{',
-            optional($.control_local_declarations),
+            repeat($.control_local_declaration),
             'apply',
             $.control_body,
             '}'
         ),
 
         control_type_declaration: $ => seq(
-            optional($.annotations), 'control', $.name, optional($.type_parameters), '(', optional($.parameter_list), ')'
-        ),
-
-        control_local_declarations: $ => seq(
-            optional($.control_local_declarations), $.control_local_declaration
+            repeat($.annotation), 'control', $.name, optional($.type_parameters), '(', optional($.parameter_list), ')'
         ),
 
         control_local_declaration: $ => choice(
@@ -273,12 +245,8 @@ module.exports = grammar({
         ),
 
         extern_declaration: $ => choice(
-            seq(optional($.annotations), 'extern', $.non_type_name, optional($.type_parameters), '{', optional($.method_prototypes), '}'),
-            seq(optional($.annotations), 'extern', $.function_prototype, ';'),
-        ),
-
-        method_prototypes: $ => seq(
-            optional($.method_prototypes), $.method_prototype
+            seq(repeat($.annotation), 'extern', $.non_type_name, optional($.type_parameters), '{', repeat($.method_prototype), '}'),
+            seq(repeat($.annotation), 'extern', $.function_prototype, ';'),
         ),
 
         function_prototype: $ => seq(
@@ -286,8 +254,8 @@ module.exports = grammar({
         ),
 
         method_prototype: $ => choice(
-            seq(optional($.annotations), $.function_prototype, ';'),
-            seq(optional($.annotations), $.type_identifier, '(', optional($.parameter_list), ')', ';'),
+            seq(repeat($.annotation), $.function_prototype, ';'),
+            seq(repeat($.annotation), $.type_identifier, '(', optional($.parameter_list), ')', ';'),
         ),
 
         type_ref: $ => choice(
@@ -394,15 +362,15 @@ module.exports = grammar({
         ),
 
         header_type_declaration: $ => seq(
-            optional($.annotations), 'header', $.name, optional($.type_parameters), '{', optional($.struct_field_list), '}'
+            repeat($.annotation), 'header', $.name, optional($.type_parameters), '{', optional($.struct_field_list), '}'
         ),
 
         header_union_declaration: $ => seq(
-            optional($.annotations), 'header_union', $.name, optional($.type_parameters), '{', optional($.struct_field_list), '}'
+            repeat($.annotation), 'header_union', $.name, optional($.type_parameters), '{', optional($.struct_field_list), '}'
         ),
 
         struct_type_declaration: $ => seq(
-            optional($.annotations), 'struct', $.name, optional($.type_parameters), '{', optional($.struct_field_list), '}'
+            repeat($.annotation), 'struct', $.name, optional($.type_parameters), '{', optional($.struct_field_list), '}'
         ),
 
         struct_field_list: $ => seq(
@@ -410,12 +378,12 @@ module.exports = grammar({
         ),
 
         struct_field: $ => seq(
-            optional($.annotations), $.type_ref, $.name, ';'
+            repeat($.annotation), $.type_ref, $.name, ';'
         ),
 
         enum_declaration: $ => choice(
-            seq(optional($.annotations), 'enum', $.name, '{', $.identifier_list, '}'),
-            seq(optional($.annotations), 'enum', $.type_ref, $.name, '{', $.specified_identifier_list, '}'),
+            seq(repeat($.annotation), 'enum', $.name, '{', $.identifier_list, '}'),
+            seq(repeat($.annotation), 'enum', $.type_ref, $.name, '{', $.specified_identifier_list, '}'),
         ),
 
         error_declaration: $ => seq(
@@ -441,10 +409,10 @@ module.exports = grammar({
         ),
 
         typedef_declaration: $ => choice(
-            seq(optional($.annotations), 'typedef', $.type_ref, $.name, ';'),
-            seq(optional($.annotations), 'typedef', $.derived_type_declaration, $.name, ';'),
-            seq(optional($.annotations), 'type', $.type_ref, $.name, ';'),
-            seq(optional($.annotations), 'type', $.derived_type_declaration, $.name, ';'),
+            seq(repeat($.annotation), 'typedef', $.type_ref, $.name, ';'),
+            seq(repeat($.annotation), 'typedef', $.derived_type_declaration, $.name, ';'),
+            seq(repeat($.annotation), 'type', $.type_ref, $.name, ';'),
+            seq(repeat($.annotation), 'type', $.derived_type_declaration, $.name, ';'),
         ),
 
         assignment_or_method_call_statement: $ => choice(
@@ -488,7 +456,7 @@ module.exports = grammar({
         ),
 
         block_statement: $ => seq(
-            optional($.annotations), '{', optional($.stat_or_decl_list), '}'
+            repeat($.annotation), '{', optional($.stat_or_decl_list), '}'
         ),
 
         stat_or_decl_list: $ => seq(
@@ -496,11 +464,7 @@ module.exports = grammar({
         ),
 
         switch_statement: $ => seq(
-            'switch', '(', $.expression, ')', '{', optional($.switch_cases), '}'
-        ),
-
-        switch_cases: $ => seq(
-            optional($.switch_cases), $.switch_case
+            'switch', '(', $.expression, ')', '{', repeat($.switch_case), '}'
         ),
 
         switch_case: $ => choice(
@@ -520,7 +484,7 @@ module.exports = grammar({
         ),
 
         table_declaration: $ => seq(
-            optional($.annotations), 'table', $.name, '{', $.table_property_list, '}'
+            repeat($.annotation), 'table', $.name, '{', $.table_property_list, '}'
         ),
 
         table_property_list: $ => choice(
@@ -531,9 +495,9 @@ module.exports = grammar({
         table_property: $ => choice(
             seq('key', '=', '{', optional($.key_element_list), '}'),
             seq('actions', '=', '{', optional($.action_list), '}'),
-            seq(optional($.annotations), 'const', 'entries', '=', '{', optional($.entries_list), '}'),
-            seq(optional($.annotations), 'const', $.non_table_kw_name, '=', $.initializer, ';'),
-            seq(optional($.annotations), $.non_table_kw_name, '=', $.initializer, ';'),
+            seq(repeat($.annotation), 'const', 'entries', '=', '{', optional($.entries_list), '}'),
+            seq(repeat($.annotation), 'const', $.non_table_kw_name, '=', $.initializer, ';'),
+            seq(repeat($.annotation), $.non_table_kw_name, '=', $.initializer, ';'),
         ),
 
         key_element_list: $ => seq(
@@ -541,11 +505,11 @@ module.exports = grammar({
         ),
 
         key_element: $ => seq(
-            seq($.expression, ':', $.name, optional($.annotations), ';'),
+            seq($.expression, ':', $.name, repeat($.annotation), ';'),
         ),
 
         action_list: $ => seq(
-            optional($.action_list), optional($.annotations), $.action_ref, ';'
+            optional($.action_list), repeat($.annotation), $.action_ref, ';'
         ),
 
         action_ref: $ => choice(
@@ -558,20 +522,20 @@ module.exports = grammar({
         ),
 
         entry: $ => seq(
-            $.keyset_expression, ':', $.action_ref, optional($.annotations), ';'
+            $.keyset_expression, ':', $.action_ref, repeat($.annotation), ';'
         ),
 
         action_declaration: $ => seq(
-            optional($.annotations), 'action', $.name, '(', optional($.parameter_list), ')', $.block_statement
+            repeat($.annotation), 'action', $.name, '(', optional($.parameter_list), ')', $.block_statement
         ),
 
         variable_declaration: $ => choice(
-            seq($.annotations, $.type_ref, $.name, optional($.initializer), ';'),
+            seq(repeat($.annotation), $.type_ref, $.name, optional($.initializer), ';'),
             seq($.type_ref, $.name, optional($.initializer), ';'),
         ),
 
         constant_declaration: $ => seq(
-            optional($.annotations), 'const', $.type_ref, $.name, '=', $.initializer, ';'
+            repeat($.annotation), 'const', $.type_ref, $.name, '=', $.initializer, ';'
         ),
 
         initializer: $ => seq(
