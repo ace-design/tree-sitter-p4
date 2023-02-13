@@ -4,7 +4,7 @@ description = "P4 grammar for the tree-sitter parsing library"
 version = "0.0.1"
 keywords = ["incremental", "parsing", "p4"]
 categories = ["parsing", "text-editors"]
-repository = "https://github.com/AlexandreLachanceGit/tree-sitter-p4"
+repository = "https://github.com/ace-design/tree-sitter-p4"
 edition = "2018"
 license = "MIT"
 
