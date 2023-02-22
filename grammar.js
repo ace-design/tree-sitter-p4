@@ -124,6 +124,10 @@ module.exports = grammar({
         parser_declaration: $ => seq(
             $.parser_type_declaration,
             optional(seq('(', optional($.parameter_list), ')')),
+            $.parser_body
+        ),
+
+        parser_body: $ => seq(
             '{',
             repeat($._parser_local_element),
             repeat($.parser_state),

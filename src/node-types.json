@@ -1253,12 +1253,12 @@
     }
   },
   {
-    "type": "parser_declaration",
+    "type": "parser_body",
     "named": true,
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "constant_declaration",
@@ -1269,15 +1269,7 @@
           "named": true
         },
         {
-          "type": "parameter_list",
-          "named": true
-        },
-        {
           "type": "parser_state",
-          "named": true
-        },
-        {
-          "type": "parser_type_declaration",
           "named": true
         },
         {
@@ -1286,6 +1278,29 @@
         },
         {
           "type": "variable_declaration",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "parser_declaration",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "parameter_list",
+          "named": true
+        },
+        {
+          "type": "parser_body",
+          "named": true
+        },
+        {
+          "type": "parser_type_declaration",
           "named": true
         }
       ]

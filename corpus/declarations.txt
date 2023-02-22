@@ -137,15 +137,16 @@ parser MyParser(out headers packet) {
                     (name
                         (non_type_name
                             (identifier))))))
-        (parser_state
-            (name
-                (non_type_name
-                    (identifier)))
-            (transition_statement
-                (state_expression
-                    (name
-                        (non_type_name
-                            (identifier))))))))
+        (parser_body
+            (parser_state
+                (name
+                    (non_type_name
+                        (identifier)))
+                (transition_statement
+                    (state_expression
+                        (name
+                            (non_type_name
+                                (identifier)))))))))
 
 ==================
 Include declaration 

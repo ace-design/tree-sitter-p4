@@ -714,6 +714,15 @@
           ]
         },
         {
+          "type": "SYMBOL",
+          "name": "parser_body"
+        }
+      ]
+    },
+    "parser_body": {
+      "type": "SEQ",
+      "members": [
+        {
           "type": "STRING",
           "value": "{"
         },
