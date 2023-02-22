@@ -51,14 +51,13 @@ extern void f(inout bit x, in bit y);
                     (non_type_name
                         (identifier)))
             (parameter_list
-                (parameter_list
-                    (parameter
-                        (direction)
-                        (type_ref
-                            (base_type))
-                        (name
-                            (non_type_name
-                                (identifier)))))
+                (parameter
+                    (direction)
+                    (type_ref
+                        (base_type))
+                    (name
+                        (non_type_name
+                            (identifier))))
                 (parameter
                     (direction)
                     (type_ref
@@ -83,34 +82,31 @@ action Forward_a(out bit<9> outputPort, bit<9> port) {
             (non_type_name
                 (identifier)))
         (parameter_list
-                (parameter_list
-                    (parameter
-                        (direction)
-                        (type_ref
-                            (base_type
-                                (integer)))
-                        (name
-                            (non_type_name
+                (parameter
+                    (direction)
+                    (type_ref
+                        (base_type
+                            (integer)))
+                    (name
+                        (non_type_name
+                            (identifier))))
+                (parameter
+                    (type_ref
+                        (base_type
+                            (integer)))
+                    (name
+                        (non_type_name
                             (identifier)))))
-                    (parameter
-                        (type_ref
-                            (base_type
-                                (integer)))
-                        (name
-                            (non_type_name
-                                (identifier)))))
         (block_statement
             (stat_or_decl_list
-                (statement_or_declaration
-                    (statement
-                        (assignment_or_method_call_statement
-                            (lvalue
-                                (prefixed_non_type_name
-                                    (non_type_name
-                                        (identifier))))
-                            (expression
+                    (assignment_or_method_call_statement
+                        (lvalue
+                            (prefixed_non_type_name
                                 (non_type_name
-                                    (identifier))))))))))
+                                    (identifier))))
+                        (expression
+                            (non_type_name
+                                (identifier))))))))
 
 ==================
 Parser declaration 
@@ -234,10 +230,9 @@ Balancer() b = {
                     (type_identifier
                         (identifier)))))
         (argument_list
-            (argument_list
-                (argument
-                    (expression
-                        (integer))))
+            (argument
+                (expression
+                    (integer)))
             (argument
                 (expression
                     (type_name
@@ -261,18 +256,15 @@ Balancer() b = {
             (non_type_name
                 (identifier)))
         (obj_initializer
-            (obj_declaration
-                (function_declaration
-                    (function_prototype
-                        (type_or_void)
-                        (name
-                            (non_type_name
-                                (identifier))))
-                    (block_statement
-                        (stat_or_decl_list
-                            (statement_or_declaration
-                                (statement
-                                    (return_statement))))))))))
+            (function_declaration
+                (function_prototype
+                    (type_or_void)
+                    (name
+                        (non_type_name
+                            (identifier))))
+                (block_statement
+                    (stat_or_decl_list
+                        (return_statement)))))))
 
 ==================
 Error declaration
@@ -285,10 +277,9 @@ error { ParseError, PacketTooShort }
 (source_file
     (error_declaration
         (identifier_list
-            (identifier_list
-                (name
-                    (non_type_name
-                        (identifier))))
+            (name
+                (non_type_name
+                    (identifier)))
             (name
                 (non_type_name
                     (identifier))))))
@@ -308,17 +299,15 @@ match_kind {
 (source_file
     (match_kind_declaration
         (identifier_list
-            (identifier_list
-                (identifier_list
-                    (name
-                        (non_type_name
-                            (identifier))))
                 (name
                     (non_type_name
-                        (identifier))))
-            (name
-                (non_type_name
-                    (identifier))))))
+                        (identifier)))
+                (name
+                    (non_type_name
+                        (identifier)))
+                (name
+                    (non_type_name
+                        (identifier))))))
 
 ==================
 Function declaration
@@ -343,15 +332,14 @@ bit<32> max(in bit<32> left, in bit<32> right) {
                 (non_type_name
                     (identifier)))
             (parameter_list
-                (parameter_list
-                    (parameter
-                        (direction)
+                (parameter
+                    (direction)
                     (type_ref
                         (base_type
                             (integer)))
                     (name
                         (non_type_name
-                            (identifier)))))
+                            (identifier))))
                 (parameter
                     (direction)
                     (type_ref
@@ -362,25 +350,19 @@ bit<32> max(in bit<32> left, in bit<32> right) {
                             (identifier))))))
         (block_statement
             (stat_or_decl_list
-                (stat_or_decl_list
-                    (statement_or_declaration
-                        (statement
-                            (conditional_statement
-                                (expression
-                                    (expression
-                                        (non_type_name
-                                            (identifier)))
-                                    (expression
-                                        (non_type_name
-                                            (identifier))))
-                                (statement
-                                    (return_statement
-                                        (expression
-                                            (non_type_name
-                                                (identifier)))))))))
-                (statement_or_declaration
-                    (statement
+                    (conditional_statement
+                        (expression
+                            (expression
+                                (non_type_name
+                                    (identifier)))
+                            (expression
+                                (non_type_name
+                                    (identifier))))
                         (return_statement
                             (expression
                                 (non_type_name
-                                    (identifier))))))))))
+                                    (identifier)))))
+                        (return_statement
+                            (expression
+                                (non_type_name
+                                    (identifier))))))))
