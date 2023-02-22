@@ -373,9 +373,7 @@ module.exports = grammar({
             repeat($.annotation), 'struct', $.name, optional($.type_parameters), '{', optional($.struct_field_list), '}'
         ),
 
-        struct_field_list: $ => seq(
-            optional($.struct_field_list), $.struct_field
-        ),
+        struct_field_list: $ => repeat1($.struct_field),
 
         struct_field: $ => seq(
             repeat($.annotation), $.type_ref, $.name, ';'
@@ -459,9 +457,7 @@ module.exports = grammar({
             repeat($.annotation), '{', optional($.stat_or_decl_list), '}'
         ),
 
-        stat_or_decl_list: $ => seq(
-            optional($.stat_or_decl_list), $.statement_or_declaration
-        ),
+        stat_or_decl_list: $ => repeat1($.statement_or_declaration),
 
         switch_statement: $ => seq(
             'switch', '(', $.expression, ')', '{', repeat($.switch_case), '}'
@@ -487,10 +483,7 @@ module.exports = grammar({
             repeat($.annotation), 'table', $.name, '{', $.table_property_list, '}'
         ),
 
-        table_property_list: $ => choice(
-            $.table_property,
-            seq($.table_property_list, $.table_property),
-        ),
+        table_property_list: $ => repeat1($.table_property),
 
         table_property: $ => choice(
             seq('key', '=', '{', optional($.key_element_list), '}'),

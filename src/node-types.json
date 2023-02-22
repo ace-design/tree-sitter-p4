@@ -1769,10 +1769,6 @@
       "required": true,
       "types": [
         {
-          "type": "stat_or_decl_list",
-          "named": true
-        },
-        {
           "type": "statement_or_declaration",
           "named": true
         }
@@ -1897,10 +1893,6 @@
       "types": [
         {
           "type": "struct_field",
-          "named": true
-        },
-        {
-          "type": "struct_field_list",
           "named": true
         }
       ]
@@ -2073,10 +2065,6 @@
       "types": [
         {
           "type": "table_property",
-          "named": true
-        },
-        {
-          "type": "table_property_list",
           "named": true
         }
       ]
