@@ -86,8 +86,8 @@ module.exports = grammar({
         ),
 
         parameter: $ => choice(
-            seq(repeat($.annotation), optional($.direction), $.type_ref, $.name),
-            seq(repeat($.annotation), optional($.direction), $.type_ref, $.name, '=', $.expression),
+            seq(repeat($.annotation), field("direction", optional($.direction)), field("type", $.type_ref), field("name", $.name)),
+            seq(repeat($.annotation), field("direction", optional($.direction)), field("type", $.type_ref), field("name", $.name), '=', field("value", $.expression)),
         ),
 
         direction: $ => choice(
@@ -123,8 +123,7 @@ module.exports = grammar({
 
         parser_declaration: $ => seq(
             $.parser_type_declaration,
-            optional(seq('(', optional($.parameter_list), ')')),
-            $.parser_body
+            field("body", $.parser_body)
         ),
 
         parser_body: $ => seq(
@@ -142,7 +141,7 @@ module.exports = grammar({
         ),
 
         parser_type_declaration: $ => seq(
-            repeat($.annotation), 'parser', $.name, optional($.type_parameters), '(', optional($.parameter_list), ')'
+            repeat($.annotation), 'parser', field('name', $.name), optional($.type_parameters), '(', field('parameters', optional($.parameter_list)), ')'
         ),
 
         parser_state: $ => seq(
