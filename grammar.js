@@ -510,7 +510,7 @@ module.exports = grammar({
         ),
 
         constant_declaration: $ => seq(
-            repeat($.annotation), 'const', $.type_ref, $.name, '=', $.initializer, ';'
+            repeat($.annotation), 'const', field("type". $.type_ref), field("name", $.name), '=', field("value", $.initializer), ';'
         ),
 
         initializer: $ => seq(
