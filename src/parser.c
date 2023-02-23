@@ -22,7 +22,7 @@
 #define EXTERNAL_TOKEN_COUNT 1
 #define FIELD_COUNT 6
 #define MAX_ALIAS_SEQUENCE_LENGTH 10
-#define PRODUCTION_ID_COUNT 16
+#define PRODUCTION_ID_COUNT 17
 
 enum {
   aux_sym_source_file_token1 = 1,
@@ -1680,6 +1680,7 @@ static const TSFieldMapSlice ts_field_map_slices[PRODUCTION_ID_COUNT] = {
   [13] = {.index = 27, .length = 2},
   [14] = {.index = 29, .length = 4},
   [15] = {.index = 33, .length = 2},
+  [16] = {.index = 35, .length = 3},
 };
 
 static const TSFieldMapEntry ts_field_map_entries[] = {
@@ -1733,6 +1734,10 @@ static const TSFieldMapEntry ts_field_map_entries[] = {
   [33] =
     {field_name, 2},
     {field_parameters, 5},
+  [35] =
+    {field_name, 3},
+    {field_type, 2},
+    {field_value, 5},
 };
 
 static const TSSymbol ts_alias_sequences[PRODUCTION_ID_COUNT][MAX_ALIAS_SEQUENCE_LENGTH] = {
@@ -59856,10 +59861,10 @@ static const TSParseActionEntry ts_parse_actions[] = {
   [1732] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_switch_case, 2),
   [1734] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_switch_case, 2),
   [1736] = {.entry = {.count = 1, .reusable = true}}, SHIFT(31),
-  [1738] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_constant_declaration, 7),
-  [1740] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_constant_declaration, 7),
-  [1742] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_constant_declaration, 6),
-  [1744] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_constant_declaration, 6),
+  [1738] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_constant_declaration, 7, .production_id = 16),
+  [1740] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_constant_declaration, 7, .production_id = 16),
+  [1742] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_constant_declaration, 6, .production_id = 11),
+  [1744] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_constant_declaration, 6, .production_id = 11),
   [1746] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_variable_declaration, 5),
   [1748] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_variable_declaration, 5),
   [1750] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_variable_declaration, 4),
