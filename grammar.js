@@ -504,10 +504,8 @@ module.exports = grammar({
             repeat($.annotation), 'action', $.name, '(', optional($.parameter_list), ')', $.block_statement
         ),
 
-        variable_declaration: $ => choice(
-            seq(repeat($.annotation), $.type_ref, $.name, optional($.initializer), ';'),
-            seq($.type_ref, $.name, optional($.initializer), ';'),
-        ),
+        variable_declaration: $ => seq(repeat($.annotation),  field("type", $.type_ref),  field("name", $.name), field("value", optional($.initializer)), ';'),
+        
 
         constant_declaration: $ => seq(
             repeat($.annotation), 'const', field("type", $.type_ref), field("name", $.name), '=', field("value", $.initializer), ';'
