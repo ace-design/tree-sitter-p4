@@ -1340,17 +1340,17 @@
             "named": true
           }
         ]
+      },
+      "declaration": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "parser_type_declaration",
+            "named": true
+          }
+        ]
       }
-    },
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "parser_type_declaration",
-          "named": true
-        }
-      ]
     }
   },
   {

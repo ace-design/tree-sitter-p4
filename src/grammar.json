@@ -705,8 +705,12 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "parser_type_declaration"
+          "type": "FIELD",
+          "name": "declaration",
+          "content": {
+            "type": "SYMBOL",
+            "name": "parser_type_declaration"
+          }
         },
         {
           "type": "FIELD",
