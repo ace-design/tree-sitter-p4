@@ -3707,6 +3707,10 @@
           }
         },
         {
+          "type": "STRING",
+          "value": "="
+        },
+        {
           "type": "FIELD",
           "name": "value",
           "content": {
