@@ -4,6 +4,13 @@ P4 grammar for [tree-sitter](https://github.com/tree-sitter/tree-sitter).
 
 ## Features
 
+- [x] Grammar definition
+- [x] Highlighting (Partial)
+- [ ] Locals
+- [ ] Folds
+- [ ] Indents
+- [ ] Injections
+
 ## Known issues
 
 * Requires [Neovim Nightly](https://github.com/neovim/neovim/wiki/Installing-Neovim) for correct parsing and highlighting.
