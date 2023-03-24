@@ -335,13 +335,13 @@ module.exports = grammar({
 
         type_argument_list: $ => seq(repeat(seq($.type_arg, ',')), $.type_arg),
 
-        type_declaration: $ => choice(
+        type_declaration: $ => field("type_kind", choice(
             $._derived_type_declaration,
             $.typedef_declaration,
             seq($.parser_type_declaration, ';'),
             seq($.control_type_declaration, ';'),
             seq($.package_type_declaration, ';'),
-        ),
+        )),
 
         _derived_type_declaration: $ => choice(
             $.header_type_declaration,
@@ -351,15 +351,15 @@ module.exports = grammar({
         ),
 
         header_type_declaration: $ => seq(
-            repeat($.annotation), 'header', $.name, optional($.type_parameters), '{', optional($.struct_field_list), '}'
+            repeat($.annotation), 'header', field("name", $.name), optional($.type_parameters), '{', optional($.struct_field_list), '}'
         ),
 
         header_union_declaration: $ => seq(
-            repeat($.annotation), 'header_union', $.name, optional($.type_parameters), '{', optional($.struct_field_list), '}'
+            repeat($.annotation), 'header_union', field("name", $.name), optional($.type_parameters), '{', optional($.struct_field_list), '}'
         ),
 
         struct_type_declaration: $ => seq(
-            repeat($.annotation), 'struct', $.name, optional($.type_parameters), '{', optional($.struct_field_list), '}'
+            repeat($.annotation), 'struct', field("name", $.name), optional($.type_parameters), '{', optional($.struct_field_list), '}'
         ),
 
         struct_field_list: $ => repeat1($.struct_field),
@@ -369,8 +369,8 @@ module.exports = grammar({
         ),
 
         enum_declaration: $ => choice(
-            seq(repeat($.annotation), 'enum', $.name, '{', $.identifier_list, '}'),
-            seq(repeat($.annotation), 'enum', $.type_ref, $.name, '{', $.specified_identifier_list, '}'),
+            seq(repeat($.annotation), 'enum', field("name", $.name), '{', $.identifier_list, '}'),
+            seq(repeat($.annotation), 'enum', field("type", $.type_ref), field("name", $.name), '{', $.specified_identifier_list, '}'),
         ),
 
         error_declaration: $ => seq(
@@ -393,10 +393,10 @@ module.exports = grammar({
         ),
 
         typedef_declaration: $ => choice(
-            seq(repeat($.annotation), 'typedef', $.type_ref, $.name, ';'),
-            seq(repeat($.annotation), 'typedef', $._derived_type_declaration, $.name, ';'),
-            seq(repeat($.annotation), 'type', $.type_ref, $.name, ';'),
-            seq(repeat($.annotation), 'type', $._derived_type_declaration, $.name, ';'),
+            seq(repeat($.annotation), 'typedef', $.type_ref, field("name", $.name), ';'),
+            seq(repeat($.annotation), 'typedef', $._derived_type_declaration, field("name", $.name), ';'),
+            seq(repeat($.annotation), 'type', $.type_ref, field("name", $.name), ';'),
+            seq(repeat($.annotation), 'type', $._derived_type_declaration, field("name", $.name), ';'),
         ),
 
         assignment_or_method_call_statement: $ => choice(
