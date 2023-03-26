@@ -2711,8 +2711,12 @@
               "value": "typedef"
             },
             {
-              "type": "SYMBOL",
-              "name": "type_ref"
+              "type": "FIELD",
+              "name": "type",
+              "content": {
+                "type": "SYMBOL",
+                "name": "type_ref"
+              }
             },
             {
               "type": "FIELD",
@@ -2743,8 +2747,12 @@
               "value": "typedef"
             },
             {
-              "type": "SYMBOL",
-              "name": "_derived_type_declaration"
+              "type": "FIELD",
+              "name": "type",
+              "content": {
+                "type": "SYMBOL",
+                "name": "_derived_type_declaration"
+              }
             },
             {
               "type": "FIELD",
@@ -2775,8 +2783,12 @@
               "value": "type"
             },
             {
-              "type": "SYMBOL",
-              "name": "type_ref"
+              "type": "FIELD",
+              "name": "type",
+              "content": {
+                "type": "SYMBOL",
+                "name": "type_ref"
+              }
             },
             {
               "type": "FIELD",
@@ -2807,8 +2819,12 @@
               "value": "type"
             },
             {
-              "type": "SYMBOL",
-              "name": "_derived_type_declaration"
+              "type": "FIELD",
+              "name": "type",
+              "content": {
+                "type": "SYMBOL",
+                "name": "_derived_type_declaration"
+              }
             },
             {
               "type": "FIELD",

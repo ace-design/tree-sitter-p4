@@ -2313,34 +2313,40 @@
             "named": true
           }
         ]
+      },
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "enum_declaration",
+            "named": true
+          },
+          {
+            "type": "header_type_declaration",
+            "named": true
+          },
+          {
+            "type": "header_union_declaration",
+            "named": true
+          },
+          {
+            "type": "struct_type_declaration",
+            "named": true
+          },
+          {
+            "type": "type_ref",
+            "named": true
+          }
+        ]
       }
     },
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "annotation",
-          "named": true
-        },
-        {
-          "type": "enum_declaration",
-          "named": true
-        },
-        {
-          "type": "header_type_declaration",
-          "named": true
-        },
-        {
-          "type": "header_union_declaration",
-          "named": true
-        },
-        {
-          "type": "struct_type_declaration",
-          "named": true
-        },
-        {
-          "type": "type_ref",
           "named": true
         }
       ]
