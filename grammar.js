@@ -393,10 +393,10 @@ module.exports = grammar({
         ),
 
         typedef_declaration: $ => choice(
-            seq(repeat($.annotation), 'typedef', $.type_ref, field("name", $.name), ';'),
-            seq(repeat($.annotation), 'typedef', $._derived_type_declaration, field("name", $.name), ';'),
-            seq(repeat($.annotation), 'type', $.type_ref, field("name", $.name), ';'),
-            seq(repeat($.annotation), 'type', $._derived_type_declaration, field("name", $.name), ';'),
+            seq(repeat($.annotation), 'typedef', field("type", $.type_ref), field("name", $.name), ';'),
+            seq(repeat($.annotation), 'typedef', field("type", $._derived_type_declaration), field("name", $.name), ';'),
+            seq(repeat($.annotation), 'type', field("type", $.type_ref), field("name", $.name), ';'),
+            seq(repeat($.annotation), 'type', field("type", $._derived_type_declaration), field("name", $.name), ';'),
         ),
 
         assignment_or_method_call_statement: $ => choice(
