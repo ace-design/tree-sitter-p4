@@ -504,6 +504,20 @@
           }
         ]
       },
+      "option_list": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier_list",
+            "named": true
+          },
+          {
+            "type": "specified_identifier_list",
+            "named": true
+          }
+        ]
+      },
       "type": {
         "multiple": false,
         "required": false,
@@ -517,18 +531,10 @@
     },
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "annotation",
-          "named": true
-        },
-        {
-          "type": "identifier_list",
-          "named": true
-        },
-        {
-          "type": "specified_identifier_list",
           "named": true
         }
       ]
@@ -537,16 +543,17 @@
   {
     "type": "error_declaration",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "identifier_list",
-          "named": true
-        }
-      ]
+    "fields": {
+      "option_list": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier_list",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -736,6 +743,16 @@
     "type": "header_type_declaration",
     "named": true,
     "fields": {
+      "field_list": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "struct_field_list",
+            "named": true
+          }
+        ]
+      },
       "name": {
         "multiple": false,
         "required": true,
@@ -753,10 +770,6 @@
       "types": [
         {
           "type": "annotation",
-          "named": true
-        },
-        {
-          "type": "struct_field_list",
           "named": true
         },
         {
@@ -770,6 +783,16 @@
     "type": "header_union_declaration",
     "named": true,
     "fields": {
+      "field_list": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "struct_field_list",
+            "named": true
+          }
+        ]
+      },
       "name": {
         "multiple": false,
         "required": true,
@@ -787,10 +810,6 @@
       "types": [
         {
           "type": "annotation",
-          "named": true
-        },
-        {
-          "type": "struct_field_list",
           "named": true
         },
         {
@@ -978,16 +997,17 @@
   {
     "type": "match_kind_declaration",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "identifier_list",
-          "named": true
-        }
-      ]
+    "fields": {
+      "option_list": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier_list",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -1880,6 +1900,16 @@
     "type": "struct_type_declaration",
     "named": true,
     "fields": {
+      "field_list": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "struct_field_list",
+            "named": true
+          }
+        ]
+      },
       "name": {
         "multiple": false,
         "required": true,
@@ -1897,10 +1927,6 @@
       "types": [
         {
           "type": "annotation",
-          "named": true
-        },
-        {
-          "type": "struct_field_list",
           "named": true
         },
         {

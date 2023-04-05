@@ -351,15 +351,15 @@ module.exports = grammar({
         ),
 
         header_type_declaration: $ => seq(
-            repeat($.annotation), 'header', field("name", $.name), optional($.type_parameters), '{', optional($.struct_field_list), '}'
+            repeat($.annotation), 'header', field("name", $.name), optional($.type_parameters), '{', field("field_list", optional($.struct_field_list)), '}'
         ),
 
         header_union_declaration: $ => seq(
-            repeat($.annotation), 'header_union', field("name", $.name), optional($.type_parameters), '{', optional($.struct_field_list), '}'
+            repeat($.annotation), 'header_union', field("name", $.name), optional($.type_parameters), '{', field("field_list", optional($.struct_field_list)), '}'
         ),
 
         struct_type_declaration: $ => seq(
-            repeat($.annotation), 'struct', field("name", $.name), optional($.type_parameters), '{', optional($.struct_field_list), '}'
+            repeat($.annotation), 'struct', field("name", $.name), optional($.type_parameters), '{', field("field_list", optional($.struct_field_list)), '}'
         ),
 
         struct_field_list: $ => repeat1($.struct_field),
@@ -369,16 +369,16 @@ module.exports = grammar({
         ),
 
         enum_declaration: $ => choice(
-            seq(repeat($.annotation), 'enum', field("name", $.name), '{', $.identifier_list, '}'),
-            seq(repeat($.annotation), 'enum', field("type", $.type_ref), field("name", $.name), '{', $.specified_identifier_list, '}'),
+            seq(repeat($.annotation), 'enum', field("name", $.name), '{', field("option_list", $.identifier_list), '}'),
+            seq(repeat($.annotation), 'enum', field("type", $.type_ref), field("name", $.name), '{', field("option_list", $.specified_identifier_list), '}'),
         ),
 
         error_declaration: $ => seq(
-            'error', '{', $.identifier_list, '}'
+            'error', '{', field("option_list", $.identifier_list), '}'
         ),
 
         match_kind_declaration: $ => seq(
-            'match_kind', '{', $.identifier_list, '}'
+            'match_kind', '{', field("option_list", $.identifier_list), '}'
         ),
 
         identifier_list: $ => seq(repeat(seq($.name, ',')), $.name),
