@@ -6,6 +6,7 @@
     "const" 
     "control" 
     "default" 
+    "define"
     "else" 
     "entries" 
     "enum" 
