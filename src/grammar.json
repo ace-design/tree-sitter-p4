@@ -62,7 +62,11 @@
         },
         {
           "type": "SYMBOL",
-          "name": "include_declaration"
+          "name": "preproc_include_declaration"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "preproc_define_declaration"
         }
       ]
     },
@@ -141,7 +145,7 @@
         }
       ]
     },
-    "include_declaration": {
+    "preproc_include_declaration": {
       "type": "SEQ",
       "members": [
         {
@@ -163,6 +167,27 @@
         {
           "type": "STRING",
           "value": ">"
+        }
+      ]
+    },
+    "preproc_define_declaration": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "#"
+        },
+        {
+          "type": "STRING",
+          "value": "define"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "name"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "expression"
         }
       ]
     },

@@ -149,18 +149,6 @@ parser MyParser(out headers packet) {
                                 (identifier)))))))))
 
 ==================
-Include declaration 
-==================
-
-#include <core.p4>
-
----
-
-(source_file
-    (include_declaration
-        (file_name)))
-
-==================
 Type declaration (typedef)
 ==================
 

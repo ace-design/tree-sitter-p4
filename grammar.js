@@ -29,7 +29,8 @@ module.exports = grammar({
             $.error_declaration,
             $.match_kind_declaration,
             $.function_declaration,
-            $.include_declaration
+            $.preproc_include_declaration,
+            $.preproc_define_declaration
         ),
 
         non_type_name: $ => choice(
@@ -57,12 +58,19 @@ module.exports = grammar({
             $.type_identifier,
         ),
 
-        include_declaration: $ => seq(
+        preproc_include_declaration: $ => seq(
             '#',
             'include',
             '<',
             $.file_name,
             '>'
+        ),
+
+        preproc_define_declaration: $ => seq(
+            '#',
+            'define',
+            $.name,
+            $.expression
         ),
 
         file_name: $ => /\w*\.\w*/,

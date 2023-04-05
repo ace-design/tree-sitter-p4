@@ -1,0 +1,29 @@
+==================
+Include declaration 
+==================
+
+#include <core.p4>
+
+---
+
+(source_file
+    (preproc_include_declaration
+        (file_name)))
+
+==================
+Define declaration 
+==================
+
+#define test 1
+
+---
+
+(source_file
+    (preproc_define_declaration
+        (name
+            (non_type_name
+                (identifier)))
+        (expression
+            (integer))))
+
+

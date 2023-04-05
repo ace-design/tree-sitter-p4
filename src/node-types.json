@@ -835,21 +835,6 @@
     }
   },
   {
-    "type": "include_declaration",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "file_name",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "initializer",
     "named": true,
     "fields": {},
@@ -1530,6 +1515,40 @@
     }
   },
   {
+    "type": "preproc_define_declaration",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        },
+        {
+          "type": "name",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "preproc_include_declaration",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "file_name",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "real_type_arg",
     "named": true,
     "fields": {},
@@ -1709,10 +1728,6 @@
           "named": true
         },
         {
-          "type": "include_declaration",
-          "named": true
-        },
-        {
           "type": "instantiation",
           "named": true
         },
@@ -1722,6 +1737,14 @@
         },
         {
           "type": "parser_declaration",
+          "named": true
+        },
+        {
+          "type": "preproc_define_declaration",
+          "named": true
+        },
+        {
+          "type": "preproc_include_declaration",
           "named": true
         },
         {
@@ -2629,6 +2652,10 @@
   },
   {
     "type": "default",
+    "named": false
+  },
+  {
+    "type": "define",
     "named": false
   },
   {
