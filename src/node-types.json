@@ -343,7 +343,18 @@
   {
     "type": "control_declaration",
     "named": true,
-    "fields": {},
+    "fields": {
+      "declaration": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "control_type_declaration",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": true,
@@ -361,15 +372,7 @@
           "named": true
         },
         {
-          "type": "control_type_declaration",
-          "named": true
-        },
-        {
           "type": "instantiation",
-          "named": true
-        },
-        {
-          "type": "parameter_list",
           "named": true
         },
         {
@@ -386,21 +389,34 @@
   {
     "type": "control_type_declaration",
     "named": true,
-    "fields": {},
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "name",
+            "named": true
+          }
+        ]
+      },
+      "parameters": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "parameter_list",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "annotation",
-          "named": true
-        },
-        {
-          "type": "name",
-          "named": true
-        },
-        {
-          "type": "parameter_list",
           "named": true
         },
         {

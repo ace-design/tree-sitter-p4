@@ -224,8 +224,7 @@ module.exports = grammar({
         ),
 
         control_declaration: $ => seq(
-            $.control_type_declaration,
-            optional(seq('(', optional($.parameter_list), ')')),
+            field("declaration", $.control_type_declaration),
             '{',
             repeat($._control_local_declaration),
             'apply',
@@ -234,7 +233,7 @@ module.exports = grammar({
         ),
 
         control_type_declaration: $ => seq(
-            repeat($.annotation), 'control', $.name, optional($.type_parameters), '(', optional($.parameter_list), ')'
+            repeat($.annotation), 'control', field("name", $.name), optional($.type_parameters), '(', field("parameters", optional($.parameter_list)), ')'
         ),
 
         _control_local_declaration: $ => choice(
