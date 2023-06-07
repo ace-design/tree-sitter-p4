@@ -372,7 +372,7 @@ module.exports = grammar({
         struct_field_list: $ => repeat1($.struct_field),
 
         struct_field: $ => seq(
-            repeat($.annotation), $.type_ref, $.name, ';'
+            repeat($.annotation), field("type", $.type_ref), field("name", $.name), ';'
         ),
 
         enum_declaration: $ => choice(
