@@ -61,10 +61,18 @@ module.exports = grammar({
         ),
 
         preproc_include_declaration: $ => seq(
-            field("KeyWord", seq('#','include')),
-            '<',
-            $.file_name,
-            '>'
+            field("KeyWord", seq('#','include')), choice(
+                seq(
+                    '<',
+                    $.file_name,
+                    '>'
+                ),
+                seq(
+                    '"',
+                    $.file_name,
+                    '"'
+                )
+            )
         ),
         preproc_define_declaration: $ => seq(
             field("KeyWord", seq('#','define')),
@@ -88,7 +96,7 @@ module.exports = grammar({
         preproc_conditional_declaration_else: $ => prec.left(seq('#', field("KeyWord", 'else'), $._declaration)),
         preproc_conditional_declaration_elif: $ => prec.left(seq('#', field("KeyWord", 'elif'), $.expression, $._declaration,)),
 
-        file_name: $ => /\w*\.\w*/,
+        file_name: $ => /[\w\W]+/,
 
         non_table_kw_name: $ => choice(
             $.identifier,
@@ -105,8 +113,8 @@ module.exports = grammar({
         ),
         annotation_list: $ => repeat1($.annotation),
         annotation_body: $ => choice(
-            seq(field("body", $.annotation_body), '(', field("body2", optional($.annotation_body)), ')'),
-            seq(field("body", $.annotation_body), field("token", $.annotation_token)),
+            seq(field("body", optional($.annotation_body)), '(', field("body2", optional($.annotation_body)), ')'),
+            seq(field("body", optional($.annotation_body)), field("token", $.annotation_token)),
         ),
 
         structured_annotation_body: $ => choice(
@@ -357,7 +365,12 @@ module.exports = grammar({
             seq('bit', '<', '(', $.expression, ')', '>'),
             seq('int', '<', '(', $.expression, ')', '>'),
             seq('varbit', '<', '(', $.expression, ')', '>'),
+            seq('bit', '<', $.define_symbol, '>'),
+            seq('int', '<', $.define_symbol, '>'),
+            seq('varbit', '<', $.define_symbol, '>'),
         ),
+
+        define_symbol: $ => $.identifier,
 
         type_or_void: $ => prec.left(1, choice(
             $.type_ref,

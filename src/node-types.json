@@ -174,7 +174,7 @@
     "fields": {
       "body": {
         "multiple": false,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "annotation_body",
@@ -345,6 +345,10 @@
       "multiple": false,
       "required": false,
       "types": [
+        {
+          "type": "define_symbol",
+          "named": true
+        },
         {
           "type": "expression",
           "named": true
@@ -717,6 +721,21 @@
           }
         ]
       }
+    }
+  },
+  {
+    "type": "define_symbol",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -3823,6 +3842,10 @@
   },
   {
     "type": "!=",
+    "named": false
+  },
+  {
+    "type": "\"",
     "named": false
   },
   {
