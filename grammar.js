@@ -104,6 +104,15 @@ module.exports = grammar({
             seq('@', field("name", $.name), '[', field("struct", $.structured_annotation_body), ']'),
         ),
         annotation_list: $ => repeat1($.annotation),
+        annotation_body: $ => choice(
+            seq(field("body", $.annotation_body), '(', field("body2", optional($.annotation_body)), ')'),
+            seq(field("body", $.annotation_body), field("token", $.annotation_token)),
+        ),
+
+        structured_annotation_body: $ => choice(
+            $.expression_list,
+            $.kv_list,
+        ),
 
         parameter_list: $ => seq(
             repeat(seq($.parameter, ',')), $.parameter
@@ -547,7 +556,7 @@ module.exports = grammar({
             field("annotation", optional($.annotation_list)), field("KeyWord", 'action'), field("name", $.name), '(', field('parameters', optional($.parameter_list)), ')', field('block', $.block_statement)
         ),
 
-        variable_declaration: $ => seq(field("annotation", optional($.annotation_list)), field("type", $.type_ref), field("name", $.name), '=', field("value", optional($.initializer)), ';'),
+        variable_declaration: $ => seq(field("annotation", optional($.annotation_list)), field("type", $.type_ref), field("name", $.name), optional(seq('=', field("value", $.initializer))), ';'),
 
         constant_declaration: $ => seq(
             field("annotation", optional($.annotation_list)), field("KeyWord", 'const'), field("type", $.type_ref), field("name", $.name), '=', field("value", $.initializer), ';'
@@ -577,16 +586,6 @@ module.exports = grammar({
         ),
 
         expression_list: $ => seq(repeat(seq($.expression, ',')), $.expression),
-
-        annotation_body: $ => choice(
-            seq(field("body", $.annotation_body), '(', field("body2", optional($.annotation_body)), ')'),
-            seq(field("body", $.annotation_body), field("token", $.annotation_token)),
-        ),
-
-        structured_annotation_body: $ => choice(
-            $.expression_list,
-            $.kv_list,
-        ),
 
         annotation_token: $ => choice(
             'abstract',
