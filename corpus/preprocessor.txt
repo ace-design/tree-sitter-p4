@@ -59,7 +59,7 @@ typedef bit<KEY> egressSpec_t;
                     (identifier))))))
 
 ==================
-Define declaration 2
+Define declaration 3
 ==================
 
 #define get_exp_key(ROUND) action get_exp_key_r##ROUND##(){                     \
