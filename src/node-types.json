@@ -174,7 +174,7 @@
     "fields": {
       "body": {
         "multiple": false,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "annotation_body",
@@ -346,6 +346,10 @@
       "required": false,
       "types": [
         {
+          "type": "define_symbol",
+          "named": true
+        },
+        {
           "type": "expression",
           "named": true
         },
@@ -417,6 +421,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "body_define",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "bool",
@@ -717,6 +726,21 @@
           }
         ]
       }
+    }
+  },
+  {
+    "type": "define_symbol",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -1129,6 +1153,11 @@
         ]
       }
     }
+  },
+  {
+    "type": "file_name",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "function_declaration",
@@ -1895,6 +1924,11 @@
     }
   },
   {
+    "type": "null_value",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "obj_initializer",
     "named": true,
     "fields": {},
@@ -1967,6 +2001,21 @@
           }
         ]
       }
+    }
+  },
+  {
+    "type": "param_define",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -2388,88 +2437,14 @@
             "named": false
           }
         ]
-      },
-      "KeyWordEnd": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "endif",
-            "named": false
-          }
-        ]
       }
     },
     "children": {
-      "multiple": true,
-      "required": true,
+      "multiple": false,
+      "required": false,
       "types": [
         {
-          "type": "action_declaration",
-          "named": true
-        },
-        {
-          "type": "constant_declaration",
-          "named": true
-        },
-        {
-          "type": "control_declaration",
-          "named": true
-        },
-        {
-          "type": "error_declaration",
-          "named": true
-        },
-        {
-          "type": "expression",
-          "named": true
-        },
-        {
-          "type": "extern_declaration",
-          "named": true
-        },
-        {
-          "type": "function_declaration",
-          "named": true
-        },
-        {
-          "type": "instantiation",
-          "named": true
-        },
-        {
-          "type": "match_kind_declaration",
-          "named": true
-        },
-        {
-          "type": "parser_declaration",
-          "named": true
-        },
-        {
-          "type": "preproc_conditional_declaration",
-          "named": true
-        },
-        {
-          "type": "preproc_conditional_declaration_elif",
-          "named": true
-        },
-        {
-          "type": "preproc_conditional_declaration_else",
-          "named": true
-        },
-        {
-          "type": "preproc_define_declaration",
-          "named": true
-        },
-        {
-          "type": "preproc_include_declaration",
-          "named": true
-        },
-        {
-          "type": "preproc_undef_declaration",
-          "named": true
-        },
-        {
-          "type": "type_declaration",
+          "type": "identifier",
           "named": true
         }
       ]
@@ -2489,72 +2464,6 @@
           }
         ]
       }
-    },
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "action_declaration",
-          "named": true
-        },
-        {
-          "type": "constant_declaration",
-          "named": true
-        },
-        {
-          "type": "control_declaration",
-          "named": true
-        },
-        {
-          "type": "error_declaration",
-          "named": true
-        },
-        {
-          "type": "expression",
-          "named": true
-        },
-        {
-          "type": "extern_declaration",
-          "named": true
-        },
-        {
-          "type": "function_declaration",
-          "named": true
-        },
-        {
-          "type": "instantiation",
-          "named": true
-        },
-        {
-          "type": "match_kind_declaration",
-          "named": true
-        },
-        {
-          "type": "parser_declaration",
-          "named": true
-        },
-        {
-          "type": "preproc_conditional_declaration",
-          "named": true
-        },
-        {
-          "type": "preproc_define_declaration",
-          "named": true
-        },
-        {
-          "type": "preproc_include_declaration",
-          "named": true
-        },
-        {
-          "type": "preproc_undef_declaration",
-          "named": true
-        },
-        {
-          "type": "type_declaration",
-          "named": true
-        }
-      ]
     }
   },
   {
@@ -2571,68 +2480,22 @@
           }
         ]
       }
-    },
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "action_declaration",
-          "named": true
-        },
-        {
-          "type": "constant_declaration",
-          "named": true
-        },
-        {
-          "type": "control_declaration",
-          "named": true
-        },
-        {
-          "type": "error_declaration",
-          "named": true
-        },
-        {
-          "type": "extern_declaration",
-          "named": true
-        },
-        {
-          "type": "function_declaration",
-          "named": true
-        },
-        {
-          "type": "instantiation",
-          "named": true
-        },
-        {
-          "type": "match_kind_declaration",
-          "named": true
-        },
-        {
-          "type": "parser_declaration",
-          "named": true
-        },
-        {
-          "type": "preproc_conditional_declaration",
-          "named": true
-        },
-        {
-          "type": "preproc_define_declaration",
-          "named": true
-        },
-        {
-          "type": "preproc_include_declaration",
-          "named": true
-        },
-        {
-          "type": "preproc_undef_declaration",
-          "named": true
-        },
-        {
-          "type": "type_declaration",
-          "named": true
-        }
-      ]
+    }
+  },
+  {
+    "type": "preproc_conditional_declaration_end",
+    "named": true,
+    "fields": {
+      "KeyWordEnd": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "endif",
+            "named": false
+          }
+        ]
+      }
     }
   },
   {
@@ -2652,21 +2515,93 @@
             "named": false
           }
         ]
+      },
+      "body": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "bool",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "integer",
+            "named": true
+          },
+          {
+            "type": "null_value",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
       }
-    },
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "expression",
-          "named": true
-        },
-        {
-          "type": "name",
-          "named": true
-        }
-      ]
+    }
+  },
+  {
+    "type": "preproc_define_declaration_macro",
+    "named": true,
+    "fields": {
+      "KeyWord": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "#",
+            "named": false
+          },
+          {
+            "type": "define",
+            "named": false
+          }
+        ]
+      },
+      "body_macro": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "body_define",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "param": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "param_define",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -2694,6 +2629,10 @@
       "types": [
         {
           "type": "file_name",
+          "named": true
+        },
+        {
+          "type": "string",
           "named": true
         }
       ]
@@ -2723,7 +2662,7 @@
       "required": true,
       "types": [
         {
-          "type": "name",
+          "type": "identifier",
           "named": true
         }
       ]
@@ -2999,22 +2938,6 @@
         },
         {
           "type": "parser_declaration",
-          "named": true
-        },
-        {
-          "type": "preproc_conditional_declaration",
-          "named": true
-        },
-        {
-          "type": "preproc_define_declaration",
-          "named": true
-        },
-        {
-          "type": "preproc_include_declaration",
-          "named": true
-        },
-        {
-          "type": "preproc_undef_declaration",
           "named": true
         },
         {
@@ -3938,6 +3861,10 @@
     "named": false
   },
   {
+    "type": "\\>",
+    "named": false
+  },
+  {
     "type": "]",
     "named": false
   },
@@ -4028,10 +3955,6 @@
   {
     "type": "false",
     "named": false
-  },
-  {
-    "type": "file_name",
-    "named": true
   },
   {
     "type": "header",
@@ -4127,11 +4050,11 @@
   },
   {
     "type": "string",
-    "named": false
+    "named": true
   },
   {
     "type": "string",
-    "named": true
+    "named": false
   },
   {
     "type": "struct",

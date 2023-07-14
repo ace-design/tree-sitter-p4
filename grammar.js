@@ -1,7 +1,19 @@
 module.exports = grammar({
     name: 'p4',
 
-    extras: $ => [/\s/, $.line_comment, $.block_comment],
+    extras: $ => [
+                    /\s/,
+                    $.line_comment,
+                    $.block_comment,
+                    $.preproc_include_declaration,
+                    $.preproc_define_declaration,
+                    $.preproc_define_declaration_macro,
+                    $.preproc_undef_declaration,
+                    $.preproc_conditional_declaration,
+                    $.preproc_conditional_declaration_elif,
+                    $.preproc_conditional_declaration_else,
+                    $.preproc_conditional_declaration_end
+                ],
 
     externals: $ => [$.block_comment],
 
@@ -28,11 +40,7 @@ module.exports = grammar({
             $.instantiation,
             $.error_declaration,
             $.match_kind_declaration,
-            $.function_declaration,
-            $.preproc_include_declaration,
-            $.preproc_define_declaration,
-            $.preproc_undef_declaration,
-            $.preproc_conditional_declaration
+            $.function_declaration
         ),
 
         non_type_name: $ => choice(
@@ -61,34 +69,74 @@ module.exports = grammar({
         ),
 
         preproc_include_declaration: $ => seq(
-            field("KeyWord", seq('#','include')),
-            '<',
-            $.file_name,
-            '>'
+            field("KeyWord", seq('#','include')), choice(
+                seq(
+                    '<',
+                    $.file_name,
+                    '>'
+                ),
+                $.string
+            )
         ),
+        file_name: $ => repeat1(choice(/[^>]/, '\\>')),
+
         preproc_define_declaration: $ => seq(
             field("KeyWord", seq('#','define')),
-            $.name,
-            $.expression
+            field("name", $.identifier),
+            /\s/,
+            field("body", choice(
+                $.integer,
+                $.string,
+                $.bool,
+                $.identifier,
+                $.null_value
+                // todo : expression
+            ))
         ),
+        preproc_define_declaration_macro: $ => seq(
+            field("KeyWord", seq('#','define')),
+            field("name", $.identifier),
+            optional(/\s/),
+            '(',
+            optional(
+                field("param", $.param_define)
+            ),
+            ')',
+            field("body_macro", $.body_define)
+        ), // todo
+        param_define: $ => seq(
+            $.identifier,
+            optional($._identifier_list)
+        ),
+        _identifier_list: $ => repeat1(seq(',', $.identifier)),
+        body_define: $ => seq(optional(/[^\/]*\\/),/.*/),
+        null_value: $ => /\s/,
         
         preproc_undef_declaration: $ => seq(
             field("KeyWord", seq('#','undef')),
-            $.name
+            $.identifier
         ),
         preproc_conditional_declaration: $ => prec.left(seq(
             '#',
-            field("KeyWord", choice('if', 'ifdef', 'ifndef')),
-            $.expression,
+            choice(
+                seq(field("KeyWord", 'if'), /.*/),//$.expression),
+                seq(field("KeyWord", 'ifdef'), $.identifier),
+                seq(field("KeyWord", 'ifndef'), $.identifier)
+            )
+            /*,
             $._declaration,
             repeat($.preproc_conditional_declaration_elif),
             optional($.preproc_conditional_declaration_else),
             '#',
-            field("KeyWordEnd", 'endif'))),
-        preproc_conditional_declaration_else: $ => prec.left(seq('#', field("KeyWord", 'else'), $._declaration)),
-        preproc_conditional_declaration_elif: $ => prec.left(seq('#', field("KeyWord", 'elif'), $.expression, $._declaration,)),
-
-        file_name: $ => /\w*\.\w*/,
+            field("KeyWordEnd", 'endif')*/
+        )),
+        preproc_conditional_declaration_end: $ => prec.left(seq(
+            '#',
+            field("KeyWordEnd", 'endif')
+        )),
+        preproc_conditional_declaration_else: $ => prec.left(seq('#', field("KeyWord", 'else'))),//, $._declaration)),
+        preproc_conditional_declaration_elif: $ => prec.left(seq('#', field("KeyWord", 'elif'), /.*/)),//$.expression)),//, $._declaration,)),
+      
 
         non_table_kw_name: $ => choice(
             $.identifier,
@@ -104,6 +152,15 @@ module.exports = grammar({
             seq('@', field("name", $.name), '[', field("struct", $.structured_annotation_body), ']'),
         ),
         annotation_list: $ => repeat1($.annotation),
+        annotation_body: $ => choice(
+            seq(field("body", optional($.annotation_body)), '(', field("body2", optional($.annotation_body)), ')'),
+            seq(field("body", optional($.annotation_body)), field("token", $.annotation_token)),
+        ),
+
+        structured_annotation_body: $ => choice(
+            $.expression_list,
+            $.kv_list,
+        ),
 
         parameter_list: $ => seq(
             repeat(seq($.parameter, ',')), $.parameter
@@ -342,13 +399,23 @@ module.exports = grammar({
             'string',
             'int',
             'bit',
-            seq('bit', '<', $.integer, '>'),
-            seq('int', '<', $.integer, '>'),
-            seq('varbit', '<', $.integer, '>'),
-            seq('bit', '<', '(', $.expression, ')', '>'),
-            seq('int', '<', '(', $.expression, ')', '>'),
-            seq('varbit', '<', '(', $.expression, ')', '>'),
+            seq(
+                choice(
+                    'bit',
+                    'int',
+                    'varbit'
+                ),
+                '<',
+                choice(
+                    $.integer,
+                    seq('(', $.expression, ')'),
+                    $.define_symbol
+                ),
+                '>'
+            ),
         ),
+
+        define_symbol: $ => $.identifier,
 
         type_or_void: $ => prec.left(1, choice(
             $.type_ref,
@@ -547,7 +614,7 @@ module.exports = grammar({
             field("annotation", optional($.annotation_list)), field("KeyWord", 'action'), field("name", $.name), '(', field('parameters', optional($.parameter_list)), ')', field('block', $.block_statement)
         ),
 
-        variable_declaration: $ => seq(field("annotation", optional($.annotation_list)), field("type", $.type_ref), field("name", $.name), '=', field("value", optional($.initializer)), ';'),
+        variable_declaration: $ => seq(field("annotation", optional($.annotation_list)), field("type", $.type_ref), field("name", $.name), optional(seq('=', field("value", $.initializer))), ';'),
 
         constant_declaration: $ => seq(
             field("annotation", optional($.annotation_list)), field("KeyWord", 'const'), field("type", $.type_ref), field("name", $.name), '=', field("value", $.initializer), ';'
@@ -577,16 +644,6 @@ module.exports = grammar({
         ),
 
         expression_list: $ => seq(repeat(seq($.expression, ',')), $.expression),
-
-        annotation_body: $ => choice(
-            seq(field("body", $.annotation_body), '(', field("body2", optional($.annotation_body)), ')'),
-            seq(field("body", $.annotation_body), field("token", $.annotation_token)),
-        ),
-
-        structured_annotation_body: $ => choice(
-            $.expression_list,
-            $.kv_list,
-        ),
 
         annotation_token: $ => choice(
             'abstract',
@@ -791,7 +848,7 @@ module.exports = grammar({
             seq('(', $.type_ref, ')', $.expression),
         ),
 
-        integer: $ => /(\d+([wWsS]))?\d+(([xX][0-9A-F_]+)|([bB][0-1_]+)|([oO][0-7_]+)|([dD][0-9_]+))?/,
+        integer: $ => /(\d+([wWsS]))?\d+(([xX][0-9A-Fa-f_]+)|([bB][0-1_]+)|([oO][0-7_]+)|([dD][0-9_]+))?/,
 
         string: $ => /"(\\.|[^"\\])*"/,
 

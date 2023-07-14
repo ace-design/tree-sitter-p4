@@ -35,15 +35,16 @@ extern void f(inout bit x, in bit y);
     (extern_declaration
         (non_type_name
                 (identifier))
-        (method_prototype
+        (method_prototype_list
+          (method_prototype
             (type_identifier
-                (identifier)))
-        (method_prototype
+              (identifier)))
+          (method_prototype
             (function_prototype
-                (type_or_void)
-                    (name
-                        (non_type_name
-                            (identifier))))))
+              (type_or_void)
+              (name
+                (non_type_name
+                  (identifier)))))))
     (extern_declaration
         (function_prototype
             (type_or_void)
@@ -98,15 +99,15 @@ action Forward_a(out bit<9> outputPort, bit<9> port) {
                         (non_type_name
                             (identifier)))))
         (block_statement
-            (stat_or_decl_list
-                    (assignment_or_method_call_statement
-                        (lvalue
-                            (prefixed_non_type_name
-                                (non_type_name
-                                    (identifier))))
-                        (expression
-                            (non_type_name
-                                (identifier))))))))
+          (assignment_or_method_call_statement
+            (lvalue
+              (prefixed_non_type_name
+                (non_type_name
+                  (identifier))))
+            (expression
+              (non_type_name
+                (identifier)))))))
+
 
 ==================
 Parser declaration 
@@ -142,8 +143,8 @@ parser MyParser(out headers packet) {
                 (name
                     (non_type_name
                         (identifier)))
-                (transition_statement
-                    (state_expression
+                    (parser_state_body
+                      (transition_statement
                         (name
                             (non_type_name
                                 (identifier)))))))))
@@ -252,8 +253,7 @@ Balancer() b = {
                         (non_type_name
                             (identifier))))
                 (block_statement
-                    (stat_or_decl_list
-                        (return_statement)))))))
+                    (return_statement))))))
 
 ==================
 Error declaration
@@ -338,20 +338,21 @@ bit<32> max(in bit<32> left, in bit<32> right) {
                         (non_type_name
                             (identifier))))))
         (block_statement
-            (stat_or_decl_list
-                    (conditional_statement
+            (conditional_statement
+                (expression
+                    (expression
+                        (non_type_name
+                            (identifier)))
                         (expression
-                            (expression
-                                (non_type_name
-                                    (identifier)))
-                            (expression
-                                (non_type_name
-                                    (identifier))))
-                        (return_statement
-                            (expression
-                                (non_type_name
-                                    (identifier)))))
-                        (return_statement
-                            (expression
-                                (non_type_name
-                                    (identifier))))))))
+                            (non_type_name
+                                (identifier))))
+                (return_statement
+                    (expression
+                        (non_type_name
+                            (identifier)))))
+            (return_statement
+                (expression
+                    (non_type_name
+                        (identifier)))))))
+
+
