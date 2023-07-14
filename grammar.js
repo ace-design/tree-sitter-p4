@@ -1,7 +1,19 @@
 module.exports = grammar({
     name: 'p4',
 
-    extras: $ => [/\s/, $.line_comment, $.block_comment],
+    extras: $ => [
+                    /\s/,
+                    $.line_comment,
+                    $.block_comment,
+                    $.preproc_include_declaration,
+                    $.preproc_define_declaration,
+                    $.preproc_define_declaration_macro,
+                    $.preproc_undef_declaration,
+                    $.preproc_conditional_declaration,
+                    $.preproc_conditional_declaration_elif,
+                    $.preproc_conditional_declaration_else,
+                    $.preproc_conditional_declaration_end
+                ],
 
     externals: $ => [$.block_comment],
 
@@ -28,11 +40,7 @@ module.exports = grammar({
             $.instantiation,
             $.error_declaration,
             $.match_kind_declaration,
-            $.function_declaration,
-            $.preproc_include_declaration,
-            $.preproc_define_declaration,
-            $.preproc_undef_declaration,
-            $.preproc_conditional_declaration
+            $.function_declaration
         ),
 
         non_type_name: $ => choice(
@@ -74,29 +82,64 @@ module.exports = grammar({
                 )
             )
         ),
+
         preproc_define_declaration: $ => seq(
             field("KeyWord", seq('#','define')),
-            $.name,
-            $.expression
+            field("name", $.identifier),
+            /\s/,
+            field("body", choice(
+                $.integer,
+                $.string,
+                $.bool,
+                $.identifier,
+                $.null_value
+            ))
         ),
+        preproc_define_declaration_macro: $ => seq(
+            field("KeyWord", seq('#','define')),
+            field("name", $.identifier),
+            optional(/\s/),
+            '(',
+            optional(
+                field("param", $.param_define)
+            ),
+            ')',
+            field("body_macro", $.body_define)
+        ), // todo
+        param_define: $ => seq(
+            $.identifier,
+            optional($._identifier_list)
+        ),
+        _identifier_list: $ => repeat1(seq(',', $.identifier)),
+        body_define: $ => seq(optional(/[^\/]*\\/),/.*/),
+        null_value: $ => /\s/,
         
         preproc_undef_declaration: $ => seq(
             field("KeyWord", seq('#','undef')),
-            $.name
+            $.identifier
         ),
         preproc_conditional_declaration: $ => prec.left(seq(
             '#',
-            field("KeyWord", choice('if', 'ifdef', 'ifndef')),
-            $.expression,
+            choice(
+                seq(field("KeyWord", 'if'), /.*/),//$.expression),
+                seq(field("KeyWord", 'ifdef'), $.identifier),
+                seq(field("KeyWord", 'ifndef'), $.identifier)
+            )
+            /*,
             $._declaration,
             repeat($.preproc_conditional_declaration_elif),
             optional($.preproc_conditional_declaration_else),
             '#',
-            field("KeyWordEnd", 'endif'))),
-        preproc_conditional_declaration_else: $ => prec.left(seq('#', field("KeyWord", 'else'), $._declaration)),
-        preproc_conditional_declaration_elif: $ => prec.left(seq('#', field("KeyWord", 'elif'), $.expression, $._declaration,)),
+            field("KeyWordEnd", 'endif')*/
+        )),
+        preproc_conditional_declaration_end: $ => prec.left(seq(
+            '#',
+            field("KeyWordEnd", 'endif')
+        )),
+        preproc_conditional_declaration_else: $ => prec.left(seq('#', field("KeyWord", 'else'))),//, $._declaration)),
+        preproc_conditional_declaration_elif: $ => prec.left(seq('#', field("KeyWord", 'elif'), /.*/)),//$.expression)),//, $._declaration,)),
 
-        file_name: $ => /[\w\W]+/,
+        file_name: $ => /[^<>"]+/,
 
         non_table_kw_name: $ => choice(
             $.identifier,
@@ -803,7 +846,7 @@ module.exports = grammar({
             seq('(', $.type_ref, ')', $.expression),
         ),
 
-        integer: $ => /(\d+([wWsS]))?\d+(([xX][0-9A-F_]+)|([bB][0-1_]+)|([oO][0-7_]+)|([dD][0-9_]+))?/,
+        integer: $ => /(\d+([wWsS]))?\d+(([xX][0-9A-Fa-f_]+)|([bB][0-1_]+)|([oO][0-7_]+)|([dD][0-9_]+))?/,
 
         string: $ => /"(\\.|[^"\\])*"/,
 
