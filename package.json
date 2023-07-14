@@ -20,5 +20,8 @@
                 "P4"
             ]
         }
-    ]
+    ],
+    "devDependencies": {
+        "tree-sitter-cli": "^0.20.8"
+    }
 }
