@@ -1155,6 +1155,11 @@
     }
   },
   {
+    "type": "file_name",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "function_declaration",
     "named": true,
     "fields": {},
@@ -2625,6 +2630,10 @@
         {
           "type": "file_name",
           "named": true
+        },
+        {
+          "type": "string",
+          "named": true
         }
       ]
     }
@@ -3740,10 +3749,6 @@
     "named": false
   },
   {
-    "type": "\"",
-    "named": false
-  },
-  {
     "type": "#",
     "named": false
   },
@@ -3856,6 +3861,10 @@
     "named": false
   },
   {
+    "type": "\\>",
+    "named": false
+  },
+  {
     "type": "]",
     "named": false
   },
@@ -3946,10 +3955,6 @@
   {
     "type": "false",
     "named": false
-  },
-  {
-    "type": "file_name",
-    "named": true
   },
   {
     "type": "header",
@@ -4045,11 +4050,11 @@
   },
   {
     "type": "string",
-    "named": false
+    "named": true
   },
   {
     "type": "string",
-    "named": true
+    "named": false
   },
   {
     "type": "struct",

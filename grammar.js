@@ -75,13 +75,10 @@ module.exports = grammar({
                     $.file_name,
                     '>'
                 ),
-                seq(
-                    '"',
-                    $.file_name,
-                    '"'
-                )
+                $.string
             )
         ),
+        file_name: $ => repeat1(choice(/[^>]/, '\\>')),
 
         preproc_define_declaration: $ => seq(
             field("KeyWord", seq('#','define')),
@@ -93,6 +90,7 @@ module.exports = grammar({
                 $.bool,
                 $.identifier,
                 $.null_value
+                // todo : expression
             ))
         ),
         preproc_define_declaration_macro: $ => seq(
@@ -138,8 +136,7 @@ module.exports = grammar({
         )),
         preproc_conditional_declaration_else: $ => prec.left(seq('#', field("KeyWord", 'else'))),//, $._declaration)),
         preproc_conditional_declaration_elif: $ => prec.left(seq('#', field("KeyWord", 'elif'), /.*/)),//$.expression)),//, $._declaration,)),
-
-        file_name: $ => /[^<>"]+/,
+      
 
         non_table_kw_name: $ => choice(
             $.identifier,
@@ -402,15 +399,20 @@ module.exports = grammar({
             'string',
             'int',
             'bit',
-            seq('bit', '<', $.integer, '>'),
-            seq('int', '<', $.integer, '>'),
-            seq('varbit', '<', $.integer, '>'),
-            seq('bit', '<', '(', $.expression, ')', '>'),
-            seq('int', '<', '(', $.expression, ')', '>'),
-            seq('varbit', '<', '(', $.expression, ')', '>'),
-            seq('bit', '<', $.define_symbol, '>'),
-            seq('int', '<', $.define_symbol, '>'),
-            seq('varbit', '<', $.define_symbol, '>'),
+            seq(
+                choice(
+                    'bit',
+                    'int',
+                    'varbit'
+                ),
+                '<',
+                choice(
+                    $.integer,
+                    seq('(', $.expression, ')'),
+                    $.define_symbol
+                ),
+                '>'
+            ),
         ),
 
         define_symbol: $ => $.identifier,
