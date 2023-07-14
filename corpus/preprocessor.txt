@@ -1,5 +1,5 @@
 ==================
-Include declaration 
+Include declaration 1
 ==================
 
 #include <core.p4>
@@ -11,19 +11,71 @@ Include declaration
         (file_name)))
 
 ==================
-Define declaration 
+Include declaration 2
 ==================
 
-#define test 1
+#include ".././sadsaf/core.p4"
+
+---
+
+(source_file
+    (preproc_include_declaration
+        (file_name)))
+
+==================
+Define declaration 1
+==================
+
+#define test1 
 
 ---
 
 (source_file
     (preproc_define_declaration
-        (name
-            (non_type_name
-                (identifier)))
-        (expression
-            (integer))))
+        (identifier)
+        (null_value)))
+
+==================
+Define declaration 2
+==================
+
+#define KEY 12
+typedef bit<KEY> egressSpec_t;
+
+---
+
+(source_file
+    (preproc_define_declaration
+        (identifier)
+        (integer))
+    (type_declaration
+        (typedef_declaration
+            (type_ref
+                (base_type
+                    (define_symbol
+                        (identifier))))
+            (name
+                (non_type_name
+                    (identifier))))))
+
+==================
+Define declaration 2
+==================
+
+#define get_exp_key(ROUND) action get_exp_key_r##ROUND##(){                     \
+                              t0_inv = meta.aes.expandkey_r##ROUND##[127:96];   \
+                              t1_inv = meta.aes.expandkey_r##ROUND##[95:64];    \
+                              t2_inv = meta.aes.expandkey_r##ROUND##[63:32];    \
+                              t3_inv = meta.aes.expandkey_r##ROUND##[31:0];     \
+}
+
+---
+
+(source_file
+    (preproc_define_declaration_macro
+        (identifier)
+        (param_define
+            (identifier))
+        (body_define)))
 
 
