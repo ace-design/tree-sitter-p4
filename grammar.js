@@ -2,18 +2,18 @@ module.exports = grammar({
     name: 'p4',
 
     extras: $ => [
-                    /\s/,
-                    $.line_comment,
-                    $.block_comment,
-                    $.preproc_include_declaration,
-                    $.preproc_define_declaration,
-                    $.preproc_define_declaration_macro,
-                    $.preproc_undef_declaration,
-                    $.preproc_conditional_declaration,
-                    $.preproc_conditional_declaration_elif,
-                    $.preproc_conditional_declaration_else,
-                    $.preproc_conditional_declaration_end
-                ],
+        /\s/,
+        $.line_comment,
+        $.block_comment,
+        $.preproc_include_declaration,
+        $.preproc_define_declaration,
+        $.preproc_define_declaration_macro,
+        $.preproc_undef_declaration,
+        $.preproc_conditional_declaration,
+        $.preproc_conditional_declaration_elif,
+        $.preproc_conditional_declaration_else,
+        $.preproc_conditional_declaration_end
+    ],
 
     externals: $ => [$.block_comment],
 
@@ -69,7 +69,7 @@ module.exports = grammar({
         ),
 
         preproc_include_declaration: $ => seq(
-            field("KeyWord", seq('#','include')), choice(
+            field("keyword", seq('#', 'include')), choice(
                 seq(
                     '<',
                     $.file_name,
@@ -81,7 +81,7 @@ module.exports = grammar({
         file_name: $ => repeat1(choice(/[^>]/, '\\>')),
 
         preproc_define_declaration: $ => seq(
-            field("KeyWord", seq('#','define')),
+            field("keyword", seq('#', 'define')),
             field("name", $.identifier),
             /\s/,
             field("body", choice(
@@ -94,7 +94,7 @@ module.exports = grammar({
             ))
         ),
         preproc_define_declaration_macro: $ => seq(
-            field("KeyWord", seq('#','define')),
+            field("keyword", seq('#', 'define')),
             field("name", $.identifier),
             optional(/\s/),
             '(',
@@ -109,34 +109,34 @@ module.exports = grammar({
             optional($._identifier_list)
         ),
         _identifier_list: $ => repeat1(seq(',', $.identifier)),
-        body_define: $ => seq(optional(/[^\/]*\\/),/.*/),
+        body_define: $ => seq(optional(/[^\/]*\\/), /.*/),
         null_value: $ => /\s/,
-        
+
         preproc_undef_declaration: $ => seq(
-            field("KeyWord", seq('#','undef')),
+            field("keyword", seq('#', 'undef')),
             $.identifier
         ),
         preproc_conditional_declaration: $ => prec.left(seq(
             '#',
             choice(
-                seq(field("KeyWord", 'if'), /.*/),//$.expression),
-                seq(field("KeyWord", 'ifdef'), $.identifier),
-                seq(field("KeyWord", 'ifndef'), $.identifier)
+                seq(field("keyword", 'if'), /.*/),//$.expression),
+                seq(field("keyword", 'ifdef'), $.identifier),
+                seq(field("keyword", 'ifndef'), $.identifier)
             )
             /*,
             $._declaration,
             repeat($.preproc_conditional_declaration_elif),
             optional($.preproc_conditional_declaration_else),
             '#',
-            field("KeyWordEnd", 'endif')*/
+            field("keywordEnd", 'endif')*/
         )),
         preproc_conditional_declaration_end: $ => prec.left(seq(
             '#',
-            field("KeyWordEnd", 'endif')
+            field("keywordEnd", 'endif')
         )),
-        preproc_conditional_declaration_else: $ => prec.left(seq('#', field("KeyWord", 'else'))),//, $._declaration)),
-        preproc_conditional_declaration_elif: $ => prec.left(seq('#', field("KeyWord", 'elif'), /.*/)),//$.expression)),//, $._declaration,)),
-      
+        preproc_conditional_declaration_else: $ => prec.left(seq('#', field("keyword", 'else'))),//, $._declaration)),
+        preproc_conditional_declaration_elif: $ => prec.left(seq('#', field("keyword", 'elif'), /.*/)),//$.expression)),//, $._declaration,)),
+
 
         non_table_kw_name: $ => choice(
             $.identifier,
@@ -174,10 +174,13 @@ module.exports = grammar({
             'inout',
         ),
 
-        package_type_declaration: $ => choice(
-            seq(field("annotation", optional($.annotation_list)), field("KeyWord", 'package'), field('name', $.name), field('parameters_type', optional($.type_parameters))),
-            seq(field('parameters', optional($.parameter_list)), ')'),
+        package_type_declaration: $ => seq(
+            field("annotation", optional($.annotation_list)),
+            field("keyword", 'package'), field('name', $.name),
+            field('parameters_type', optional($.type_parameters)),
+            '(', field('parameters', optional($.parameter_list)), ')'
         ),
+
         instantiation: $ => choice(
             seq(field("type", $.type_ref), '(', field("args", optional($.argument_list)), ')', field('name', $.name), ';'),
             seq(field("annotation", optional($.annotation_list)), field("type", $.type_ref), '(', field("args", optional($.argument_list)), ')', field('name', $.name), ';'),
@@ -218,10 +221,10 @@ module.exports = grammar({
         ),
 
         parser_type_declaration: $ => seq(
-            field("annotation", optional($.annotation_list)), field("KeyWord", 'parser'), field('name', $.name), field('parameters_type', optional($.type_parameters)), '(', field('parameters', optional($.parameter_list)), ')'
+            field("annotation", optional($.annotation_list)), field("keyword", 'parser'), field('name', $.name), field('parameters_type', optional($.type_parameters)), '(', field('parameters', optional($.parameter_list)), ')'
         ),
         parser_state: $ => seq(
-            field("annotation", optional($.annotation_list)), field("KeyWord", 'state'), field("name", $.name), field("body", $.parser_state_body)
+            field("annotation", optional($.annotation_list)), field("keyword", 'state'), field("name", $.name), field("body", $.parser_state_body)
         ),
         parser_state_body: $ => seq(
             '{',
@@ -243,24 +246,24 @@ module.exports = grammar({
         ),
 
         parser_block_statement: $ => seq(
-            field("annotation", optional($.annotation_list)), field("body",$.parser_block_statement_body)
+            field("annotation", optional($.annotation_list)), field("body", $.parser_block_statement_body)
         ),
 
         parser_block_statement_body: $ => seq(
-        	'{', repeat($._parser_statement), '}'
+            '{', repeat($._parser_statement), '}'
         ),
 
         transition_statement: $ => seq(
-            field("KeyWord", 'transition'), $._state_expression
+            field("keyword", 'transition'), $._state_expression
         ),
 
         _state_expression: $ => choice(
-            seq(field("name",$.name), ';'),
+            seq(field("name", $.name), ';'),
             $.select_expression,
         ),
 
         select_expression: $ => seq(
-            field("KeyWord", 'select'), $.select_expression_params, $.select_expression_body
+            field("keyword", 'select'), $.select_expression_params, $.select_expression_body
         ),
         select_expression_params: $ => seq('(', optional($.expression_list), ')'),
         select_expression_body: $ => seq('{', optional($.select_case_list), '}'),
@@ -268,7 +271,7 @@ module.exports = grammar({
         select_case_list: $ => repeat1($.select_case),
 
         select_case: $ => seq(
-            field('type',$._keyset_expression), ':', field('name',$.name), ';'
+            field('type', $._keyset_expression), ':', field('name', $.name), ';'
         ),
 
         _keyset_expression: $ => choice(
@@ -300,7 +303,7 @@ module.exports = grammar({
 
         value_set_declaration: $ => seq(
             field("annotation", optional($.annotation_list)),
-            field("KeyWord", 'valueset'),
+            field("keyword", 'valueset'),
             '<',
             field("type", choice($.base_type, $.tuple_type, $.type_name)),
             '>',
@@ -310,12 +313,12 @@ module.exports = grammar({
             field("name", $.name),
             ';'
         ),
-        
+
         control_declaration: $ => seq(
             field("declaration", $.control_type_declaration),
             field("body", $.control_body),
         ),
-        
+
         parser_declaration: $ => seq(
             field("declaration", $.parser_type_declaration),
             field("body", $.parser_body)
@@ -324,13 +327,13 @@ module.exports = grammar({
         control_body: $ => seq(
             '{',
             repeat($._control_local_declaration),
-            field("KeyWord", 'apply'),
+            field("keyword", 'apply'),
             $.block_statement,
             '}'
         ),
 
         control_type_declaration: $ => seq(
-            field("annotation", optional($.annotation_list)), field("KeyWord", 'control'), field("name", $.name), field('parameters_type', optional($.type_parameters)), '(', field("parameters", optional($.parameter_list)), ')'
+            field("annotation", optional($.annotation_list)), field("keyword", 'control'), field("name", $.name), field('parameters_type', optional($.type_parameters)), '(', field("parameters", optional($.parameter_list)), ')'
         ),
 
         _control_local_declaration: $ => choice(
@@ -342,8 +345,8 @@ module.exports = grammar({
         ),
 
         extern_declaration: $ => choice(
-            seq(field("annotation", optional($.annotation_list)), field("KeyWord", 'extern'), field('name', $.non_type_name), field('parameters_type', optional($.type_parameters)), '{', field('method', optional($.method_prototype_list)), '}'),
-            seq(field("annotation", optional($.annotation_list)), field("KeyWord", 'extern'), field('function', $.function_prototype), ';'),
+            seq(field("annotation", optional($.annotation_list)), field("keyword", 'extern'), field('name', $.non_type_name), field('parameters_type', optional($.type_parameters)), '{', field('method', optional($.method_prototype_list)), '}'),
+            seq(field("annotation", optional($.annotation_list)), field("keyword", 'extern'), field('function', $.function_prototype), ';'),
         ),
 
         function_prototype: $ => seq(
@@ -380,7 +383,7 @@ module.exports = grammar({
         ),
 
         tuple_type: $ => seq(
-            field("KeyWord", 'tuple'), '<', optional($.type_argument_list), '>'
+            field("keyword", 'tuple'), '<', optional($.type_argument_list), '>'
         ),
 
         header_stack_type: $ => choice(
@@ -463,33 +466,33 @@ module.exports = grammar({
         ),
 
         header_type_declaration: $ => seq(
-            field("annotation", optional($.annotation_list)), field("KeyWord", 'header'), field("name", $.name), field('parameters_type', optional($.type_parameters)), '{', field("field_list", optional($.struct_field_list)), '}'
+            field("annotation", optional($.annotation_list)), field("keyword", 'header'), field("name", $.name), field('parameters_type', optional($.type_parameters)), '{', field("field_list", optional($.struct_field_list)), '}'
         ),
 
         header_union_declaration: $ => seq(
-            field("annotation", optional($.annotation_list)), field("KeyWord", 'header_union'), field("name", $.name), field('parameters_type', optional($.type_parameters)), '{', field("field_list", optional($.struct_field_list)), '}'
+            field("annotation", optional($.annotation_list)), field("keyword", 'header_union'), field("name", $.name), field('parameters_type', optional($.type_parameters)), '{', field("field_list", optional($.struct_field_list)), '}'
         ),
-        
+
         struct_type_declaration: $ => seq(
-            field("annotation", optional($.annotation_list)), field("KeyWord", 'struct'), field("name", $.name), field('parameters_type', optional($.type_parameters)), '{', field("field_list", optional($.struct_field_list)), '}'
+            field("annotation", optional($.annotation_list)), field("keyword", 'struct'), field("name", $.name), field('parameters_type', optional($.type_parameters)), '{', field("field_list", optional($.struct_field_list)), '}'
         ),
-        
+
         struct_field_list: $ => repeat1($.struct_field),
         struct_field: $ => seq(
             field("annotation", optional($.annotation_list)), field("type", $.type_ref), field("name", $.name), ';'
         ),
-        
+
         enum_declaration: $ => choice(
-            seq(field("annotation", optional($.annotation_list)), field("KeyWord", 'enum'), field("name", $.name), '{', field("option_list", $.identifier_list), '}'),
-            seq(field("annotation", optional($.annotation_list)), field("KeyWord", 'enum'), field("type", $.type_ref), field("name", $.name), '{', field("option_list", $.specified_identifier_list), '}'),
+            seq(field("annotation", optional($.annotation_list)), field("keyword", 'enum'), field("name", $.name), '{', field("option_list", $.identifier_list), '}'),
+            seq(field("annotation", optional($.annotation_list)), field("keyword", 'enum'), field("type", $.type_ref), field("name", $.name), '{', field("option_list", $.specified_identifier_list), '}'),
         ),
-        
+
         error_declaration: $ => seq(
-            field("KeyWord", 'error'), '{', field("option_list", $.identifier_list), '}'
+            field("keyword", 'error'), '{', field("option_list", $.identifier_list), '}'
         ),
-        
+
         match_kind_declaration: $ => seq(
-            field("KeyWord", 'match_kind'), '{', field("option_list", $.identifier_list), '}'
+            field("keyword", 'match_kind'), '{', field("option_list", $.identifier_list), '}'
         ),
 
         identifier_list: $ => seq(repeat(seq($.name, ',')), $.name),
@@ -504,10 +507,10 @@ module.exports = grammar({
         ),
 
         typedef_declaration: $ => choice(
-            seq(field("annotation", optional($.annotation_list)), field("KeyWord", 'typedef'), field("type", $.type_ref), field("name", $.name), ';'),
-            seq(field("annotation", optional($.annotation_list)), field("KeyWord", 'typedef'), field("type", $._derived_type_declaration), field("name", $.name), ';'),
-            seq(field("annotation", optional($.annotation_list)), field("KeyWord", 'type'), field("type", $.type_ref), field("name", $.name), ';'),
-            seq(field("annotation", optional($.annotation_list)), field("KeyWord", 'type'), field("type", $._derived_type_declaration), field("name", $.name), ';'),
+            seq(field("annotation", optional($.annotation_list)), field("keyword", 'typedef'), field("type", $.type_ref), field("name", $.name), ';'),
+            seq(field("annotation", optional($.annotation_list)), field("keyword", 'typedef'), field("type", $._derived_type_declaration), field("name", $.name), ';'),
+            seq(field("annotation", optional($.annotation_list)), field("keyword", 'type'), field("type", $.type_ref), field("name", $.name), ';'),
+            seq(field("annotation", optional($.annotation_list)), field("keyword", 'type'), field("type", $._derived_type_declaration), field("name", $.name), ';'),
         ),
 
         assignment_or_method_call_statement: $ => choice(
@@ -520,20 +523,20 @@ module.exports = grammar({
             ';',
         ),
 
-        return_statement: $ => seq(field("KeyWord", 'return'), field("expression", optional($.expression)), ';'),
+        return_statement: $ => seq(field("keyword", 'return'), field("expression", optional($.expression)), ';'),
 
         exit_statement: $ => seq(
             'exit', ';'
         ),
 
         conditional_statement: $ => choice(
-            prec.left(seq(field("KeyWord", 'if'), '(', field("expression", $.expression), ')', field("bodyIf", $._statement))),
-            prec.left(seq(field("KeyWord", 'if'), '(', field("expression", $.expression), ')', field("bodyIf", $._statement), field("KeyWordEnd", 'else'), field("bodyElse", $._statement))),
+            prec.left(seq(field("keyword", 'if'), '(', field("expression", $.expression), ')', field("bodyIf", $._statement))),
+            prec.left(seq(field("keyword", 'if'), '(', field("expression", $.expression), ')', field("bodyIf", $._statement), field("keywordEnd", 'else'), field("bodyElse", $._statement))),
         ),
 
         direct_application: $ => choice(
-            seq(field("name", $.type_name), '.', field("KeyWord", 'apply'), '(', field("args", optional($.argument_list)), ')', ';'),
-            seq(field("specialized", $.specialized_type), '.', field("KeyWord", 'apply'), '(', field("args", optional($.argument_list)), ')', ';'),
+            seq(field("name", $.type_name), '.', field("keyword", 'apply'), '(', field("args", optional($.argument_list)), ')', ';'),
+            seq(field("specialized", $.specialized_type), '.', field("keyword", 'apply'), '(', field("args", optional($.argument_list)), ')', ';'),
         ),
 
         _statement: $ => choice(
@@ -554,12 +557,12 @@ module.exports = grammar({
         _stat_or_decl_list: $ => repeat1($._statement_or_declaration),
 
         switch_statement: $ => seq(
-            field("KeyWord", 'switch'), '(', field("expression",$.expression), ')', '{', field("body", repeat($.switch_case)), '}'
+            field("keyword", 'switch'), '(', field("expression", $.expression), ')', '{', field("body", repeat($.switch_case)), '}'
         ),
 
         switch_case: $ => choice(
-            seq(field("name",$.switch_label), ':', field("value",$.block_statement)),
-            seq(field("name",$.switch_label), ':'),
+            seq(field("name", $.switch_label), ':', field("value", $.block_statement)),
+            seq(field("name", $.switch_label), ':'),
         ),
 
         switch_label: $ => choice(
@@ -574,7 +577,7 @@ module.exports = grammar({
         ),
 
         table_declaration: $ => seq(
-            field("annotation", optional($.annotation_list)), field("KeyWord", 'table'), field("name", $.name), '{', field("table", $.table_property_list), '}'
+            field("annotation", optional($.annotation_list)), field("keyword", 'table'), field("name", $.name), '{', field("table", $.table_property_list), '}'
         ),
 
         table_property_list: $ => repeat1($._table_property),
@@ -586,10 +589,10 @@ module.exports = grammar({
             $.name_table
         ),
 
-        keys_table: $ => seq(field("KeyWord", 'key'), '=', '{', field("keys", optional($.key_element_list)), '}'),
-        action_table: $ => seq(field("KeyWord", 'actions'), '=', '{', field("actions", optional($.action_list)), '}'),
-        entries_table: $ => seq(field("annotation", optional($.annotation_list)), field("KeyWord", 'const'), field("KeyWordEnd", 'entries'), '=', '{', field("entries", optional($.entry_list)), '}'),
-        name_table: $ => seq(field("annotation", optional($.annotation_list)), field("KeyWord", optional('const')), field("name", $.non_table_kw_name), '=', field("expression", $.initializer), ';'),
+        keys_table: $ => seq(field("keyword", 'key'), '=', '{', field("keys", optional($.key_element_list)), '}'),
+        action_table: $ => seq(field("keyword", 'actions'), '=', '{', field("actions", optional($.action_list)), '}'),
+        entries_table: $ => seq(field("annotation", optional($.annotation_list)), field("keyword", 'const'), field("keywordEnd", 'entries'), '=', '{', field("entries", optional($.entry_list)), '}'),
+        name_table: $ => seq(field("annotation", optional($.annotation_list)), field("keyword", optional('const')), field("name", $.non_table_kw_name), '=', field("expression", $.initializer), ';'),
 
         key_element_list: $ => repeat1($.key_element),
 
@@ -611,13 +614,13 @@ module.exports = grammar({
         ),
 
         action_declaration: $ => seq(
-            field("annotation", optional($.annotation_list)), field("KeyWord", 'action'), field("name", $.name), '(', field('parameters', optional($.parameter_list)), ')', field('block', $.block_statement)
+            field("annotation", optional($.annotation_list)), field("keyword", 'action'), field("name", $.name), '(', field('parameters', optional($.parameter_list)), ')', field('block', $.block_statement)
         ),
 
         variable_declaration: $ => seq(field("annotation", optional($.annotation_list)), field("type", $.type_ref), field("name", $.name), optional(seq('=', field("value", $.initializer))), ';'),
 
         constant_declaration: $ => seq(
-            field("annotation", optional($.annotation_list)), field("KeyWord", 'const'), field("type", $.type_ref), field("name", $.name), '=', field("value", $.initializer), ';'
+            field("annotation", optional($.annotation_list)), field("keyword", 'const'), field("type", $.type_ref), field("name", $.name), '=', field("value", $.initializer), ';'
         ),
 
         initializer: $ => seq(

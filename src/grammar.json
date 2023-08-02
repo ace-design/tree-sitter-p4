@@ -142,7 +142,7 @@
       "members": [
         {
           "type": "FIELD",
-          "name": "KeyWord",
+          "name": "keyword",
           "content": {
             "type": "SEQ",
             "members": [
@@ -206,7 +206,7 @@
       "members": [
         {
           "type": "FIELD",
-          "name": "KeyWord",
+          "name": "keyword",
           "content": {
             "type": "SEQ",
             "members": [
@@ -269,7 +269,7 @@
       "members": [
         {
           "type": "FIELD",
-          "name": "KeyWord",
+          "name": "keyword",
           "content": {
             "type": "SEQ",
             "members": [
@@ -405,7 +405,7 @@
       "members": [
         {
           "type": "FIELD",
-          "name": "KeyWord",
+          "name": "keyword",
           "content": {
             "type": "SEQ",
             "members": [
@@ -444,7 +444,7 @@
                 "members": [
                   {
                     "type": "FIELD",
-                    "name": "KeyWord",
+                    "name": "keyword",
                     "content": {
                       "type": "STRING",
                       "value": "if"
@@ -461,7 +461,7 @@
                 "members": [
                   {
                     "type": "FIELD",
-                    "name": "KeyWord",
+                    "name": "keyword",
                     "content": {
                       "type": "STRING",
                       "value": "ifdef"
@@ -478,7 +478,7 @@
                 "members": [
                   {
                     "type": "FIELD",
-                    "name": "KeyWord",
+                    "name": "keyword",
                     "content": {
                       "type": "STRING",
                       "value": "ifndef"
@@ -507,7 +507,7 @@
           },
           {
             "type": "FIELD",
-            "name": "KeyWordEnd",
+            "name": "keywordEnd",
             "content": {
               "type": "STRING",
               "value": "endif"
@@ -528,7 +528,7 @@
           },
           {
             "type": "FIELD",
-            "name": "KeyWord",
+            "name": "keyword",
             "content": {
               "type": "STRING",
               "value": "else"
@@ -549,7 +549,7 @@
           },
           {
             "type": "FIELD",
-            "name": "KeyWord",
+            "name": "keyword",
             "content": {
               "type": "STRING",
               "value": "elif"
@@ -903,85 +903,79 @@
       ]
     },
     "package_type_declaration": {
-      "type": "CHOICE",
+      "type": "SEQ",
       "members": [
         {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "FIELD",
-              "name": "annotation",
-              "content": {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "SYMBOL",
-                    "name": "annotation_list"
-                  },
-                  {
-                    "type": "BLANK"
-                  }
-                ]
-              }
-            },
-            {
-              "type": "FIELD",
-              "name": "KeyWord",
-              "content": {
-                "type": "STRING",
-                "value": "package"
-              }
-            },
-            {
-              "type": "FIELD",
-              "name": "name",
-              "content": {
+          "type": "FIELD",
+          "name": "annotation",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
                 "type": "SYMBOL",
-                "name": "name"
+                "name": "annotation_list"
+              },
+              {
+                "type": "BLANK"
               }
-            },
-            {
-              "type": "FIELD",
-              "name": "parameters_type",
-              "content": {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "SYMBOL",
-                    "name": "type_parameters"
-                  },
-                  {
-                    "type": "BLANK"
-                  }
-                ]
-              }
-            }
-          ]
+            ]
+          }
         },
         {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "FIELD",
-              "name": "parameters",
-              "content": {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "SYMBOL",
-                    "name": "parameter_list"
-                  },
-                  {
-                    "type": "BLANK"
-                  }
-                ]
+          "type": "FIELD",
+          "name": "keyword",
+          "content": {
+            "type": "STRING",
+            "value": "package"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "name"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "parameters_type",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "type_parameters"
+              },
+              {
+                "type": "BLANK"
               }
-            },
-            {
-              "type": "STRING",
-              "value": ")"
-            }
-          ]
+            ]
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "FIELD",
+          "name": "parameters",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "parameter_list"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          }
+        },
+        {
+          "type": "STRING",
+          "value": ")"
         }
       ]
     },
@@ -1374,7 +1368,7 @@
         },
         {
           "type": "FIELD",
-          "name": "KeyWord",
+          "name": "keyword",
           "content": {
             "type": "STRING",
             "value": "parser"
@@ -1451,7 +1445,7 @@
         },
         {
           "type": "FIELD",
-          "name": "KeyWord",
+          "name": "keyword",
           "content": {
             "type": "STRING",
             "value": "state"
@@ -1614,7 +1608,7 @@
       "members": [
         {
           "type": "FIELD",
-          "name": "KeyWord",
+          "name": "keyword",
           "content": {
             "type": "STRING",
             "value": "transition"
@@ -1657,7 +1651,7 @@
       "members": [
         {
           "type": "FIELD",
-          "name": "KeyWord",
+          "name": "keyword",
           "content": {
             "type": "STRING",
             "value": "select"
@@ -2003,7 +1997,7 @@
         },
         {
           "type": "FIELD",
-          "name": "KeyWord",
+          "name": "keyword",
           "content": {
             "type": "STRING",
             "value": "valueset"
@@ -2105,7 +2099,7 @@
         },
         {
           "type": "FIELD",
-          "name": "KeyWord",
+          "name": "keyword",
           "content": {
             "type": "STRING",
             "value": "apply"
@@ -2142,7 +2136,7 @@
         },
         {
           "type": "FIELD",
-          "name": "KeyWord",
+          "name": "keyword",
           "content": {
             "type": "STRING",
             "value": "control"
@@ -2247,7 +2241,7 @@
             },
             {
               "type": "FIELD",
-              "name": "KeyWord",
+              "name": "keyword",
               "content": {
                 "type": "STRING",
                 "value": "extern"
@@ -2324,7 +2318,7 @@
             },
             {
               "type": "FIELD",
-              "name": "KeyWord",
+              "name": "keyword",
               "content": {
                 "type": "STRING",
                 "value": "extern"
@@ -2583,7 +2577,7 @@
       "members": [
         {
           "type": "FIELD",
-          "name": "KeyWord",
+          "name": "keyword",
           "content": {
             "type": "STRING",
             "value": "tuple"
@@ -3029,7 +3023,7 @@
         },
         {
           "type": "FIELD",
-          "name": "KeyWord",
+          "name": "keyword",
           "content": {
             "type": "STRING",
             "value": "header"
@@ -3106,7 +3100,7 @@
         },
         {
           "type": "FIELD",
-          "name": "KeyWord",
+          "name": "keyword",
           "content": {
             "type": "STRING",
             "value": "header_union"
@@ -3183,7 +3177,7 @@
         },
         {
           "type": "FIELD",
-          "name": "KeyWord",
+          "name": "keyword",
           "content": {
             "type": "STRING",
             "value": "struct"
@@ -3311,7 +3305,7 @@
             },
             {
               "type": "FIELD",
-              "name": "KeyWord",
+              "name": "keyword",
               "content": {
                 "type": "STRING",
                 "value": "enum"
@@ -3364,7 +3358,7 @@
             },
             {
               "type": "FIELD",
-              "name": "KeyWord",
+              "name": "keyword",
               "content": {
                 "type": "STRING",
                 "value": "enum"
@@ -3411,7 +3405,7 @@
       "members": [
         {
           "type": "FIELD",
-          "name": "KeyWord",
+          "name": "keyword",
           "content": {
             "type": "STRING",
             "value": "error"
@@ -3440,7 +3434,7 @@
       "members": [
         {
           "type": "FIELD",
-          "name": "KeyWord",
+          "name": "keyword",
           "content": {
             "type": "STRING",
             "value": "match_kind"
@@ -3556,7 +3550,7 @@
             },
             {
               "type": "FIELD",
-              "name": "KeyWord",
+              "name": "keyword",
               "content": {
                 "type": "STRING",
                 "value": "typedef"
@@ -3605,7 +3599,7 @@
             },
             {
               "type": "FIELD",
-              "name": "KeyWord",
+              "name": "keyword",
               "content": {
                 "type": "STRING",
                 "value": "typedef"
@@ -3654,7 +3648,7 @@
             },
             {
               "type": "FIELD",
-              "name": "KeyWord",
+              "name": "keyword",
               "content": {
                 "type": "STRING",
                 "value": "type"
@@ -3703,7 +3697,7 @@
             },
             {
               "type": "FIELD",
-              "name": "KeyWord",
+              "name": "keyword",
               "content": {
                 "type": "STRING",
                 "value": "type"
@@ -3887,7 +3881,7 @@
       "members": [
         {
           "type": "FIELD",
-          "name": "KeyWord",
+          "name": "keyword",
           "content": {
             "type": "STRING",
             "value": "return"
@@ -3939,7 +3933,7 @@
             "members": [
               {
                 "type": "FIELD",
-                "name": "KeyWord",
+                "name": "keyword",
                 "content": {
                   "type": "STRING",
                   "value": "if"
@@ -3980,7 +3974,7 @@
             "members": [
               {
                 "type": "FIELD",
-                "name": "KeyWord",
+                "name": "keyword",
                 "content": {
                   "type": "STRING",
                   "value": "if"
@@ -4012,7 +4006,7 @@
               },
               {
                 "type": "FIELD",
-                "name": "KeyWordEnd",
+                "name": "keywordEnd",
                 "content": {
                   "type": "STRING",
                   "value": "else"
@@ -4051,7 +4045,7 @@
             },
             {
               "type": "FIELD",
-              "name": "KeyWord",
+              "name": "keyword",
               "content": {
                 "type": "STRING",
                 "value": "apply"
@@ -4104,7 +4098,7 @@
             },
             {
               "type": "FIELD",
-              "name": "KeyWord",
+              "name": "keyword",
               "content": {
                 "type": "STRING",
                 "value": "apply"
@@ -4232,7 +4226,7 @@
       "members": [
         {
           "type": "FIELD",
-          "name": "KeyWord",
+          "name": "keyword",
           "content": {
             "type": "STRING",
             "value": "switch"
@@ -4373,7 +4367,7 @@
         },
         {
           "type": "FIELD",
-          "name": "KeyWord",
+          "name": "keyword",
           "content": {
             "type": "STRING",
             "value": "table"
@@ -4438,7 +4432,7 @@
       "members": [
         {
           "type": "FIELD",
-          "name": "KeyWord",
+          "name": "keyword",
           "content": {
             "type": "STRING",
             "value": "key"
@@ -4479,7 +4473,7 @@
       "members": [
         {
           "type": "FIELD",
-          "name": "KeyWord",
+          "name": "keyword",
           "content": {
             "type": "STRING",
             "value": "actions"
@@ -4536,7 +4530,7 @@
         },
         {
           "type": "FIELD",
-          "name": "KeyWord",
+          "name": "keyword",
           "content": {
             "type": "STRING",
             "value": "const"
@@ -4544,7 +4538,7 @@
         },
         {
           "type": "FIELD",
-          "name": "KeyWordEnd",
+          "name": "keywordEnd",
           "content": {
             "type": "STRING",
             "value": "entries"
@@ -4601,7 +4595,7 @@
         },
         {
           "type": "FIELD",
-          "name": "KeyWord",
+          "name": "keyword",
           "content": {
             "type": "CHOICE",
             "members": [
@@ -4849,7 +4843,7 @@
         },
         {
           "type": "FIELD",
-          "name": "KeyWord",
+          "name": "keyword",
           "content": {
             "type": "STRING",
             "value": "action"
@@ -4984,7 +4978,7 @@
         },
         {
           "type": "FIELD",
-          "name": "KeyWord",
+          "name": "keyword",
           "content": {
             "type": "STRING",
             "value": "const"

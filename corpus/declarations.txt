@@ -197,6 +197,79 @@ control MyEgress(inout headers hdr) {
         (control_body
             (block_statement))))
 
+
+==================
+Package Declaration
+==================
+package Ingress<T, IH, OH>(Parser<IH> p,
+                           IPipe<T, IH, OH> map,
+                           Deparser<OH> d);
+
+---
+(source_file
+    (type_declaration
+        (package_type_declaration
+            (name
+                (non_type_name
+                    (identifier)))
+            (type_parameters
+                (type_parameter_list
+                    (name
+                        (non_type_name
+                            (identifier)))
+                    (name
+                        (non_type_name
+                            (identifier)))
+                    (name
+                        (non_type_name
+                            (identifier)))))
+            (parameter_list
+                (parameter
+                    (type_ref
+                        (specialized_type
+                            (prefixed_type
+                                (type_identifier
+                                    (identifier)))
+                            (type_argument_list
+                                (type_arg
+                                    (non_type_name
+                                        (identifier))))))
+                    (name
+                        (non_type_name
+                            (identifier))))
+                (parameter
+                    (type_ref
+                        (specialized_type
+                            (prefixed_type
+                                (type_identifier
+                                    (identifier)))
+                            (type_argument_list
+                                (type_arg
+                                    (non_type_name
+                                        (identifier)))
+                                (type_arg
+                                    (non_type_name
+                                        (identifier)))
+                                (type_arg
+                                    (non_type_name
+                                        (identifier))))))
+                    (name
+                        (non_type_name
+                            (identifier))))
+                (parameter
+                    (type_ref
+                        (specialized_type
+                            (prefixed_type
+                                (type_identifier
+                                    (identifier)))
+                        (type_argument_list
+                            (type_arg
+                                (non_type_name
+                                    (identifier))))))
+                    (name
+                        (non_type_name
+                            (identifier))))))))
+
 ==================
 Instantiation
 ==================

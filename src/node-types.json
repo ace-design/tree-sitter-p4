@@ -39,16 +39,6 @@
     "type": "action_declaration",
     "named": true,
     "fields": {
-      "KeyWord": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "action",
-            "named": false
-          }
-        ]
-      },
       "annotation": {
         "multiple": false,
         "required": false,
@@ -66,6 +56,16 @@
           {
             "type": "block_statement",
             "named": true
+          }
+        ]
+      },
+      "keyword": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "action",
+            "named": false
           }
         ]
       },
@@ -110,16 +110,6 @@
     "type": "action_table",
     "named": true,
     "fields": {
-      "KeyWord": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "actions",
-            "named": false
-          }
-        ]
-      },
       "actions": {
         "multiple": false,
         "required": false,
@@ -127,6 +117,16 @@
           {
             "type": "action_list",
             "named": true
+          }
+        ]
+      },
+      "keyword": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "actions",
+            "named": false
           }
         ]
       }
@@ -436,26 +436,6 @@
     "type": "conditional_statement",
     "named": true,
     "fields": {
-      "KeyWord": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "if",
-            "named": false
-          }
-        ]
-      },
-      "KeyWordEnd": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "else",
-            "named": false
-          }
-        ]
-      },
       "bodyElse": {
         "multiple": false,
         "required": false,
@@ -541,6 +521,26 @@
             "named": true
           }
         ]
+      },
+      "keyword": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "if",
+            "named": false
+          }
+        ]
+      },
+      "keywordEnd": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "else",
+            "named": false
+          }
+        ]
       }
     }
   },
@@ -548,16 +548,6 @@
     "type": "constant_declaration",
     "named": true,
     "fields": {
-      "KeyWord": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "const",
-            "named": false
-          }
-        ]
-      },
       "annotation": {
         "multiple": false,
         "required": false,
@@ -565,6 +555,16 @@
           {
             "type": "annotation_list",
             "named": true
+          }
+        ]
+      },
+      "keyword": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "const",
+            "named": false
           }
         ]
       },
@@ -604,7 +604,7 @@
     "type": "control_body",
     "named": true,
     "fields": {
-      "KeyWord": {
+      "keyword": {
         "multiple": false,
         "required": true,
         "types": [
@@ -676,16 +676,6 @@
     "type": "control_type_declaration",
     "named": true,
     "fields": {
-      "KeyWord": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "control",
-            "named": false
-          }
-        ]
-      },
       "annotation": {
         "multiple": false,
         "required": false,
@@ -693,6 +683,16 @@
           {
             "type": "annotation_list",
             "named": true
+          }
+        ]
+      },
+      "keyword": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "control",
+            "named": false
           }
         ]
       },
@@ -747,16 +747,6 @@
     "type": "direct_application",
     "named": true,
     "fields": {
-      "KeyWord": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "apply",
-            "named": false
-          }
-        ]
-      },
       "args": {
         "multiple": false,
         "required": false,
@@ -764,6 +754,16 @@
           {
             "type": "argument_list",
             "named": true
+          }
+        ]
+      },
+      "keyword": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "apply",
+            "named": false
           }
         ]
       },
@@ -808,26 +808,6 @@
     "type": "entries_table",
     "named": true,
     "fields": {
-      "KeyWord": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "const",
-            "named": false
-          }
-        ]
-      },
-      "KeyWordEnd": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "entries",
-            "named": false
-          }
-        ]
-      },
       "annotation": {
         "multiple": false,
         "required": false,
@@ -845,6 +825,26 @@
           {
             "type": "entry_list",
             "named": true
+          }
+        ]
+      },
+      "keyword": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "const",
+            "named": false
+          }
+        ]
+      },
+      "keywordEnd": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "entries",
+            "named": false
           }
         ]
       }
@@ -919,16 +919,6 @@
     "type": "enum_declaration",
     "named": true,
     "fields": {
-      "KeyWord": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "enum",
-            "named": false
-          }
-        ]
-      },
       "annotation": {
         "multiple": false,
         "required": false,
@@ -936,6 +926,16 @@
           {
             "type": "annotation_list",
             "named": true
+          }
+        ]
+      },
+      "keyword": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "enum",
+            "named": false
           }
         ]
       },
@@ -979,7 +979,7 @@
     "type": "error_declaration",
     "named": true,
     "fields": {
-      "KeyWord": {
+      "keyword": {
         "multiple": false,
         "required": true,
         "types": [
@@ -1092,16 +1092,6 @@
     "type": "extern_declaration",
     "named": true,
     "fields": {
-      "KeyWord": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "extern",
-            "named": false
-          }
-        ]
-      },
       "annotation": {
         "multiple": false,
         "required": false,
@@ -1119,6 +1109,16 @@
           {
             "type": "function_prototype",
             "named": true
+          }
+        ]
+      },
+      "keyword": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "extern",
+            "named": false
           }
         ]
       },
@@ -1251,16 +1251,6 @@
     "type": "header_type_declaration",
     "named": true,
     "fields": {
-      "KeyWord": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "header",
-            "named": false
-          }
-        ]
-      },
       "annotation": {
         "multiple": false,
         "required": false,
@@ -1278,6 +1268,16 @@
           {
             "type": "struct_field_list",
             "named": true
+          }
+        ]
+      },
+      "keyword": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "header",
+            "named": false
           }
         ]
       },
@@ -1307,16 +1307,6 @@
     "type": "header_union_declaration",
     "named": true,
     "fields": {
-      "KeyWord": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "header_union",
-            "named": false
-          }
-        ]
-      },
       "annotation": {
         "multiple": false,
         "required": false,
@@ -1334,6 +1324,16 @@
           {
             "type": "struct_field_list",
             "named": true
+          }
+        ]
+      },
+      "keyword": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "header_union",
+            "named": false
           }
         ]
       },
@@ -1500,16 +1500,6 @@
     "type": "keys_table",
     "named": true,
     "fields": {
-      "KeyWord": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "key",
-            "named": false
-          }
-        ]
-      },
       "keys": {
         "multiple": false,
         "required": false,
@@ -1517,6 +1507,16 @@
           {
             "type": "key_element_list",
             "named": true
+          }
+        ]
+      },
+      "keyword": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "key",
+            "named": false
           }
         ]
       }
@@ -1644,7 +1644,7 @@
     "type": "match_kind_declaration",
     "named": true,
     "fields": {
-      "KeyWord": {
+      "keyword": {
         "multiple": false,
         "required": true,
         "types": [
@@ -1765,16 +1765,6 @@
     "type": "name_table",
     "named": true,
     "fields": {
-      "KeyWord": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "const",
-            "named": false
-          }
-        ]
-      },
       "annotation": {
         "multiple": false,
         "required": false,
@@ -1792,6 +1782,16 @@
           {
             "type": "initializer",
             "named": true
+          }
+        ]
+      },
+      "keyword": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "const",
+            "named": false
           }
         ]
       },
@@ -1951,16 +1951,6 @@
     "type": "package_type_declaration",
     "named": true,
     "fields": {
-      "KeyWord": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "package",
-            "named": false
-          }
-        ]
-      },
       "annotation": {
         "multiple": false,
         "required": false,
@@ -1971,9 +1961,19 @@
           }
         ]
       },
+      "keyword": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "package",
+            "named": false
+          }
+        ]
+      },
       "name": {
         "multiple": false,
-        "required": false,
+        "required": true,
         "types": [
           {
             "type": "name",
@@ -2215,16 +2215,6 @@
     "type": "parser_state",
     "named": true,
     "fields": {
-      "KeyWord": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "state",
-            "named": false
-          }
-        ]
-      },
       "annotation": {
         "multiple": false,
         "required": false,
@@ -2242,6 +2232,16 @@
           {
             "type": "parser_state_body",
             "named": true
+          }
+        ]
+      },
+      "keyword": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "state",
+            "named": false
           }
         ]
       },
@@ -2326,16 +2326,6 @@
     "type": "parser_type_declaration",
     "named": true,
     "fields": {
-      "KeyWord": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "parser",
-            "named": false
-          }
-        ]
-      },
       "annotation": {
         "multiple": false,
         "required": false,
@@ -2343,6 +2333,16 @@
           {
             "type": "annotation_list",
             "named": true
+          }
+        ]
+      },
+      "keyword": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "parser",
+            "named": false
           }
         ]
       },
@@ -2420,7 +2420,7 @@
     "type": "preproc_conditional_declaration",
     "named": true,
     "fields": {
-      "KeyWord": {
+      "keyword": {
         "multiple": false,
         "required": true,
         "types": [
@@ -2454,7 +2454,7 @@
     "type": "preproc_conditional_declaration_elif",
     "named": true,
     "fields": {
-      "KeyWord": {
+      "keyword": {
         "multiple": false,
         "required": true,
         "types": [
@@ -2470,7 +2470,7 @@
     "type": "preproc_conditional_declaration_else",
     "named": true,
     "fields": {
-      "KeyWord": {
+      "keyword": {
         "multiple": false,
         "required": true,
         "types": [
@@ -2486,7 +2486,7 @@
     "type": "preproc_conditional_declaration_end",
     "named": true,
     "fields": {
-      "KeyWordEnd": {
+      "keywordEnd": {
         "multiple": false,
         "required": true,
         "types": [
@@ -2502,20 +2502,6 @@
     "type": "preproc_define_declaration",
     "named": true,
     "fields": {
-      "KeyWord": {
-        "multiple": true,
-        "required": true,
-        "types": [
-          {
-            "type": "#",
-            "named": false
-          },
-          {
-            "type": "define",
-            "named": false
-          }
-        ]
-      },
       "body": {
         "multiple": false,
         "required": true,
@@ -2542,6 +2528,20 @@
           }
         ]
       },
+      "keyword": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "#",
+            "named": false
+          },
+          {
+            "type": "define",
+            "named": false
+          }
+        ]
+      },
       "name": {
         "multiple": false,
         "required": true,
@@ -2558,7 +2558,17 @@
     "type": "preproc_define_declaration_macro",
     "named": true,
     "fields": {
-      "KeyWord": {
+      "body_macro": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "body_define",
+            "named": true
+          }
+        ]
+      },
+      "keyword": {
         "multiple": true,
         "required": true,
         "types": [
@@ -2569,16 +2579,6 @@
           {
             "type": "define",
             "named": false
-          }
-        ]
-      },
-      "body_macro": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "body_define",
-            "named": true
           }
         ]
       },
@@ -2608,7 +2608,7 @@
     "type": "preproc_include_declaration",
     "named": true,
     "fields": {
-      "KeyWord": {
+      "keyword": {
         "multiple": true,
         "required": true,
         "types": [
@@ -2642,7 +2642,7 @@
     "type": "preproc_undef_declaration",
     "named": true,
     "fields": {
-      "KeyWord": {
+      "keyword": {
         "multiple": true,
         "required": true,
         "types": [
@@ -2728,16 +2728,6 @@
     "type": "return_statement",
     "named": true,
     "fields": {
-      "KeyWord": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "return",
-            "named": false
-          }
-        ]
-      },
       "expression": {
         "multiple": false,
         "required": false,
@@ -2745,6 +2735,16 @@
           {
             "type": "expression",
             "named": true
+          }
+        ]
+      },
+      "keyword": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "return",
+            "named": false
           }
         ]
       }
@@ -2799,7 +2799,7 @@
     "type": "select_expression",
     "named": true,
     "fields": {
-      "KeyWord": {
+      "keyword": {
         "multiple": false,
         "required": true,
         "types": [
@@ -3059,16 +3059,6 @@
     "type": "struct_type_declaration",
     "named": true,
     "fields": {
-      "KeyWord": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "struct",
-            "named": false
-          }
-        ]
-      },
       "annotation": {
         "multiple": false,
         "required": false,
@@ -3086,6 +3076,16 @@
           {
             "type": "struct_field_list",
             "named": true
+          }
+        ]
+      },
+      "keyword": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "struct",
+            "named": false
           }
         ]
       },
@@ -3175,16 +3175,6 @@
     "type": "switch_statement",
     "named": true,
     "fields": {
-      "KeyWord": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "switch",
-            "named": false
-          }
-        ]
-      },
       "body": {
         "multiple": true,
         "required": false,
@@ -3204,6 +3194,16 @@
             "named": true
           }
         ]
+      },
+      "keyword": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "switch",
+            "named": false
+          }
+        ]
       }
     }
   },
@@ -3211,16 +3211,6 @@
     "type": "table_declaration",
     "named": true,
     "fields": {
-      "KeyWord": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "table",
-            "named": false
-          }
-        ]
-      },
       "annotation": {
         "multiple": false,
         "required": false,
@@ -3228,6 +3218,16 @@
           {
             "type": "annotation_list",
             "named": true
+          }
+        ]
+      },
+      "keyword": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "table",
+            "named": false
           }
         ]
       },
@@ -3284,7 +3284,7 @@
     "type": "transition_statement",
     "named": true,
     "fields": {
-      "KeyWord": {
+      "keyword": {
         "multiple": false,
         "required": true,
         "types": [
@@ -3350,7 +3350,7 @@
     "type": "tuple_type",
     "named": true,
     "fields": {
-      "KeyWord": {
+      "keyword": {
         "multiple": false,
         "required": true,
         "types": [
@@ -3568,7 +3568,17 @@
     "type": "typedef_declaration",
     "named": true,
     "fields": {
-      "KeyWord": {
+      "annotation": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "annotation_list",
+            "named": true
+          }
+        ]
+      },
+      "keyword": {
         "multiple": false,
         "required": true,
         "types": [
@@ -3579,16 +3589,6 @@
           {
             "type": "typedef",
             "named": false
-          }
-        ]
-      },
-      "annotation": {
-        "multiple": false,
-        "required": false,
-        "types": [
-          {
-            "type": "annotation_list",
-            "named": true
           }
         ]
       },
@@ -3634,16 +3634,6 @@
     "type": "value_set_declaration",
     "named": true,
     "fields": {
-      "KeyWord": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "valueset",
-            "named": false
-          }
-        ]
-      },
       "annotation": {
         "multiple": false,
         "required": false,
@@ -3661,6 +3651,16 @@
           {
             "type": "expression",
             "named": true
+          }
+        ]
+      },
+      "keyword": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "valueset",
+            "named": false
           }
         ]
       },
