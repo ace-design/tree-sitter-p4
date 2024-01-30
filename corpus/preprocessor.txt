@@ -20,7 +20,7 @@ Include declaration 2
 
 (source_file
     (preproc_include_declaration
-        (string)))
+        (file_name)))
 
 ==================
 Define declaration 1

@@ -72,10 +72,14 @@ module.exports = grammar({
             seq('#', 'include'), choice(
                 seq(
                     '<',
-                    $.file_name,
+                    field("library_file", $.file_name),
                     '>'
                 ),
-                $.string
+                seq(
+                    '"',
+                    field("local_file", $.file_name),
+                    '"'
+                ),
             )
         ),
         file_name: $ => repeat1(choice(/[^>]/, '\\>')),
